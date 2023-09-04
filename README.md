@@ -3,6 +3,7 @@ Final-project:
 
 Risk Assessment for QA Cinemas Training Project
 Project Overview:
+
 The QA Cinemas training project involves the development of a full-stack web application for a cinema chain. This assessment identifies potential technical and learning-related risks that may impact the project's success.
 Risk Identification:
 1. Technical Complexity
