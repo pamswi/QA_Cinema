@@ -28,20 +28,6 @@ class BasicForm(FlaskForm):
     ])
     username = StringField('Username')
     submit = SubmitField('Add To Order')
-
-#     def validate_username(self, username):
-#         if username.data.lower() == 'admin':
-#             raise ValidationError("Can't use admin as a username! Try again.")
-        
-# class checkAdmin:
-#     def __init__(self, message=""):
-#         if not message:
-#             message = 'Please choose another username.'
-#         self.message = message
-
-#     def __call__(self, form, field):
-#         if field.data.lower() == 'admin':
-#             raise ValidationError(self.message)
         
 @app.route('/booking', methods=['GET', 'POST'])
 def register():
@@ -54,7 +40,6 @@ def register():
             last_name = form.last_name.data
             num_of_tickets = form.num_of_tickets.data
             movie = form.movie.data
-
 
             if len(first_name) == 0 or len(last_name) == 0:
                 message = "Please supply both first and last name"
