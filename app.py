@@ -1,6 +1,6 @@
 from flask import Flask
 from application import app, db
-import os, requests
+#import os, requests
 
 
 
