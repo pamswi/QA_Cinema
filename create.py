@@ -19,7 +19,7 @@ with app.app_context():
     db.session.add_all(classic_movies)
     db.session.commit()
 
-
+    
 
     # test_user = User(
     #         username='testuser',

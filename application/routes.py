@@ -2,7 +2,7 @@ from application import app
 from flask import render_template, request, redirect, url_for, flash, session
 from models import User
 from werkzeug.security import check_password_hash, generate_password_hash
-
+from models import Movie
 
 '''
 the following app.py file defines all known routes
@@ -43,11 +43,11 @@ def listings():
 def new_releases():
     return render_template("gallery.html")
 
-@app.route("serchresults")
+@app.route("/serchresults")
 def search_results():
     return render_template("gallery.html")
 
-@app.route("/payment")
+@app.route("/payment", methods=["GET", "POST"])
 def payment():
     return render_template("payment.html")
 
@@ -57,6 +57,7 @@ def forum():
 
 @app.route("/signup", methods=["GET","POST"])
 def signup():
+
     if request.method == "POST":
         email = request.form.get("email")
         username = request.form.get("username")

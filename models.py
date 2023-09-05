@@ -14,9 +14,9 @@ class User(db.Model):
     username = db.Column(db.String(255), unique=True)
     email = db.Column(db.String(255))
     password = db.Column(db.String(255))
-    address = db.Column(db.String(255))
     first_name = db.Column(db.String(255))
     last_name = db.Column(db.String(255))
+    address = db.Column(db.String(255))
     card_number = db.Column(db.String(16))
     card_expiry = db.Column(db.String(7)) 
     card_cvc = db.Column(db.Integer)
@@ -32,8 +32,22 @@ class User(db.Model):
     def retrieve_user(cls, username):
         existing_user = cls.query.filter_by(username=username).first()
         return existing_user
-
     
+    @classmethod
+    def add_payment(cls, username, first_name, last_name, address, card_number, card_expiry, card_cvc):
+        user = cls.query.get(username)
+        if user:
+            user.first_name = first_name
+            user.last_name = last_name
+            user.address = address
+            user.card_number = card_number
+            user.card_expiry = card_expiry
+            user.card_cvc = card_cvc
+            db.session.commit()
+            return user
+        else:
+            return "user not found"
+
     @classmethod
     def add_user(cls, username, email, password):
         new_user=User(username=username, email=email, password=password)
@@ -67,6 +81,12 @@ class Movie(db.Model):
     @classmethod
     def get_current_movies(cls):
         return cls.query.filter_by(classic=False).all()
+    
+    # the following method retrievs movies similar to user's search input
+    @classmethod
+    def search(cls, user_input):
+        results = cls.query.filter(cls.title.ilike(f"%{user_input}%")).all()
+        return results
 
 class Screening(db.Model):
     id = db.Column(db.Integer, primary_key=True)
