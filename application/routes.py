@@ -7,6 +7,13 @@ from werkzeug.security import check_password_hash, generate_password_hash
 '''
 the following app.py file defines all known routes
 '''
+# @app.route("/")
+# def home():
+#     return render_template ("homepage.html")
+
+# @app.route("/about")
+# def about():
+#     return render_template("about.html")
 
 @app.route("/signup", methods=["GET","POST"])
 def signup():
@@ -43,13 +50,17 @@ def login():
         if user is not None:
             if check_password_hash(user.password, password):
                 session["username"] = user.username
+
+            print(session["username"])
         return redirect ("/")
     
     return render_template ("login.html")
 
-@app.route("/logout")
+@app.route("/logout", methods=["GET", "POST"])
 def logout():
-    session.clear()
-    return redirect ("/")
-    
+    if request.method == "POST":
+        # Clear the user's session
+        session.clear()
+        return redirect("/")
+    return render_template("logout.html")
 
