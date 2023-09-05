@@ -7,13 +7,53 @@ from werkzeug.security import check_password_hash, generate_password_hash
 '''
 the following app.py file defines all known routes
 '''
-# @app.route("/")
-# def home():
-#     return render_template ("homepage.html")
+@app.route("/")
+def home():
+    return render_template ("homepage.html")
 
-# @app.route("/about")
-# def about():
-#     return render_template("about.html")
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+@app.route("/openingtimes")
+def opening_times():
+    return render_template("opening.html")
+
+@app.route("/classifications")
+def classifications():
+    return render_template("classification.html")
+
+@app.route("/screens")
+def screens():
+    return render_template("screens.html")
+
+@app.route("/services")
+def cinema_services():
+    return render_template("services.html")
+
+@app.route("/movies/<int:movie_id>")
+def view_movie():
+    return render_template("movie.html")
+
+@app.route("/listings")
+def listings():
+    return render_template("gallery.html")
+
+@app.route("/newreleases")
+def new_releases():
+    return render_template("gallery.html")
+
+@app.route("serchresults")
+def search_results():
+    return render_template("gallery.html")
+
+@app.route("/payment")
+def payment():
+    return render_template("payment.html")
+
+@app.route("/forum")
+def forum():
+    return render_template("forum.html")
 
 @app.route("/signup", methods=["GET","POST"])
 def signup():
