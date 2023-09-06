@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, StringField, IntegerField, DateTimeLocalField,DateField,SelectField,Length
-from wtforms.validators import DataRequired
+from wtforms import SubmitField, StringField, IntegerField, DateTimeLocalField,DateField,SelectField
+from wtforms.validators import DataRequired, Length
+
 
 class DiscussionPost(FlaskForm):
     user_id = IntegerField('User ID', validators=[DataRequired()])
