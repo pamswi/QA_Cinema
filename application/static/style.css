@@ -120,6 +120,142 @@ footer i {
     padding-right: 0.5rem;
 }
 
+/* ABOUT US PAGE STYLES*/
+
+.aboutus-details {
+    color: white;
+    padding-left: 25%;
+    margin-bottom: -1rem;
+}
+
+.aboutus-pageheading {
+    padding-left: 20%;
+    padding-bottom: 1rem;
+}
+
+.meet-our-team {
+    color: white;
+    padding-left: 25%;
+    margin-bottom: -1rem;
+    padding-top: 2rem;
+}
+
+.team-heading {
+    padding-left: 20%;
+    padding-bottom: 1rem;
+}
+
+.team-members img {
+    width: 20%;
+    height: 20%;
+}
+
+.team-members {
+    padding-left: 25%;
+    padding-top: 2rem;
+}
+
+.pam-name-title, .kes-name-title, .akber-name-title, .alex-name-title, .tom-name-title {
+    position: relative;
+    left: 30%;
+    margin-top: -5%;
+    color: white;
+}
+
+footer {
+    margin-top: -1rem;
+}
+
+/*LOGIN PAGE STYLES*/
+
+.login-heading {
+    color: white;
+    padding-left: 40%;
+    margin-bottom: -1rem;
+}
+
+form {
+    color: white;
+    padding-left: 30%;
+    padding-top: 5%;
+}
+
+.info {
+    color: white;
+    padding-left: 30%;
+    padding-top: 3rem;
+}
+
+
+.login-form input {
+    color: white;
+    border: 1px solid orangered;
+    width: 25rem;
+    padding-top: 0.5rem;
+    margin-top: 2rem;
+}
+
+.login-pwd input {
+    color: white;
+    border: 1px solid orangered;
+    width: 25rem;
+    padding-top: 0.5rem;
+    margin-top: 2rem;
+}
+
+.login-btn input {
+    width: 5rem;
+    color: white;
+    background: orangered;
+    margin-top: 2rem;
+}
+
+/* SIGN UP PAGE STYLES*/
+
+.existing-user {
+    padding-left: 30%;
+    padding-top: 3rem;
+    color: white;
+}
+
+.signup-heading {
+    padding-left: 40%;
+    color: white;
+    margin-bottom: -1rem;
+}
+
+.signup-btn input {
+    width: 5rem;
+    color: white;
+    background: orangered;
+    margin-top: 3rem;
+}
+
+.email-details input, .username-details input, .user-pwd input, .confirm-pwd input {
+    color: white;
+    border: 1px solid orangered;
+    width: 25rem;
+    padding-top: 0.5rem;
+    margin-top: 2rem;
+}
+
+.email-details input {
+    margin-left: 6rem;
+}
+
+.username-details input {
+    margin-left: 3.8rem;
+}
+
+.user-pwd input {
+    margin-left: 4rem;
+}
+
+
+
+
+
+
 
 /* MEDIA QUERIES - TABLET*/
 
