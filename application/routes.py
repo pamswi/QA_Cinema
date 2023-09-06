@@ -39,9 +39,22 @@ def view_movie():
 def listings():
     return render_template("gallery.html")
 
-@app.route("/newreleases")
+@app.route('/newreleases', methods=['GET'])
 def new_releases():
-    return render_template("gallery.html")
+    from models import Movie  
+
+    new_releases = Movie.query.filter_by(classic=False).all()
+    
+    return render_template('new_releases.html', films=new_releases)
+
+@app.route("/classics", methods=['GET'])
+def classics():
+    from models import Movie  
+
+    classics = Movie.query.filter_by(classic=True).all()
+
+    return render_template('classics.html', films=classics)
+
 
 @app.route("/serchresults")
 def search_results():
