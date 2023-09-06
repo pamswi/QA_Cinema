@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discussion Forum</title>
+</head>
+<body>
+    <h1>Discussion Board</h1>
+    <table>
+        {% for post in all_posts %}
+        <tr>
+            <td><h3>{{ post.topic }}</h3></td>
+        </tr>
+        <tr>
+            <td>{{ post.movie.title }}</td>
+        </tr>
+        <tr>
+            <td><b>{{ post.user.username }}</b></td>
+            
+            <td>{{ post.timestamp }}</td>
+        </tr>
+        <tr>
+            <td>{{ post.comment }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <br>
+    <form method="get" action="">
+        {{ form.hidden_tag() }}
+        {{ form.user_id.label }} {{ form.user_id}}
+        <br>
+        {{ form.movie_id.label }} {{ form.movie_id}}
+        <br>
+        {{ form.topic.label }} {{ form.topic }}
+        <br>
+        {{ form.comment.label }} {{ form.comment }}
+        <br>
+        {{ form.timestamp }}
+        <br>
+        {{ form.send() }}
+    </form>
+</body>
+</html>

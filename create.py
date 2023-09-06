@@ -16,11 +16,104 @@ with app.app_context():
     Movie(title="The Wizard of Oz", director="Victor Fleming", actors="Judy Garland, Frank Morgan", release_date="1939-08-15", description="A beloved family fantasy film.", poster="wizardofoz.jpg", classic=True, age_restricted=False),
     Movie(title="The Shawshank Redemption", director="Frank Darabont", actors="Tim Robbins, Morgan Freeman", release_date="1994-09-10", description="A tale of hope and friendship in prison.", poster="shawshankredemption.jpg", classic=True, age_restricted=False),
 ]
+
     db.session.add_all(classic_movies)
     db.session.commit()
 
 
+    film1 = Movie(
+        title='Scrapper',
+        director='Charlotte Regan',
+        actors='Harris Dickinson, Lola Campbell, Alin Uzun',
+        release_date='25 August 2023',
+        description='In this vibrant and inventive father-daughter comedy, Georgie (Lola Campbell) is a dreamy 12-year-old girl who lives alone in her London flat, filling it with magic after the death of her mother. Out of nowhere, her estranged father Jason (Harris Dickinson) arrives and forces her to confront reality. Uninterested in this sudden new parental figure, Georgie is stubbornly resistant to his efforts. As they adjust to their new circumstances, Georgie and Jason find that both father and daughter still have a lot of growing up to do.',
+        poster='https://s3.amazonaws.com/nightjarprod/content/uploads/sites/130/2023/06/30190749/czuHcf5d45tEgTHjWGkwB9NhbLO.jpg',
+        classic=False,
+        age_restricted=False
 
+    )
+
+    film2 = Movie(
+        title='Oppenheimer',
+        director='Christopher Nolan',
+        actors='Cillian Murphy, Robert Downey Jr, Emily Blunt',
+        release_date='21 July 2023',
+        description="Written and directed by Christopher Nolan and produced by Emma Thomas, Atlas Entertainment's Charles Roven and Nolan, 'Oppenheimer' stars Cillian Murphy (Inception, The Dark Knight trilogy, A Quiet Place Part II, Peaky Blinders) as J. Robert Oppenheimer. 'Oppenheimer' is based on the Pulitzer Prize-winning book American Prometheus: The Triumph and Tragedy of J. Robert Oppenheimer",
+        poster='https://movies.universalpictures.com/media/opr-tsr1sheet3-look2-rgb-3-1-1-64545c0d15f1e-1.jpg',
+        classic=False,
+        age_restricted=False
+
+    )
+
+    film3 = Movie(
+        title='Barbie',
+        director='Greta Gerwig',
+        actors='Margot Robbie, Ryan Gosling',
+        release_date='21 July 2023',
+        description='Eccentric and individualistic, Barbie is exiled from Barbieland because of her imperfections. When her home world is in peril, Barbie returns with the knowledge that what makes her different also makes her stronger.',
+        poster='https://i.ebayimg.com/images/g/gBQAAOSwADJkLV20/s-l1600.jpg',
+        classic=False,
+        age_restricted=False
+
+    )
+
+    film4 = Movie(
+        title='Elemental',
+        director='Peter Sohn',
+        actors="Leah Lewis, Catherine O'Hara, Mamoudou Athie",
+        release_date ='7th July 2023',
+        description='In a city where fire, water, land, and air residents live together, a fiery young woman and a go-with-the-flow guy are about to discover something elemental: How much they actually have in common.',
+        poster='https://i0.wp.com/pixarpost.com/wp-content/uploads/2023/06/Elemental-Fandango-Character-Poster.jpg?fit=1080%2C1600&ssl=1',
+        classic=False,
+        age_restricted=False
+
+    )
+
+    film5 = Movie(
+        title='The Nun II',
+        director="Michael Chaves",
+        actors='Storm Reid, Jonas Bloquet, Taissa Farmiga',
+        release_date = '8th September 2023',
+        description='1956 - France. A priest is murdered. An evil is spreading. The sequel to the worldwide smash hit follows Sister Irene as she once again comes face-to-face with Valak, the demon nun.',
+        poster='https://s.yimg.com/ny/api/res/1.2/E3Cj4_sKrdgI4zjmWxW7kA--/YXBwaWQ9aGlnaGxhbmRlcjt3PTE2NTY7aD0yMDQ0/https://media.zenfs.com/en/comingsoon_net_477/c817943ce8ab06c0275d03ff03a6dd19',
+        classic= False,
+        age_restricted=False
+    )
+
+    film6 = Movie(
+        title='Jurassic Park',
+        director='Steven Spielberg',
+        actors='Sam Neill, Laura Dern, Jeff Goldblum',
+        release_date="1st September 2023",
+        description='During a preview tour, a theme park suffers a major power breakdown that allows its cloned dinosaur exhibits to run amok.',
+        poster='https://m.media-amazon.com/images/I/610fuvWAaqL._AC_UF894,1000_QL80_.jpg',
+        classic=True,
+        age_restricted=False
+
+    )
+    film7 = Movie(
+        title='The Godfather',
+        director='Francis Ford Coppola',
+        actors='Marlon Brando, James Caan, Al Pacino, Robert Duvall',
+        release_date='24 March 1972',
+        description='The Godfather "Don" Vito Corleone is the head of the Corleone mafia family in New York. He is at the event of his daughters wedding. Michael, Vitos youngest son and a decorated WW II Marine is also present at the wedding. Michael seems to be uninterested in being a part of the family business. ',
+        poster='https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg',
+        classic= True,
+        age_restricted=True
+    )
+
+  
+  
+    db.session.add(film1)
+    db.session.add(film2)
+    db.session.add(film3)
+    db.session.add(film4)
+    db.session.add(film5)
+    db.session.add(film6)
+    db.session.add(film7)
+    db.session.commit()
+
+    
     # test_user = User(
     #         username='testuser',
     #         email='testuser@example.com',
@@ -77,12 +170,12 @@ with app.app_context():
     # db.session.add(booking_details_test)
     # db.session.commit()
 
-    # discussion_test = Discussion(
-    #         user_id=4,
-    #         movie_id=6,
-    #         topic='Discussion Topic',
-    #         comment='A test comment',
-    #         timestamp='2023-01-01 14:00:00'
-    #     )
-    # db.session.add(discussion_test)
-    # db.session.commit()
+    discussion_test = Discussion(
+            user_id=1,
+            movie_id=1,
+            topic='Test Topic',
+            comment='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non velit sit amet risus condimentum tristique. Sed bibendum elit nec arcu auctor, in malesuada justo tincidunt. Nullam auctor auctor purus, ac dictum ipsum. Vivamus gravida, justo in tristique pulvinar, metus velit blandit metus.',
+            timestamp='2023-01-01 14:00:00'
+        )
+    db.session.add(discussion_test)
+    db.session.commit()

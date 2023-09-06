@@ -1,11 +1,15 @@
-from application import app
+from application import app, db
 from flask import render_template, request, redirect, url_for, flash, session
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, DateField, IntegerField, SelectField
 from wtforms.validators import ValidationError, DataRequired, Length
 from models import User
 from werkzeug.security import check_password_hash, generate_password_hash
+from models import Movie, Discussion
+from forms import DiscussionPost
 
+
+app.config['SECRET_KEY'] = 'YOUR_SECRET_KEY'    
 
 '''
 the following app.py file defines all known routes
@@ -42,24 +46,33 @@ def view_movie():
 def listings():
     return render_template("gallery.html")
 
-@app.route("/newreleases")
+@app.route('/newreleases', methods=['GET'])
 def new_releases():
-    return render_template("gallery.html")
+    from models import Movie  
 
-@app.route("serchresults")
+    new_releases = Movie.query.filter_by(classic=False).all()
+    
+    return render_template('new_releases.html', films=new_releases)
+
+@app.route("/classics", methods=['GET'])
+def classics():
+
+    classics = Movie.query.filter_by(classic=True).all()
+
+    return render_template('classics.html', films=classics)
+
+
+@app.route("/serchresults")
 def search_results():
     return render_template("gallery.html")
 
-@app.route("/payment")
+@app.route("/payment", methods=["GET", "POST"])
 def payment():
     return render_template("payment.html")
 
-@app.route("/forum")
-def forum():
-    return render_template("forum.html")
-
 @app.route("/signup", methods=["GET","POST"])
 def signup():
+
     if request.method == "POST":
         email = request.form.get("email")
         username = request.form.get("username")
@@ -107,6 +120,7 @@ def logout():
         return redirect("/")
     return render_template("logout.html")
 
+<<<<<<< HEAD
 class BasicForm(FlaskForm):
     first_name = StringField('First Name', validators=[
         DataRequired(),
@@ -147,3 +161,26 @@ def register():
                 message = f'Thank you, {first_name} {last_name}. you have selected {num_of_tickets} ticket for {movie}.'
 
     return render_template('booking.html', form=form, message=message)
+=======
+@app.route('/forum', methods=["GET","POST"])
+def discussionboard():
+    
+    all_posts= Discussion.all_discussion()
+    form = DiscussionPost()
+
+    if request.method == "POST":
+        if form.validate_on_submit():
+            with app.app_context():
+                new_post = Discussion(
+                    user_id = form.user_id.data,
+                    movie_id = form.user_id.data,
+                    topic = form.topic.data,
+                    comment = form.comment.data,
+                    timestamp = form.timestamp.data
+                )
+                db.session.add(new_post)
+                db.session.commit()
+                all_posts= Discussion.all_discussion()
+
+    return render_template('discussion-board.html', all_posts=all_posts, form=form)
+>>>>>>> d0b179288b9d68495c3c42b35c234d15932cf49a
