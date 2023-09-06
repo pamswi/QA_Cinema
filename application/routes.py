@@ -74,10 +74,18 @@ def search_results():
 def payment():
     message = ""
     form = PayForm()
+
     if request.method == 'POST':
-            first_name = form.first_name.data
-            last_name = form.last_name.data
-            message = f'Thank you ,{ first_name} {last_name} Payment has been accepted' 
+        first_name = form.first_name.data
+        last_name = form.last_name.data
+        address = form.address.data
+        card_number = form.card_number.data
+        expiry_date = form.expiry_date.data
+        card_cvc = form.cvc_number.data
+        update_user = User.add_payment(session["username"], first_name, last_name, address, card_number, expiry_date, card_cvc)
+
+        message= "payment received"
+
     return render_template('payment.html', form=form, message=message)
 
 
