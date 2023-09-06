@@ -42,28 +42,31 @@ with app.app_context():
     screening_times = [
     '15:00','18:00','21:00',
     ]
+    screening_days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     selected_movies = movies[:7]
     all_screening_times = []
 
     for _ in range(3):
         all_screening_times.extend(screening_times)
 
-    for i, movie in enumerate(selected_movies):
-        screen = screens[i % len(screens)]
-        
-        time_indices = [i % len(all_screening_times) for i in range(3)]
-        times = [all_screening_times[index] for index in time_indices]
+    for day in screening_days:
+        for i, movie in enumerate(selected_movies):
+            screen = screens[i % len(screens)]
+            
+            time_indices = [i % len(all_screening_times) for i in range(3)]
+            times = [all_screening_times[index] for index in time_indices]
 
-        current_capacity = screen.seating_capacity
+            current_capacity = screen.seating_capacity
 
-        for time in times:
-            screening = Screening(
-                movie=movie,
-                screen=screen,
-                time=time,
-                current_capacity=current_capacity
-            )
-            db.session.add(screening)
+            for time in times:
+                screening = Screening(
+                    movie=movie,
+                    screen=screen,
+                    time=time,
+                    day=day,
+                    current_capacity=current_capacity
+                )
+                db.session.add(screening)
 
     db.session.commit()
     

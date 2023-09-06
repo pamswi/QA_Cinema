@@ -32,7 +32,7 @@ class User(db.Model):
     def retrieve_user(cls, username):
         existing_user = cls.query.filter_by(username=username).first()
         return existing_user
-    
+   
     @classmethod
     def add_payment(cls, username, first_name, last_name, address, card_number, card_expiry, card_cvc):
         user = cls.query.get(username)
@@ -93,6 +93,7 @@ class Screening(db.Model):
     movie_id = db.Column('movie_id', db.Integer, db.ForeignKey('movie.id'))
     screen_id = db.Column('screen_id', db.String(5), db.ForeignKey('screen.id'))
     time = db.Column(db.String)
+    day = db.Column(db.String)
     current_capacity = db.Column(db.Integer)
 
     movie = db.relationship('Movie', backref='screening')

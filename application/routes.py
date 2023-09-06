@@ -15,7 +15,7 @@ the following app.py file defines all known routes
 '''
 @app.route("/")
 def home():
-    return render_template ("homepage.html")
+    return render_template ("index.html")
 
 @app.route("/about")
 def about():
@@ -49,15 +49,14 @@ def listings():
 def new_releases():
     from models import Movie  
 
-    new_releases = Movie.query.filter_by(classic=False).all()
-    
+    new_releases = Movie.get_current_movies()
     return render_template('new_releases.html', films=new_releases)
 
 @app.route("/classics", methods=['GET'])
 def classics():
 
-    classics = Movie.query.filter_by(classic=True).all()
-
+    classics = Movie.get_classic_movies()
+    
     return render_template('classics.html', films=classics)
 
 
@@ -92,7 +91,7 @@ def signup():
 
         new_user = User.add_user(username, email, password_hash)
 
-        return render_template("login.html")
+        return redirect("/login")
 
     return render_template("signup.html")
 
@@ -103,17 +102,17 @@ def login():
     session.clear()
 
     if request.method == "POST":
-        session["username"] = request.form["username"]
         username = request.form.get("username")
         password = request.form.get("password")
 
         # below we retrieve user by username and check if the password is correct
         user = User.retrieve_user(username)
         if user is not None:
-            if check_password_hash(user.password, password):
+            if check_password_hash(user.password, password) == True:
                 session["username"] = user.username
-
-            print(session["username"])
+            else:
+                flash("incorrect username and/or password")
+                return redirect ("/login")
         return redirect ("/")
     
     return render_template ("login.html")
@@ -126,26 +125,6 @@ def logout():
         return redirect("/")
     return render_template("logout.html")
 
-# class BasicForm(FlaskForm): ***akber form moved to forms.py***
-#     first_name = StringField('First Name', validators=[
-#         DataRequired(),
-#         Length(min=2, max=30)
-#     ])
-#     last_name = StringField('Last Name')
-#     movie_date = DateField('Movie date')
-#     num_of_tickets = IntegerField('Number of Seats')
-#     movie = SelectField('Choose Movie', choices=[
-#         ('Movie 1', 'Movie 1'),
-#         ('Movie 2', 'Movie 2'),
-#         ('Movie 3', 'Movie 3')
-#     ])
-#     ticket_type = SelectField('Ticket Type', choices=[
-#         ('Adult', 'Adult'),
-#         ('Kids', 'Kids'),
-#         ('Studetns', 'Students')
-#     ])
-#     username = StringField('Username')
-#     submit = SubmitField('Add To Order')
         
 @app.route('/booking', methods=['GET', 'POST']) # AKBER
 def register():
