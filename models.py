@@ -147,3 +147,8 @@ class Discussion(db.Model):
     def all_discussion(cls):
         return cls.query.all()
 
+    def new_comment(self, user_id, movie_id, topic, comment, timestamp):
+        new_comment=Discussion(user_id=user_id, movie_id=movie_id, topic=topic, comment=comment, timestamp=timestamp)
+        db.session.add(new_comment)
+        db.session.commit()
+        return new_comment  

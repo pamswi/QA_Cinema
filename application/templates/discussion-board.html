@@ -16,7 +16,7 @@
             <td>{{ post.movie.title }}</td>
         </tr>
         <tr>
-            <td><b>{{ post.user.username }}</b></td>
+            <td>{{ post.user.username }}</td>
             
             <td>{{ post.timestamp }}</td>
         </tr>
@@ -27,7 +27,7 @@
     </table>
     <br>
     <br>
-    <form method="get" action="">
+    <form method="POST" action="">
         {{ form.hidden_tag() }}
         {{ form.user_id.label }} {{ form.user_id}}
         <br>
@@ -37,9 +37,7 @@
         <br>
         {{ form.comment.label }} {{ form.comment }}
         <br>
-        {{ form.timestamp }}
-        <br>
-        {{ form.send() }}
+        {{ form.submit }}
     </form>
 </body>
 </html>
