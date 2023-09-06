@@ -141,14 +141,17 @@ with app.app_context():
     # db.session.add(test_movie)
     # db.session.commit()
 
-    # screening_test = Screening(
-    #         movie_id=1,
-    #         screen_id=1,
-    #         time='2023-01-01 12:00:00',
-    #         current_capacity=100
-    #     )
-    # db.session.add(screening_test)
-    # db.session.commit()
+    screening_test = Screening(
+        movie_id=14,
+        screen_id=1,
+        time='12:00:00',
+        day ='Friday',
+        current_capacity=100
+    )
+         
+    db.session.add(screening_test)
+    db.session.commit()
+
 
     # booking_test = Booking(
     #         user_id=1,
@@ -176,6 +179,6 @@ with app.app_context():
             topic='Test Topic',
             comment='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non velit sit amet risus condimentum tristique. Sed bibendum elit nec arcu auctor, in malesuada justo tincidunt. Nullam auctor auctor purus, ac dictum ipsum. Vivamus gravida, justo in tristique pulvinar, metus velit blandit metus.',
             timestamp='2023-01-01 14:00:00'
-        )
+    )
     db.session.add(discussion_test)
     db.session.commit()

@@ -93,6 +93,7 @@ class Screening(db.Model):
     movie_id = db.Column('movie_id', db.Integer, db.ForeignKey('movie.id'))
     screen_id = db.Column('screen_id', db.String(5), db.ForeignKey('screen.id'))
     time = db.Column(db.String)
+    day = db.Column(db.String)
     current_capacity = db.Column(db.Integer)
 
     movie = db.relationship('Movie', backref='screening')
