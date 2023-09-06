@@ -1,10 +1,12 @@
 from application import app, db
 from flask import render_template, request, redirect, url_for, flash, session
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField, DateField, IntegerField, SelectField
+from wtforms.validators import ValidationError, DataRequired, Length
 from models import User
 from werkzeug.security import check_password_hash, generate_password_hash
 from models import Movie, Discussion
-from forms import DiscussionPost
-
+from forms import DiscussionPost , BasicForm 
 
 app.config['SECRET_KEY'] = 'YOUR_SECRET_KEY'    
 
@@ -117,24 +119,41 @@ def logout():
         return redirect("/")
     return render_template("logout.html")
 
-@app.route('/forum', methods=["GET","POST"])
-def discussionboard():
-    
-    all_posts= Discussion.all_discussion()
-    form = DiscussionPost()
+# class BasicForm(FlaskForm): ***akber form moved to forms.py***
+#     first_name = StringField('First Name', validators=[
+#         DataRequired(),
+#         Length(min=2, max=30)
+#     ])
+#     last_name = StringField('Last Name')
+#     movie_date = DateField('Movie date')
+#     num_of_tickets = IntegerField('Number of Seats')
+#     movie = SelectField('Choose Movie', choices=[
+#         ('Movie 1', 'Movie 1'),
+#         ('Movie 2', 'Movie 2'),
+#         ('Movie 3', 'Movie 3')
+#     ])
+#     ticket_type = SelectField('Ticket Type', choices=[
+#         ('Adult', 'Adult'),
+#         ('Kids', 'Kids'),
+#         ('Studetns', 'Students')
+#     ])
+#     username = StringField('Username')
+#     submit = SubmitField('Add To Order')
+        
+@app.route('/booking', methods=['GET', 'POST']) # AKBER
+def register():
+    message = ""
+    form = BasicForm()
 
-    if request.method == "POST":
+    if request.method == 'POST':
         if form.validate_on_submit():
-            with app.app_context():
-                new_post = Discussion(
-                    user_id = form.user_id.data,
-                    movie_id = form.user_id.data,
-                    topic = form.topic.data,
-                    comment = form.comment.data,
-                    timestamp = form.timestamp.data
-                )
-                db.session.add(new_post)
-                db.session.commit()
-                all_posts= Discussion.all_discussion()
+            first_name = form.first_name.data
+            last_name = form.last_name.data
+            num_of_tickets = form.num_of_tickets.data
+            movie = form.movie.data
+            if len(first_name) == 0 or len(last_name) == 0:
+                message = "Please supply both first and last name"
+            else:
+                message = f'Thank you, {first_name} {last_name}. you have selected {num_of_tickets} ticket for {movie}.'
 
-    return render_template('discussion-board.html', all_posts=all_posts, form=form)
+    return render_template('booking.html', form=form, message=message)
