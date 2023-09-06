@@ -1,7 +1,12 @@
 from flask_wtf import FlaskForm
+<<<<<<< HEAD
 from wtforms import SubmitField, StringField, IntegerField, DateTimeLocalField
 from wtforms.validators import DataRequired, Length
 
+=======
+from wtforms import SubmitField, StringField, IntegerField, DateTimeLocalField,DateField,SelectField,Length
+from wtforms.validators import DataRequired
+>>>>>>> 191999411ccd242a735f77db352cc5d68968c889
 
 class DiscussionPost(FlaskForm):
     user_id = IntegerField('User ID', validators=[DataRequired()])
@@ -11,6 +16,7 @@ class DiscussionPost(FlaskForm):
     timestamp = DateTimeLocalField('Timestamp', format='%Y-%m-%d %H:%M:%S')
     send = SubmitField('Send')
 
+<<<<<<< HEAD
 # payment form including Akber's validators
 class PayForm(FlaskForm):
     first_name = StringField('First Name', validators=[
@@ -33,3 +39,27 @@ class PayForm(FlaskForm):
         Length(min=3, max=3)])   
     
     submit = SubmitField('Pay Now')
+=======
+class BasicForm(FlaskForm): #Akber form for booking movies
+    first_name = StringField('First Name', validators=[
+        DataRequired(),
+        Length(min=2, max=30)
+    ])
+    last_name = StringField('Last Name')
+    movie_date = DateField('Movie date')
+    num_of_tickets = IntegerField('Number of Seats')
+    movie = SelectField('Choose Movie', choices=[
+        ('Movie 1', 'Movie 1'),
+        ('Movie 2', 'Movie 2'),
+        ('Movie 3', 'Movie 3')
+    ])
+    ticket_type = SelectField('Ticket Type', choices=[
+        ('Adult', 'Adult'),
+        ('Kids', 'Kids'),
+        ('Students', 'Students')
+    ])
+    username = StringField('Username')
+    submit = SubmitField('Add To Order')
+
+    
+>>>>>>> 191999411ccd242a735f77db352cc5d68968c889
