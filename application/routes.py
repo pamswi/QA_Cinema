@@ -6,12 +6,7 @@ from wtforms.validators import ValidationError, DataRequired, Length
 from models import User
 from werkzeug.security import check_password_hash, generate_password_hash
 from models import Movie, Discussion
-<<<<<<< HEAD
-from forms import DiscussionPost, PayForm
-
-=======
-from forms import DiscussionPost , BasicForm 
->>>>>>> 191999411ccd242a735f77db352cc5d68968c889
+from forms import DiscussionPost, PayForm, BasicForm
 
 app.config['SECRET_KEY'] = 'YOUR_SECRET_KEY'    
 

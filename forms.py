@@ -1,12 +1,6 @@
 from flask_wtf import FlaskForm
-<<<<<<< HEAD
-from wtforms import SubmitField, StringField, IntegerField, DateTimeLocalField
-from wtforms.validators import DataRequired, Length
-
-=======
 from wtforms import SubmitField, StringField, IntegerField, DateTimeLocalField,DateField,SelectField,Length
 from wtforms.validators import DataRequired
->>>>>>> 191999411ccd242a735f77db352cc5d68968c889
 
 class DiscussionPost(FlaskForm):
     user_id = IntegerField('User ID', validators=[DataRequired()])
@@ -16,7 +10,6 @@ class DiscussionPost(FlaskForm):
     timestamp = DateTimeLocalField('Timestamp', format='%Y-%m-%d %H:%M:%S')
     send = SubmitField('Send')
 
-<<<<<<< HEAD
 # payment form including Akber's validators
 class PayForm(FlaskForm):
     first_name = StringField('First Name', validators=[
@@ -39,7 +32,7 @@ class PayForm(FlaskForm):
         Length(min=3, max=3)])   
     
     submit = SubmitField('Pay Now')
-=======
+    
 class BasicForm(FlaskForm): #Akber form for booking movies
     first_name = StringField('First Name', validators=[
         DataRequired(),
@@ -62,4 +55,3 @@ class BasicForm(FlaskForm): #Akber form for booking movies
     submit = SubmitField('Add To Order')
 
     
->>>>>>> 191999411ccd242a735f77db352cc5d68968c889
