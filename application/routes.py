@@ -3,7 +3,7 @@ from flask import render_template, request, redirect, url_for, flash, session
 from models import User
 from werkzeug.security import check_password_hash, generate_password_hash
 from models import Movie, Discussion
-from forms import DiscussionPost
+from forms import DiscussionPost, PayForm
 
 
 app.config['SECRET_KEY'] = 'YOUR_SECRET_KEY'    
@@ -63,9 +63,16 @@ def classics():
 def search_results():
     return render_template("gallery.html")
 
-@app.route("/payment", methods=["GET", "POST"])
+@app.route('/payment', methods=['GET', 'POST'])
 def payment():
-    return render_template("payment.html")
+    message = ""
+    form = PayForm()
+    if request.method == 'POST':
+            first_name = form.first_name.data
+            last_name = form.last_name.data
+            message = f'Thank you ,{ first_name} {last_name} Payment has been accepted' 
+    return render_template('payment.html', form=form, message=message)
+
 
 @app.route("/signup", methods=["GET","POST"])
 def signup():
