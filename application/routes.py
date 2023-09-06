@@ -1,4 +1,4 @@
-from application import app
+from application import app, db
 from flask import render_template, request, redirect, url_for, flash, session
 from models import User
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -105,3 +105,26 @@ def logout():
         return redirect("/")
     return render_template("logout.html")
 
+app.config['SECRET_KEY'] = 'YOUR_SECRET_KEY'    
+@app.route('/discussion-board', methods=["GET","POST"])
+def discussionboard():
+    from forms import DiscussionPost
+    from models import Discussion
+    all_posts= Discussion.all_discussion()
+    form = DiscussionPost()
+
+    if request.method == "POST":
+        if form.validate_on_submit():
+            with app.app_context():
+                new_post = Discussion(
+                    user_id = form.user_id.data,
+                    movie_id = form.user_id.data,
+                    topic = form.topic.data,
+                    comment = form.comment.data,
+                    timestamp = form.timestamp.data
+                )
+                db.session.add(new_post)
+                db.session.commit()
+                all_posts= Discussion.all_discussion()
+
+    return render_template('discussion-board.html', all_posts=all_posts, form=form)
