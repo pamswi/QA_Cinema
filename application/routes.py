@@ -15,7 +15,7 @@ the following app.py file defines all known routes
 '''
 @app.route("/")
 def home():
-    return render_template ("index.html")
+    return render_template ("homepage.html")
 
 @app.route("/about")
 def about():

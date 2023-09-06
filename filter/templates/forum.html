@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modertation form</title>
+</head>
+<body>
+
+{% if message %}
+    <div class="alert">
+        {{ message }}
+    </div>
+{% endif %}
+
+<form method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.comment.label }} <br>
+    {{ form.comment(rows=4, cols=40) }}<br>
+    {{ form.submit() }}
+</form>
+
+</body>
+</html>
