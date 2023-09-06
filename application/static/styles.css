@@ -62,3 +62,26 @@
     height: 300px; /* Set your desired height */
     object-fit: cover; /* Maintain aspect ratio and cover the specified dimensions */
 }
+
+/* styles.css */
+.date-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Adjust the gap between buttons */
+}
+
+.date-button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.date-button:hover {
+    background-color: #0056b3;
+}
+
