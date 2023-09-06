@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{{ url_for('static', filename='frontend.css') }}" type="text/css" rel="stylesheet">
+    <link href="/style.css" type="text/css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f0cac4ba7b.js" crossorigin="anonymous"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,500&family=Shrikhand&display=swap');
@@ -15,15 +15,17 @@
 <body>
 
     <header>
-        <h1>QA Cinemas</h1>
+        <div class="logo">
+          <h1>QA Cinemas</h1>
+        </div>
         <div class="nav-links">
             <ul>
                 <li><a href="{{ url_for('home') }}">Home</a></li>
                 <li><a href="{{ url_for('about') }}">About Us</a></li>
-                <li><a href="{{ url_for('product_listing') }}">What's On</a></li>
-                <li><a href="{{ url_for('contact') }}">Book Online</a></li>  
-                <li><a href="{{ url_for('contact') }}">Login</a></li>
-                <li><a href="{{ url_for('cart') }}"><i class="fa-solid fa-cart-shopping"></i></a></li>    
+                <li><a href="{{ url_for('') }}">What's On</a></li>
+                <li><a href="{{ url_for('') }}">Book Online</a></li>  
+                <li><a href="{{ url_for('') }}">Login</a></li>
+                <li><a href="{{ url_for('') }}"><i class="fa-solid fa-cart-shopping"></i></a></li>    
             </ul>
         </div>
     </header>
@@ -32,28 +34,34 @@
         <div id="homeCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active c-item">
-                <img src="" class="d-block w-100 c-img" alt="Film 1">
+                <img src="/Images/Movie 1.jpeg" class="d-block w-100 c-img" alt="Film 1">
+                <!-- 
                 <div class="carousel-caption">
                     <h1 class="slideHeading">New Releases</h1>
                     <p class="slideParagraph">Film 1</p>
                     <button class="btn btn-primary">Book Now</button>
                 </div>
+                -->
               </div>
               <div class="carousel-item c-item">
-                <img src="" class="d-block w-100 c-img" alt="Film 2">
+                <img src="/Images/Extraction 2 Poster.jpeg" class="d-block w-100 c-img" alt="Film 2">
+                <!--
                 <div class="carousel-caption">
                     <h1 class="slideHeading">Blockbuster</h1>
                     <p class="slideParagraph">Film 1</p>
                     <button class="btn btn-primary">Book Now</button>
                 </div>
+                -->
               </div>
               <div class="carousel-item c-item">
-                <img src="" class="d-block w-100 c-img" alt="Film 3">
+                <img src="/Images/PrettyWomanTheMusicalTour_Title_1920x1080.webp" class="d-block w-100 c-img" alt="Film 3">
+                <!-- 
                 <div class="carousel-caption">
                     <h1 class="slideHeading">Comedy</h1>
                     <p class="slideParagraph">Film 1</p>
                     <button class="btn btn-primary">Book Now</button>
                 </div>
+                -->
               </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
@@ -67,19 +75,19 @@
           </div>
     </section>
 
-    <div class="Tag-line">
-        <h2>"BRINGING STORIES TO LIFE, ONE SCREEN AT A TIME."</h2>
+    <div class="tag-line">
+        <h2>"Bringing Stories to Life, One Screen at a Time."</h2>
     </div>
 
     <section class="aboutUs">
         <h3 class="aboutUsHeading">About Us</h3>
-        <p class="aboutUsParagraph">Welcome to QA Cinemas! A distinguished cinema chain with a rich legacy spanning over two decades since its establishment in 2004. Renowned in the film industry, our cinemas are celebrated for their unique blend of contemporary blockbusters and exclusive screenings of beloved classics from the 1960s to the 1990s. </p>
+        <p class="aboutUsParagraph">Welcome to QA Cinemas! A distinguished cinema chain with a rich legacy spanning over two decades since its establishment in 2004.<br> Renowned in the film industry, our cinemas are celebrated for their unique blend of contemporary blockbusters and exclusive screenings of <br>beloved classics from the 1960s to the 1990s. </p>
         <button class="btn btn-primary" type="submit">Read More</button>
     </section>
 
     <section class="cardContainer">
         <div class="card" style="width: 18rem;">
-            <img src="" class="card-img-top" alt="...">
+            <img src="/Images/Classifications.jpg" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">FILM CLASSIFICATIONS</h5>
               <a href="{{ url_for('product_listing') }}" class="btn btn-primary">View</a>
@@ -87,7 +95,7 @@
         </div>
 
         <div class="card" style="width: 18rem;">
-            <img src="" class="card-img-top" alt="...">
+            <img src="/Images/Screens.jpg" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">SCREENS</h5>
               <a href="{{ url_for('categories') }}" class="btn btn-primary">View</a>
@@ -95,7 +103,7 @@
           </div>
 
           <div class="card" style="width: 18rem;">
-            <img src="{{ url_for('static', filename='Images/pexels-elina-sazonova-1838550.jpg') }}" class="card-img-top" alt="...">
+            <img src="/Images/Book online.jpg" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">BOOK ONLINE</h5>
               <a href="{{ url_for('product_listing') }}" class="btn btn-primary">View</a>
@@ -103,7 +111,7 @@
           </div>
 
           <div class="card" style="width: 18rem;">
-            <img src="{{ url_for('static', filename='Images/pexels-karolina-grabowska-5632346.jpg') }}" class="card-img-top" alt="...">
+            <img src="/Images/Cinema services.jpg" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">CINEMA SERVICES</h5>
               <a href="{{ url_for('product_listing') }}" class="btn btn-primary">View</a>
@@ -111,43 +119,44 @@
           </div>
         </section>
 
-        <section class="listings-gallery">
+        
             <div class="gallery-heading">
-                <h3>CURRENTLY SHOWING</h3>
+                <h3>Currently Showing</h3>
             </div>
 
+        <section class="listings-gallery">
             <div class="card" style="width: 18rem;">
-                <img src="" class="card-img-top" alt="...">
+                <img src="/Images/Film 1.webp" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">FILM 1</h5>
-                  <p class="card-text">A romantic comedy featuring Mellissa McCarthy & Kevin Hart</p>
+                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
                   <a href="{{ url_for('product_listing') }}" class="btn btn-primary">Find Out More</a>
                 </div>
             </div>
     
             <div class="card" style="width: 18rem;">
-                <img src="" class="card-img-top" alt="...">
+                <img src="/Images/Film 2.webp" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">FILM 2</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor <br> incididunt ut labore et dolore magna aliqua.</p>
+                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
                   <a href="{{ url_for('categories') }}" class="btn btn-primary">Find Out More</a>
                 </div>
               </div>
     
               <div class="card" style="width: 18rem;">
-                <img src="" class="card-img-top" alt="...">
+                <img src="/Images/kandahar-movie-poster-md.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">FILM 3</h5>
-                  <p class="card-text">Eget gravida cum sociis natoque penatibus. Vulputate eu scelerisque felis imperdiet..</p>
+                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
                   <a href="{{ url_for('product_listing') }}" class="btn btn-primary">Find Out More</a>
                 </div>
               </div>
     
               <div class="card" style="width: 18rem;">
-                <img src="" class="card-img-top" alt="...">
+                <img src="/Images/the-old-way-movie-poster-md.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">FILM 4</h5>
-                  <p class="card-text">Non curabitur gravida arcu ac tortor dignissim convallis aenean. Tortor at auctor urna nunc.</p>
+                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
                   <a href="{{ url_for('product_listing') }}" class="btn btn-primary">Find Out More</a>
                 </div>
               </div>
@@ -169,7 +178,7 @@
                     <i class="fa fa-handshake-o"></i>
                     <a href="#" class="footer-link">Contact Us</a>
                 </div>
-                <div class="socials">
+            <div class="socials">
                     <div class="footer-row4">
                         <i class="fa-brands fa-instagram"></i>
                         <a href="#" class="footer-link">Instagram</a>
@@ -184,7 +193,7 @@
                         <i class="fa-brands fa-x-twitter"></i>
                         <a href="#" class="footer-link">X</a>
                     </div>
-                </div>
+            </div>
             </div>
     </footer>
     

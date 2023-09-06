@@ -1,17 +1,23 @@
 from application import app, db
 from flask import render_template, request, redirect, url_for, flash, session
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField, DateField, IntegerField, SelectField
+from wtforms.validators import ValidationError, DataRequired, Length
 from models import User, Discussion, Movie, Comment
 from forms import PostForm, CommentForm
 from werkzeug.security import check_password_hash, generate_password_hash
 import datetime
-from datetime import datetime
+from datetime import datetime, Discussion
+from forms import DiscussionPost, PayForm, BasicForm
+
+app.config['SECRET_KEY'] = 'YOUR_SECRET_KEY'    
 
 '''
 the following app.py file defines all known routes
 '''
 @app.route("/")
 def home():
-    return render_template ("homepage.html")
+    return render_template ("index.html")
 
 @app.route("/about")
 def about():
@@ -45,30 +51,45 @@ def listings():
 def new_releases():
     from models import Movie  
 
-    new_releases = Movie.query.filter_by(classic=False).all()
-    
+    new_releases = Movie.get_current_movies()
     return render_template('new_releases.html', films=new_releases)
 
 @app.route("/classics", methods=['GET'])
 def classics():
-    from models import Movie  
 
-    classics = Movie.query.filter_by(classic=True).all()
-
+    classics = Movie.get_classic_movies()
+    
     return render_template('classics.html', films=classics)
 
 
 @app.route("/serchresults")
 def search_results():
-    return render_template("gallery.html")
+    # currently hardcoded, however once search bar is designed it will accept dynamic input
+    user_input="the"
+    results = Movie.search(user_input)
+    for result in results:
+        print(result.title)
 
-@app.route("/payment", methods=["GET", "POST"])
+    return render_template("classics.html", films=results)
+
+@app.route('/payment', methods=['GET', 'POST'])
 def payment():
-    return render_template("payment.html")
+    message = ""
+    form = PayForm()
 
-@app.route("/forum")
-def forum():
-    return render_template("forum.html")
+    if request.method == 'POST':
+        first_name = form.first_name.data
+        last_name = form.last_name.data
+        address = form.address.data
+        card_number = form.card_number.data
+        expiry_date = form.expiry_date.data
+        card_cvc = form.cvc_number.data
+        update_user = User.add_payment(session["username"], first_name, last_name, address, card_number, expiry_date, card_cvc)
+
+        message= "payment received"
+
+    return render_template('payment.html', form=form, message=message)
+
 
 @app.route("/signup", methods=["GET","POST"])
 def signup():
@@ -86,7 +107,7 @@ def signup():
 
         new_user = User.add_user(username, email, password_hash)
 
-        return render_template("login.html")
+        return redirect("/login")
 
     return render_template("signup.html")
 
@@ -97,17 +118,17 @@ def login():
     session.clear()
 
     if request.method == "POST":
-        session["username"] = request.form["username"]
         username = request.form.get("username")
         password = request.form.get("password")
 
         # below we retrieve user by username and check if the password is correct
         user = User.retrieve_user(username)
         if user is not None:
-            if check_password_hash(user.password, password):
+            if check_password_hash(user.password, password) == True:
                 session["username"] = user.username
-
-            print(session["username"])
+            else:
+                flash("incorrect username and/or password")
+                return redirect ("/login")
         return redirect ("/")
     
     return render_template ("login.html")
@@ -151,5 +172,22 @@ def discussionboard():
                 print(comment_form.post_id.data)
                 new_comment = Comment().new_comment(comment_form.user_id.data, comment_form.post_id.data, comment_form.content.data, post_timestamp)
                 return redirect(url_for('discussionboard'))
-
     return render_template('discussion-board.html', all_posts=all_posts, post_form=post_form, comment_form=comment_form)
+        
+@app.route('/booking', methods=['GET', 'POST']) # AKBER
+def register():
+    message = ""
+    form = BasicForm()
+
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            first_name = form.first_name.data
+            last_name = form.last_name.data
+            num_of_tickets = form.num_of_tickets.data
+            movie = form.movie.data
+            if len(first_name) == 0 or len(last_name) == 0:
+                message = "Please supply both first and last name"
+            else:
+                message = f'Thank you, {first_name} {last_name}. you have selected {num_of_tickets} ticket for {movie}.'
+
+    return render_template('booking.html', form=form, message=message)
