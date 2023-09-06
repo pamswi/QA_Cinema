@@ -2,7 +2,11 @@ from application import app, db
 from flask import render_template, request, redirect, url_for, flash, session
 from models import User
 from werkzeug.security import check_password_hash, generate_password_hash
-from models import Movie
+from models import Movie, Discussion
+from forms import DiscussionPost
+
+
+app.config['SECRET_KEY'] = 'YOUR_SECRET_KEY'    
 
 '''
 the following app.py file defines all known routes
@@ -49,7 +53,6 @@ def new_releases():
 
 @app.route("/classics", methods=['GET'])
 def classics():
-    from models import Movie  
 
     classics = Movie.query.filter_by(classic=True).all()
 
@@ -63,10 +66,6 @@ def search_results():
 @app.route("/payment", methods=["GET", "POST"])
 def payment():
     return render_template("payment.html")
-
-@app.route("/forum")
-def forum():
-    return render_template("forum.html")
 
 @app.route("/signup", methods=["GET","POST"])
 def signup():
@@ -118,11 +117,9 @@ def logout():
         return redirect("/")
     return render_template("logout.html")
 
-app.config['SECRET_KEY'] = 'YOUR_SECRET_KEY'    
-@app.route('/discussion-board', methods=["GET","POST"])
+@app.route('/forum', methods=["GET","POST"])
 def discussionboard():
-    from forms import DiscussionPost
-    from models import Discussion
+    
     all_posts= Discussion.all_discussion()
     form = DiscussionPost()
 
