@@ -120,6 +120,53 @@ footer i {
     padding-right: 0.5rem;
 }
 
+/* ABOUT US PAGE STYLES*/
+
+.aboutus-details {
+    color: white;
+    padding-left: 25%;
+    margin-bottom: -1rem;
+}
+
+.aboutus-pageheading {
+    padding-left: 20%;
+    padding-bottom: 1rem;
+}
+
+.meet-our-team {
+    color: white;
+    padding-left: 25%;
+    margin-bottom: -1rem;
+    padding-top: 2rem;
+}
+
+.team-heading {
+    padding-left: 20%;
+    padding-bottom: 1rem;
+}
+
+.team-members img {
+    width: 20%;
+    height: 20%;
+}
+
+.team-members {
+    padding-left: 25%;
+    padding-top: 2rem;
+}
+
+.pam-name-title, .kes-name-title, .akber-name-title, .alex-name-title, .tom-name-title {
+    position: relative;
+    left: 30%;
+    margin-top: -5%;
+    color: white;
+}
+
+footer {
+    margin-top: -1rem;
+}
+
+
 
 /* MEDIA QUERIES - TABLET*/
 
