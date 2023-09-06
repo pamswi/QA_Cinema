@@ -1,8 +1,12 @@
-from application import app
+from application import app, db
 from flask import render_template, request, redirect, url_for, flash, session
 from models import User
 from werkzeug.security import check_password_hash, generate_password_hash
-from models import Movie
+from models import Movie, Discussion
+from forms import DiscussionPost
+
+
+app.config['SECRET_KEY'] = 'YOUR_SECRET_KEY'    
 
 '''
 the following app.py file defines all known routes
@@ -39,9 +43,21 @@ def view_movie():
 def listings():
     return render_template("gallery.html")
 
-@app.route("/newreleases")
+@app.route('/newreleases', methods=['GET'])
 def new_releases():
-    return render_template("gallery.html")
+    from models import Movie  
+
+    new_releases = Movie.query.filter_by(classic=False).all()
+    
+    return render_template('new_releases.html', films=new_releases)
+
+@app.route("/classics", methods=['GET'])
+def classics():
+
+    classics = Movie.query.filter_by(classic=True).all()
+
+    return render_template('classics.html', films=classics)
+
 
 @app.route("/serchresults")
 def search_results():
@@ -50,10 +66,6 @@ def search_results():
 @app.route("/payment", methods=["GET", "POST"])
 def payment():
     return render_template("payment.html")
-
-@app.route("/forum")
-def forum():
-    return render_template("forum.html")
 
 @app.route("/signup", methods=["GET","POST"])
 def signup():
@@ -105,3 +117,24 @@ def logout():
         return redirect("/")
     return render_template("logout.html")
 
+@app.route('/forum', methods=["GET","POST"])
+def discussionboard():
+    
+    all_posts= Discussion.all_discussion()
+    form = DiscussionPost()
+
+    if request.method == "POST":
+        if form.validate_on_submit():
+            with app.app_context():
+                new_post = Discussion(
+                    user_id = form.user_id.data,
+                    movie_id = form.user_id.data,
+                    topic = form.topic.data,
+                    comment = form.comment.data,
+                    timestamp = form.timestamp.data
+                )
+                db.session.add(new_post)
+                db.session.commit()
+                all_posts= Discussion.all_discussion()
+
+    return render_template('discussion-board.html', all_posts=all_posts, form=form)
