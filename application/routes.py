@@ -1,7 +1,7 @@
 from application import app, db
 from flask import render_template, request, redirect, url_for, flash, session
-from models import User, Discussion, Movie
-from forms import DiscussionPost
+from models import User, Discussion, Movie, Comment
+from forms import PostForm, CommentForm
 from werkzeug.security import check_password_hash, generate_password_hash
 import datetime
 from datetime import datetime
@@ -126,20 +126,30 @@ app.config['SECRET_KEY'] = 'TEMP_SECRET_KEY'
 def discussionboard():
     all_posts= Discussion.all_discussion()
     all_movies = Movie.all_movies()
-    form = DiscussionPost()
-    form.movie_id.choices = [(0,'Other')]
+    post_form = PostForm()
+    post_form.movie_id.choices = [(0,'Other')]
     for movie in all_movies:
-        form.movie_id.choices.append(
+        post_form.movie_id.choices.append(
             (movie.id, f"{movie.title}")
         )
-    
-    if request.method == "POST":
-        if form.validate_on_submit():
-            with app.app_context():
-                local_datetime = datetime.now()
-                post_timestamp = local_datetime.strftime("%d/%m/%Y %H:%M")
-                new_comment = Discussion().new_comment(form.user_id.data, form.movie_id.data, form.topic.data, form.comment.data, post_timestamp)
-                all_posts= Discussion.all_discussion()
-                return render_template('discussion-board.html', all_posts=all_posts, form=form)
 
-    return render_template('discussion-board.html', all_posts=all_posts, form=form)
+    for post in all_posts:
+        comment_form = CommentForm()
+        comment_form.post_id.data = post.id
+
+
+    if request.method == "POST":
+        local_datetime = datetime.now()
+        post_timestamp = local_datetime.strftime("%d/%m/%Y %H:%M")
+        if post_form.validate_on_submit():
+            with app.app_context():
+                new_post = Discussion().new_post(post_form.user_id.data, post_form.movie_id.data, post_form.topic.data, post_form.content.data, post_timestamp)
+                all_posts= Discussion.all_discussion()
+                return redirect(url_for('discussionboard'))
+        elif comment_form.validate_on_submit():
+            with app.app_context():
+                print(comment_form.post_id.data)
+                new_comment = Comment().new_comment(comment_form.user_id.data, comment_form.post_id.data, comment_form.content.data, post_timestamp)
+                return redirect(url_for('discussionboard'))
+
+    return render_template('discussion-board.html', all_posts=all_posts, post_form=post_form, comment_form=comment_form)

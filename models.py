@@ -137,7 +137,7 @@ class Discussion(db.Model):
     user_id = db.Column('user_id', db.Integer, db.ForeignKey('user.id'))
     movie_id = db.Column('movie_id', db.Integer, db.ForeignKey('movie.id'))
     topic = db.Column(db.String(255))
-    comment = db.Column(db.String)
+    content = db.Column(db.String)
     timestamp = db.Column(db.String)
 
     user = db.relationship('User', backref='discussion')
@@ -147,8 +147,25 @@ class Discussion(db.Model):
     def all_discussion(cls):
         return cls.query.all()
 
-    def new_comment(self, user_id, movie_id, topic, comment, timestamp):
-        new_comment=Discussion(user_id=user_id, movie_id=movie_id, topic=topic, comment=comment, timestamp=timestamp)
+    def new_post(self, user_id, movie_id, topic, content, timestamp):
+        new_post=Discussion(user_id=user_id, movie_id=movie_id, topic=topic, content=content, timestamp=timestamp)
+        db.session.add(new_post)
+        db.session.commit()
+        return new_post
+
+class Comment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    post_id = db.Column(db.Integer, db.ForeignKey('discussion.id'))
+    content = db.Column(db.String(255))
+    timestamp = db.Column(db.String)
+
+    user = db.relationship('User', backref='comments')
+    post = db.relationship('Discussion', backref='comments')
+
+    @classmethod
+    def new_comment(self, user_id, post_id, content, timestamp):
+        new_comment=Comment(user_id=user_id, post_id=post_id, content=content,timestamp=timestamp)
         db.session.add(new_comment)
         db.session.commit()
-        return new_comment  
+        return new_comment
