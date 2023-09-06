@@ -121,3 +121,69 @@ footer i {
 }
 
 
+/* MEDIA QUERIES - TABLET*/
+
+@media only screen and (max-width: 992px) {
+    .logo, .footer-logo {
+        width: 15rem;
+        
+    }
+
+    .nav-links {
+        margin-left: 0rem;
+    }
+
+    .tag-line h2 {
+        margin-left: 12%;
+    }
+
+    .aboutUs {
+        padding-left: 6%;
+    }
+}
+
+
+/* MEDIA QUERIES - MOBILE*/
+
+@media only screen and (max-width: 370px) {
+    header {
+        display: block;
+    }
+
+    .logo {
+        margin-left: 20%;
+    }
+
+    .nav-links li a:hover {
+        padding-top: 10px;
+    }
+
+    .tag-line h2 {
+        font-size: 2rem;
+    }
+
+    .aboutUsHeading {
+        margin-left: 25%;
+    }
+
+    .cardContainer {
+        display: block;
+        padding-left: 10%;
+    }
+
+    .gallery-heading {
+        padding-left: 25%;
+    }
+
+    .listings-gallery {
+        display: block;
+        padding-left: 10%;
+    }
+
+    .socials {
+        position: relative;
+        left: 1%;
+        bottom: 6%;
+        padding-top: 2%;
+    }
+}

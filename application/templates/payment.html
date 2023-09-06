@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment</title>
+</head>
+<body>
+    <h1>Payment Form</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div>
+            <label for="first_name">First Name:</label>
+            {{ form.first_name.label }}
+            {{ form.first_name() }}
+        </div>
+        <div>
+            <label for="last_name">Last Name:</label>
+            {{ form.last_name.label }}
+            {{ form.last_name() }}
+        </div>
+        <div>
+            <label for="address">Address:</label>
+            {{ form.address.label }}
+            {{ form.address() }}
+        </div>
+        <div>
+            <label for="card_number">Card Number:</label>
+            {{ form.card_number.label }}
+            {{ form.card_number() }}
+        </div>
+        <div>
+            <label for="expiry_date">Expiry Date:</label>
+            {{ form.expiry_date.label }}
+            {{ form.expiry_date() }}
+        </div>
+        <div>
+            <label for="cvc_number">CVC Number:</label>
+            {{ form.cvc_number.label }}
+            {{ form.cvc_number() }}
+        </div>
+        <div>
+            {{ form.submit }}
+        </div>
+    </form>
+    <p>{{ message }}</p>
+</body>
+</html>
