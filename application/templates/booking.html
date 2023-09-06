@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>Simple form</title>
+    </head>
+    <body>
+        <div class='form'>
+            <form method='POST' action=''>
+                {{ form.hidden_tag() }}
+                {{ form.first_name.label }} {{ form.first_name }}
+                <br>
+                {{ form.last_name.label }} {{ form.last_name }}
+                <br>
+                {{ form.movie_date.label }} {{ form.movie_date }}
+                <br>
+                {{ form.num_of_tickets.label }} {{ form.num_of_tickets }}
+                <br>
+                {{ form.movie.label }} {{ form.movie }}
+                <br>
+                {{ form.ticket_type.label }} {{ form.ticket_type }}
+                <br>
+                {{ form.submit }}
+                <br>
+            {{ message }}
+            </form>
+        </div>
+    </body>
+</html>
