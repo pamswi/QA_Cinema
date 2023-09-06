@@ -1,20 +1,14 @@
+
 from application import app, db
 from flask import render_template, request, redirect, url_for, flash, session, jsonify
-from models import User
-from werkzeug.security import check_password_hash, generate_password_hash
-from models import Movie, Screening, Discussion
-from forms import DiscussionPost
-from datetime import date, timedelta
-
-
-from flask import render_template, request, redirect, url_for, flash, session
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, DateField, IntegerField, SelectField
 from wtforms.validators import ValidationError, DataRequired, Length
 from models import User
 from werkzeug.security import check_password_hash, generate_password_hash
-from models import Movie, Discussion
+from models import Movie, Screening, Discussion
 from forms import DiscussionPost, PayForm, BasicForm
+from datetime import date, timedelta
 
 app.config['SECRET_KEY'] = 'YOUR_SECRET_KEY'    
 
