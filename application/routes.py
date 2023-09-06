@@ -62,16 +62,30 @@ def classics():
 
 @app.route("/serchresults")
 def search_results():
-    return render_template("gallery.html")
+    # currently hardcoded, however once search bar is designed it will accept dynamic input
+    user_input="the"
+    results = Movie.search(user_input)
+    for result in results:
+        print(result.title)
+
+    return render_template("classics.html", films=results)
 
 @app.route('/payment', methods=['GET', 'POST'])
 def payment():
     message = ""
     form = PayForm()
+
     if request.method == 'POST':
-            first_name = form.first_name.data
-            last_name = form.last_name.data
-            message = f'Thank you ,{ first_name} {last_name} Payment has been accepted' 
+        first_name = form.first_name.data
+        last_name = form.last_name.data
+        address = form.address.data
+        card_number = form.card_number.data
+        expiry_date = form.expiry_date.data
+        card_cvc = form.cvc_number.data
+        update_user = User.add_payment(session["username"], first_name, last_name, address, card_number, expiry_date, card_cvc)
+
+        message= "payment received"
+
     return render_template('payment.html', form=form, message=message)
 
 
