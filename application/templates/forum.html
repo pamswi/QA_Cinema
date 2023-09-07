@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discussion Forum</title>
+</head>
+<body>
+    <h1>Forum</h1>
+    <!-- Display Existing Posts -->
+    {% for post in all_posts %}
+        <table>
+            <input type="hidden" name="post_id" value="{{ post.id }}">
+            <!-- Post Content -->
+            <tr>
+                <td><h2>{{ post.topic }}</h2></td>
+            </tr>
+            <tr>
+                <td>{{ post.timestamp }}</td>
+            </tr>
+            <tr>
+                <td colspan="2">{{ post.content }}</td>
+            </tr>
+        </table>
+        
+        <!-- Display Comments for Each Post -->
+        {% for comment in all_comments %}
+            {% if comment.responding_to == post.id %}
+            <table>
+                <!-- Comment Content -->
+                <tr>
+                    <td><h3>{{ comment.topic }}</h3></td>
+                </tr>
+                <tr>
+                    <td>{{ comment.timestamp }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2">{{ comment.content }}</td>
+                </tr>
+            </table>
+            {% endif %}
+        {% endfor %}
+
+        <!-- Comment Form for Each Post -->
+        <form method="POST" action="/forum">
+
+        <h2>Add a Comment</h2>
+            {{ postform.hidden_tag() }}
+            <input type="hidden" name="responding_to" value="{{ post.id }}">
+            <div>
+                {{ postform.topic.label }}
+                {{ postform.topic }}
+            </div>
+            <div>
+                {{ postform.content.label }}
+                {{ postform.content }}
+            </div>
+            <div>
+                {{ postform.submit() }}
+            </div>
+        </form>
+    {% endfor %}
+</body>
+</html>
