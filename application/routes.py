@@ -4,12 +4,12 @@ from flask import render_template, request, redirect, url_for, flash, session, j
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, DateField, IntegerField, SelectField
 from wtforms.validators import ValidationError, DataRequired, Length
-from models import User, Discussion, Movie, Comment
+from models import User, Discussion, Movie, Comment, Screening
 from forms import PostForm, CommentForm
 from werkzeug.security import check_password_hash, generate_password_hash
 import datetime
-from datetime import datetime, Discussion
-from forms import DiscussionPost, PayForm, BasicForm
+from datetime import datetime
+from forms import PostForm, PayForm, BasicForm
 from datetime import date, timedelta
 
 app.config['SECRET_KEY'] = 'YOUR_SECRET_KEY'    
