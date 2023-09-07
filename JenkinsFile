@@ -1,8 +1,8 @@
 pipeline {
     agent any
-    environment {
-        SECRET_KEY=credentials('SECRET_KEY')
-    }
+    // environment {
+    //     SECRET_KEY=credentials('SECRET_KEY')
+    // }
     stages {
         stage('Build') {
             steps {
