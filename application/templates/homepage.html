@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{{ url_for ('static', filename='style.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='style.css') }}" type="text/css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f0cac4ba7b.js" crossorigin="anonymous"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,500&family=Shrikhand&display=swap');
@@ -30,7 +30,7 @@
             <li><a href="{{ url_for('about') }}">Forum</a></li>
             <li><a href="{{ url_for('opening_times') }}">Opening Times</a></li>
             <li><a href="{{ url_for('login') }}">Login</a></li>
-            <li><a href="{{ url_for('signup') }}">Sign Up</a></li> -->
+            <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
         </ul>
     </div>
 </header>
@@ -39,17 +39,16 @@
         <div id="homeCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active c-item">
-                <img src="/Images/Movie 1.jpeg" class="d-block w-100 c-img" alt="Film 1">
-                <!-- 
-                <div class="carousel-caption">
-                    <h1 class="slideHeading">New Releases</h1>
-                    <p class="slideParagraph">Film 1</p>
-                    <button class="btn btn-primary">Book Now</button>
-                </div>
-                -->
+                <a href="{{ url_for('view_movie', movie_id=9) }}">
+                  <img src="{{ url_for('static', filename='oppenheimer.jpg') }}"  class="d-block w-100 c-img" alt="Film 1">
+                </a>
+                
+                
               </div>
               <div class="carousel-item c-item">
-                <img src="/Images/Extraction 2 Poster.jpeg" class="d-block w-100 c-img" alt="Film 2">
+                <a href="{{ url_for('view_movie', movie_id=12) }}">
+                  <img src="{{ url_for('static', filename='thenun2.jpeg') }}"  class="d-block w-100 c-img" alt="Film 2">
+                </a>
                 <!--
                 <div class="carousel-caption">
                     <h1 class="slideHeading">Blockbuster</h1>
@@ -59,8 +58,10 @@
                 -->
               </div>
               <div class="carousel-item c-item">
-                <img src="/Images/PrettyWomanTheMusicalTour_Title_1920x1080.webp" class="d-block w-100 c-img" alt="Film 3">
-                <!-- 
+                <a href="{{ url_for('view_movie', movie_id=8) }}">
+                  <img src="{{ url_for('static', filename='scrapper.jpg') }}"  class="d-block w-100 c-img" alt="Film 3">
+                </a>
+                  <!-- 
                 <div class="carousel-caption">
                     <h1 class="slideHeading">Comedy</h1>
                     <p class="slideParagraph">Film 1</p>
@@ -130,41 +131,19 @@
             </div>
 
         <section class="listings-gallery">
-            <div class="card" style="width: 18rem;">
-                <img src="/Images/Film 1.webp" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">FILM 1</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                  <a href="{{ url_for('home') }}" class="btn btn-primary">Find Out More</a>
-                </div>
+          <div class="movie-list">
+            <div class="movie-items">
+                {% for film in films %}
+                  <div class="movie-item">
+                    <a href = "{{ url_for('view_movie', movie_id=film.id) }}">
+
+                      <img src="{{ film.poster }}" alt="{{ film.title }}" class="movie-poster">
+                    </a>  
+                    <h3><span class="movie-title">{{ film.title }}</span></h3>
+                  </div>
+                {% endfor %}
             </div>
-    
-            <div class="card" style="width: 18rem;">
-                <img src="/Images/Film 2.webp" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">FILM 2</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                  <a href="{{ url_for('home') }}" class="btn btn-primary">Find Out More</a>
-                </div>
-              </div>
-    
-              <div class="card" style="width: 18rem;">
-                <img src="/Images/kandahar-movie-poster-md.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">FILM 3</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                  <a href="{{ url_for('home') }}" class="btn btn-primary">Find Out More</a>
-                </div>
-              </div>
-    
-              <div class="card" style="width: 18rem;">
-                <img src="/Images/the-old-way-movie-poster-md.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">FILM 4</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                  <a href="{{ url_for('home') }}" class="btn btn-primary">Find Out More</a>
-                </div>
-              </div>
+          </div>
         </section>
 
         <footer>

@@ -19,7 +19,8 @@ the following app.py file defines all known routes
 '''
 @app.route("/")
 def home():
-    return render_template ("homepage.html")
+    all_films = Movie.query.all()
+    return render_template ("homepage.html", films=all_films)
 
 @app.route("/about")
 def about():
@@ -198,6 +199,29 @@ def discussionboard():
                 return redirect(url_for('discussionboard'))
     return render_template('discussion-board.html', all_posts=all_posts, post_form=post_form, comment_form=comment_form)
         
+@app.route('/forum', methods=["GET", "POST"])
+def forum():
+    # print(session["username"])
+    all_posts= Discussion.all_posts()
+    postform = PostForm()
+    all_comments=Discussion.all_comments()
+
+    for post in all_posts:
+        comments_for_post = [comment for comment in all_comments if comment.responding_to == post.id]
+        print(f"Comments for Post {post.id}: {comments_for_post}")
+
+    if request.method == "POST":
+        username = "user" # session["username"]
+        responding_to = request.form.get("responding_to")
+        topic = postform.topic.data
+        content = postform.content.data
+        local_datetime = datetime.now()
+        timestamp = local_datetime.strftime("%d/%m/%Y %H:%M")
+        add_post= Discussion.new_post(username, topic, responding_to, content, timestamp)
+        print(request.form)
+
+    return render_template("forum.html", all_posts=all_posts, postform=postform, all_comments=all_comments)
+
 @app.route('/booking', methods=['GET', 'POST']) # AKBER
 def register():
     message = ""

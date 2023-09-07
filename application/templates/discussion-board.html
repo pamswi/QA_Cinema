@@ -33,8 +33,8 @@
         <form method="POST" action="">
             {{ comment_form.hidden_tag() }}
             {{ comment_form.user_id.label }} {{ comment_form.user_id }}
-            <!-- {{ comment_form.post_id.label }} {{ post.id }}
-            <input type="hidden" name="post_id" value="{{ post.id }}"> -->
+            {{ comment_form.post_id.label }} {{ post.id }}
+            <input type="hidden" name="post_id" value="{{ post.id }}"> 
             <br>
             {{ comment_form.content.label }} {{ comment_form.content }}
             <br>

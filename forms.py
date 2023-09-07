@@ -3,8 +3,8 @@ from wtforms import SubmitField, StringField, IntegerField, DateTimeLocalField,D
 from wtforms.validators import DataRequired, Length
 
 class PostForm(FlaskForm):
-    user_id = IntegerField('User ID', validators=[DataRequired()])
-    movie_id = SelectField('Movie')
+    post_id = HiddenField('Post ID')
+    username = HiddenField('username')
     topic = StringField('Topic', validators=[DataRequired()])
     content = StringField('Message', validators=[DataRequired()])
     submit = SubmitField('Submit')

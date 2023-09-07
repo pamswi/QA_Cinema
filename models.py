@@ -137,9 +137,10 @@ class BookingDetail(db.Model):
 
 class Discussion(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column('user_id', db.Integer, db.ForeignKey('user.id'))
+    username = db.Column('username', db.Integer, db.ForeignKey('user.username'))
     movie_id = db.Column('movie_id', db.Integer, db.ForeignKey('movie.id'))
     topic = db.Column(db.String(255))
+    responding_to = db.Column(db.Integer)
     content = db.Column(db.String)
     timestamp = db.Column(db.String)
 
@@ -149,9 +150,18 @@ class Discussion(db.Model):
     @classmethod
     def all_discussion(cls):
         return cls.query.all()
-
-    def new_post(self, user_id, movie_id, topic, content, timestamp):
-        new_post=Discussion(user_id=user_id, movie_id=movie_id, topic=topic, content=content, timestamp=timestamp)
+    
+    @classmethod
+    def all_posts(cls):
+        return cls.query.filter_by(responding_to=None).all()
+    
+    @classmethod
+    def all_comments(cls):
+        return cls.query.filter(cls.responding_to.isnot(None)).all()
+    
+    @classmethod
+    def new_post(self, username, topic, responding_to, content, timestamp):
+        new_post=Discussion(username=username, responding_to=responding_to, content=content, timestamp=timestamp)
         db.session.add(new_post)
         db.session.commit()
         return new_post

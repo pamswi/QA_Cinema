@@ -1,6 +1,7 @@
 from application import db, app
 from models import User, Movie, Screening, Booking, BookingDetail, Discussion, Screen
-
+import datetime 
+from datetime import datetime
 
 with app.app_context():
     db.drop_all()
@@ -43,7 +44,7 @@ with app.app_context():
     '15:00','18:00','21:00',
     ]
     screening_days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-    selected_movies = movies[:7]
+    selected_movies = movies[:13]
     all_screening_times = []
 
     for _ in range(3):
@@ -70,6 +71,30 @@ with app.app_context():
 
     db.session.commit()
     
+
+    # discussion1 = Discussion(
+    # user_id=user1,
+    # movie=1,
+    # topic="Dream Sequences",
+    # responding_to=None,
+    # content="I loved the dream sequences in Inception! The way they played with reality and layers of dreams was mind-blowing.",
+    # timestamp=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    # )
+
+    # discussion2 = Discussion(
+    # user=1,
+    # movie=2,
+    # topic="Simulation Theory",
+    # responding_to=1,
+    # content="The Matrix is a classic example of simulation theory in science fiction. What if we're all living in a simulation?",
+    # timestamp=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    # )
+
+  
+    # db.session.add(discussion1)
+    # db.session.add(discussion2)
+    # db.session.commit()
+
     
     # test_user = User(
     #         username='testuser',
@@ -98,16 +123,16 @@ with app.app_context():
     # db.session.add(test_movie)
     # db.session.commit()
 
-    screening_test = Screening(
-        movie_id=14,
-        screen_id=1,
-        time='12:00:00',
-        day ='Friday',
-        current_capacity=100
-    )
+    # screening_test = Screening(
+    #     movie_id=14,
+    #     screen_id=1,
+    #     time='12:00:00',
+    #     day ='Friday',
+    #     current_capacity=100
+    # )
          
-    db.session.add(screening_test)
-    db.session.commit()
+    # db.session.add(screening_test)
+    # db.session.commit()
 
 
     # booking_test = Booking(
@@ -131,11 +156,34 @@ with app.app_context():
     # db.session.commit()
 
     discussion_test = Discussion(
-            user_id=1,
+            username=1,
             movie_id=1,
             topic='Test Topic',
+            responding_to=None,
             content='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non velit sit amet risus condimentum tristique. Sed bibendum elit nec arcu auctor, in malesuada justo tincidunt. Nullam auctor auctor purus, ac dictum ipsum. Vivamus gravida, justo in tristique pulvinar, metus velit blandit metus.',
             timestamp='2023-01-01 14:00:00'
+    )
+    db.session.add(discussion_test)
+    db.session.commit()
+
+    discussion_test2 = Discussion(
+            username=1,
+            movie_id=1,
+            topic='new test comment',
+            responding_to=1,
+            content='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non velit sit amet risus condimentum tristique. Sed bibendum elit nec arcu auctor, in malesuada justo tincidunt. Nullam auctor auctor purus, ac dictum ipsum. Vivamus gravida, justo in tristique pulvinar, metus velit blandit metus.',
+            timestamp='2023-01-01 14:00:00'
+    )
+    db.session.add(discussion_test2)
+    db.session.commit()
+
+    discussion_test = Discussion(
+    username=1,
+    movie_id=1,
+    topic='Test Topicccc',
+    responding_to=None,
+    content='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non velit sit amet risus condimentum tristique. Sed bibendum elit nec arcu auctor, in malesuada justo tincidunt. Nullam auctor auctor purus, ac dictum ipsum. Vivamus gravida, justo in tristique pulvinar, metus velit blandit metus.',
+    timestamp='2023-01-01 14:00:00'
     )
     db.session.add(discussion_test)
     db.session.commit()
