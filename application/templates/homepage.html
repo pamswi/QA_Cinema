@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/style.css" type="text/css" rel="stylesheet">
+    <link href="{{ url_for ('static', filename='style.css') }}" type="text/css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f0cac4ba7b.js" crossorigin="anonymous"></script>
-    <style>
+    <style>=
         @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,500&family=Shrikhand&display=swap');
       </style> 
     <title>QA Cinemas</title>
@@ -14,6 +14,21 @@
 </head>
 <body>
 
+    <header>
+        <div class="logo">
+          <h1>QA Cinemas</h1>
+        </div>
+        <div class="nav-links">
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About Us</a></li>
+                <li><a href="{{ url_for('about') }}">What's On</a></li>
+                <li><a href="{{ url_for('about') }}">Book Online</a></li>  
+                <li><a href="{{ url_for('about') }}">Login</a></li>
+                <li><a href="{{ url_for('about') }}"><i class="fa-solid fa-cart-shopping"></i></a></li>     -->
+            </ul>
+        </div>
+    </header>
   <header>
     <div class="logo">
       <h1>QA Cinemas</h1>
@@ -95,7 +110,7 @@
             <img src="/Images/Classifications.jpg" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">FILM CLASSIFICATIONS</h5>
-              <a href="{{ url_for('product_listing') }}" class="btn btn-primary">View</a>
+              <a href="{{ url_for('home') }}" class="btn btn-primary">View</a>
             </div>
         </div>
 
@@ -103,7 +118,7 @@
             <img src="/Images/Screens.jpg" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">SCREENS</h5>
-              <a href="{{ url_for('categories') }}" class="btn btn-primary">View</a>
+              <a href="{{ url_for('home') }}" class="btn btn-primary">View</a>
             </div>
           </div>
 
@@ -111,7 +126,7 @@
             <img src="/Images/Book online.jpg" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">BOOK ONLINE</h5>
-              <a href="{{ url_for('product_listing') }}" class="btn btn-primary">View</a>
+              <a href="{{ url_for('home') }}" class="btn btn-primary">View</a>
             </div>
           </div>
 
@@ -119,7 +134,7 @@
             <img src="/Images/Cinema services.jpg" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">CINEMA SERVICES</h5>
-              <a href="{{ url_for('product_listing') }}" class="btn btn-primary">View</a>
+              <a href="{{ url_for('home') }}" class="btn btn-primary">View</a>
             </div>
           </div>
         </section>
@@ -135,7 +150,7 @@
                 <div class="card-body">
                   <h5 class="card-title">FILM 1</h5>
                   <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                  <a href="{{ url_for('product_listing') }}" class="btn btn-primary">Find Out More</a>
+                  <a href="{{ url_for('home') }}" class="btn btn-primary">Find Out More</a>
                 </div>
             </div>
     
@@ -144,7 +159,7 @@
                 <div class="card-body">
                   <h5 class="card-title">FILM 2</h5>
                   <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                  <a href="{{ url_for('categories') }}" class="btn btn-primary">Find Out More</a>
+                  <a href="{{ url_for('home') }}" class="btn btn-primary">Find Out More</a>
                 </div>
               </div>
     
@@ -153,7 +168,7 @@
                 <div class="card-body">
                   <h5 class="card-title">FILM 3</h5>
                   <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                  <a href="{{ url_for('product_listing') }}" class="btn btn-primary">Find Out More</a>
+                  <a href="{{ url_for('home') }}" class="btn btn-primary">Find Out More</a>
                 </div>
               </div>
     
@@ -162,7 +177,7 @@
                 <div class="card-body">
                   <h5 class="card-title">FILM 4</h5>
                   <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                  <a href="{{ url_for('product_listing') }}" class="btn btn-primary">Find Out More</a>
+                  <a href="{{ url_for('home') }}" class="btn btn-primary">Find Out More</a>
                 </div>
               </div>
         </section>
