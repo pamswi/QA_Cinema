@@ -32,21 +32,27 @@ Impact: Reduced security responsibilities, but potential challenges in integrati
 Mitigation: Thoroughly research and understand the integration process with the external payment handler. Ensure clear communication with the payment service provider.
 Risk Assessment Matrix:
 
-| Risk                | Likelihood   | Impact       | Risk Level |
-|---------------------|--------------|--------------|------------|
-| Technical Complexity | High | Moderate   | Moderate  |
-| Scope Creep          | Moderate | Moderate   | Moderate  |
-| Integration Challenges | Moderate | Moderate | Moderate  |
-| Resource Constraints  | Low      | Low        | Low        |
-| Learning Curve       | Moderate | Moderate   | Moderate  |
-| External Payment Handling | Low   | High  | Moderate |
+| Risk                         | Likelihood     | Impact                   | Risk Level |
+|------------------------------|----------------|--------------------------|------------|
+| Technical Complexity         | High           | Moderate                 | Moderate   |
+| Scope Creep                  | Moderate       | Moderate                 | Moderate   |
+| Integration Challenges       | Moderate       | Moderate                 | Moderate   |
+| Resource Constraints         | Low            | Low                      | Low        |
+| Learning Curve               | Moderate       | Moderate                 | Moderate   |
+| External Payment Handling    | Low            | High                     | Moderate   |
+| Absence                      | Moderate       | High                     | Moderate   |
 
 
 Risk Mitigation:
-Emphasize learning and skill development as the primary goal of the training project.
-Create a supportive learning environment within the team.
-Encourage knowledge sharing and collaboration among team members.
+
+Emphasize team work as the primary goal of the training project. This is because team members often bring different skills, knowledge, and expertise to the table. By working together, they can complement each other's strengths and compensate for weaknesses, resulting in more well-rounded and effective solutions.
+
+Create a supportive learning environment within the team by encouraging communication and learning.
+
+Regular integration and bug fixes to mitigate integration challenges.
+
 Conclusion:
-The QA Cinemas training project is an opportunity to enhance technical skills and gain practical experience. By proactively addressing potential learning-related risks, focusing on skill development, and ensuring a clear understanding of external payment handling, the team can maximize the benefits of this training project.
+
+The QA Cinemas training project is an opportunity to enhance technical skills and gain practical experience. By proactively addressing potential risks, focusing on collaboration and learning and ensuring a clear understanding of Devops principles, the team can maximize the benefits of this training project.
 
 
