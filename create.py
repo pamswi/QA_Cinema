@@ -75,19 +75,19 @@ with app.app_context():
 
 
     
-    # test_user = User(
-    #         username='testuser',
-    #         email='testuser@example.com',
-    #         password='password123',
-    #         address='123 Test St',
-    #         first_name='Test',
-    #         last_name='User',
-    #         card_number='1234567890123456',
-    #         card_expiry='12/24',
-    #         card_cvc=123
-    #     )
-    # db.session.add(test_user)
-    # db.session.commit()
+    test_user = User(
+            username='testuser',
+            email='testuser@example.com',
+            password='password123',
+            address='123 Test St',
+            first_name='Test',
+            last_name='User',
+            card_number='1234567890123456',
+            card_expiry='12/24',
+            card_cvc=123
+        )
+    db.session.add(test_user)
+    db.session.commit()
 
     # test_movie =  Movie(
     #         title='Test Movie',
@@ -138,7 +138,7 @@ with app.app_context():
             user_id=1,
             movie_id=1,
             topic='Test Topic',
-            comment='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non velit sit amet risus condimentum tristique. Sed bibendum elit nec arcu auctor, in malesuada justo tincidunt. Nullam auctor auctor purus, ac dictum ipsum. Vivamus gravida, justo in tristique pulvinar, metus velit blandit metus.',
+            content='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non velit sit amet risus condimentum tristique. Sed bibendum elit nec arcu auctor, in malesuada justo tincidunt. Nullam auctor auctor purus, ac dictum ipsum. Vivamus gravida, justo in tristique pulvinar, metus velit blandit metus.',
             timestamp='2023-01-01 14:00:00'
     )
     db.session.add(discussion_test)

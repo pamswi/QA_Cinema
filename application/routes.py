@@ -4,9 +4,11 @@ from flask import render_template, request, redirect, url_for, flash, session, j
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, DateField, IntegerField, SelectField
 from wtforms.validators import ValidationError, DataRequired, Length
-from models import User
+from models import User, Discussion, Movie, Comment
+from forms import PostForm, CommentForm
 from werkzeug.security import check_password_hash, generate_password_hash
-from models import Movie, Screening, Discussion
+import datetime
+from datetime import datetime, Discussion
 from forms import DiscussionPost, PayForm, BasicForm
 from datetime import date, timedelta
 
@@ -163,6 +165,38 @@ def logout():
         return redirect("/")
     return render_template("logout.html")
 
+
+app.config['SECRET_KEY'] = 'TEMP_SECRET_KEY'    
+@app.route('/discussion-board', methods=["GET","POST"])
+def discussionboard():
+    all_posts= Discussion.all_discussion()
+    all_movies = Movie.all_movies()
+    post_form = PostForm()
+    post_form.movie_id.choices = [(0,'Other')]
+    for movie in all_movies:
+        post_form.movie_id.choices.append(
+            (movie.id, f"{movie.title}")
+        )
+
+    for post in all_posts:
+        comment_form = CommentForm()
+        comment_form.post_id.data = post.id
+
+
+    if request.method == "POST":
+        local_datetime = datetime.now()
+        post_timestamp = local_datetime.strftime("%d/%m/%Y %H:%M")
+        if post_form.validate_on_submit():
+            with app.app_context():
+                new_post = Discussion().new_post(post_form.user_id.data, post_form.movie_id.data, post_form.topic.data, post_form.content.data, post_timestamp)
+                all_posts= Discussion.all_discussion()
+                return redirect(url_for('discussionboard'))
+        elif comment_form.validate_on_submit():
+            with app.app_context():
+                print(comment_form.post_id.data)
+                new_comment = Comment().new_comment(comment_form.user_id.data, comment_form.post_id.data, comment_form.content.data, post_timestamp)
+                return redirect(url_for('discussionboard'))
+    return render_template('discussion-board.html', all_posts=all_posts, post_form=post_form, comment_form=comment_form)
         
 @app.route('/booking', methods=['GET', 'POST']) # AKBER
 def register():

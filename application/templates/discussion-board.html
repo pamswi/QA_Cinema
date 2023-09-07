@@ -7,39 +7,59 @@
 </head>
 <body>
     <h1>Discussion Board</h1>
-    <table>
-        {% for post in all_posts %}
-        <tr>
-            <td><h3>{{ post.topic }}</h3></td>
-        </tr>
-        <tr>
-            <td>{{ post.movie.title }}</td>
-        </tr>
-        <tr>
-            <td><b>{{ post.user.username }}</b></td>
-            
-            <td>{{ post.timestamp }}</td>
-        </tr>
-        <tr>
-            <td>{{ post.comment }}</td>
-        </tr>
+    {% for post in all_posts %}
+        <table>
+            <tr>
+                <td><h2>{{ post.topic }}</h2></td>
+            </tr>
+            <tr>
+                <td>{{ post.movie.title }}</td>
+            </tr>
+            <tr>
+                <td>{{ post.user.username }}</td>
+                <td>{{ post.timestamp }}</td>
+            </tr>
+            <tr>
+                <td colspan="2">{{ post.content }}</td>
+            </tr>
+        </table>
+        <h3>Comments:</h3>
+        {% for comment in post.comments %}
+            <table>
+                <tr>
+                    <td>{{ comment.user.username }}</td>
+                    <td>{{ comment.timestamp }}</td>
+                </tr>
+                <tr>
+                    <td>{{ comment.content }}</td>
+                </tr>
+            </table>
         {% endfor %}
-    </table>
+        <form method="POST" action="">
+            {{ comment_form.hidden_tag() }}
+            {{ comment_form.user_id.label }} {{ comment_form.user_id }}
+            <!-- {{ comment_form.post_id.label }} {{ post.id }}
+            <input type="hidden" name="post_id" value="{{ post.id }}"> -->
+            <br>
+            {{ comment_form.content.label }} {{ comment_form.content }}
+            <br>
+            {{ comment_form.submit }}
+        </form>
+    {% endfor %}
     <br>
-    <br>
-    <form method="get" action="">
-        {{ form.hidden_tag() }}
-        {{ form.user_id.label }} {{ form.user_id}}
+
+    <h2>New post</h2>
+    <form method="POST" action="">
+        {{ post_form.hidden_tag() }}
+        {{ post_form.user_id.label }} {{ post_form.user_id}}
         <br>
-        {{ form.movie_id.label }} {{ form.movie_id}}
+        {{ post_form.movie_id.label }} {{ post_form.movie_id}}
         <br>
-        {{ form.topic.label }} {{ form.topic }}
+        {{ post_form.topic.label }} {{ post_form.topic }}
         <br>
-        {{ form.comment.label }} {{ form.comment }}
+        {{ post_form.content.label }} {{ post_form.content }}
         <br>
-        {{ form.timestamp }}
-        <br>
-        {{ form.send() }}
+        {{ post_form.submit }}
     </form>
 </body>
 </html>
