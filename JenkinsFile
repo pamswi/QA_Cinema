@@ -16,11 +16,11 @@ pipeline {
                 sh "pip install -r requirements.txt"
             }
         }
-        stage('Testing') {
-            steps {
-                // add testing steps
-            }
-        }
+        // stage('Testing') {
+        //     steps {
+        //         // add testing steps
+        //     }
+        // }
         stage('Deploy') {
             steps {
                 sh "python3 app.py"
