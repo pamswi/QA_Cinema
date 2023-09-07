@@ -212,6 +212,20 @@ form {
     margin-top: 2rem;
 }
 
+/* LOGOUT PAGE STYLES*/
+
+.logout-heading {
+    color: white;
+    padding-left: 40%;
+}
+
+form input {
+    width: 5rem;
+    color: white;
+    background: orangered;
+    margin-top: 2rem;
+}
+
 /* SIGN UP PAGE STYLES*/
 
 .existing-user {
