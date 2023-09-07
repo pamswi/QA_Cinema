@@ -43,7 +43,7 @@ with app.app_context():
     '15:00','18:00','21:00',
     ]
     screening_days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-    selected_movies = movies[:7]
+    selected_movies = movies[:13]
     all_screening_times = []
 
     for _ in range(3):
@@ -102,17 +102,7 @@ with app.app_context():
     # db.session.add(test_movie)
     # db.session.commit()
 
-    screening_test = Screening(
-        movie_id=14,
-        screen_id=1,
-        time='12:00:00',
-        day ='Friday',
-        current_capacity=100
-    )
-         
-    db.session.add(screening_test)
-    db.session.commit()
-
+    
 
     # booking_test = Booking(
     #         user_id=1,
