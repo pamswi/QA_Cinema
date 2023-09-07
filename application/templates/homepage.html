@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ url_for ('static', filename='style.css') }}" type="text/css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f0cac4ba7b.js" crossorigin="anonymous"></script>
-    <style>=
+    <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,500&family=Shrikhand&display=swap');
       </style> 
     <title>QA Cinemas</title>
@@ -14,21 +14,6 @@
 </head>
 <body>
 
-    <header>
-        <div class="logo">
-          <h1>QA Cinemas</h1>
-        </div>
-        <div class="nav-links">
-            <ul>
-                <li><a href="{{ url_for('home') }}">Home</a></li>
-                <li><a href="{{ url_for('about') }}">About Us</a></li>
-                <li><a href="{{ url_for('about') }}">What's On</a></li>
-                <li><a href="{{ url_for('about') }}">Book Online</a></li>  
-                <li><a href="{{ url_for('about') }}">Login</a></li>
-                <li><a href="{{ url_for('about') }}"><i class="fa-solid fa-cart-shopping"></i></a></li>     -->
-            </ul>
-        </div>
-    </header>
   <header>
     <div class="logo">
       <h1>QA Cinemas</h1>
@@ -37,7 +22,7 @@
         <ul>
             <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="{{ url_for('about') }}">About Us</a></li>
-            <li><a href="{{ url_for('about') }}">Services</a></li>
+            <li><a href="{{ url_for('cinema_services') }}">Services</a></li>
             <li><a href="{{ url_for('new_releases') }}">New Releases</a></li>
             <li><a href="{{ url_for('listings') }}">Listings</a></li>
             <li><a href="{{ url_for('classifications') }}">Classifications</a></li>
@@ -45,7 +30,7 @@
             <li><a href="{{ url_for('about') }}">Forum</a></li>
             <li><a href="{{ url_for('opening_times') }}">Opening Times</a></li>
             <li><a href="{{ url_for('loginabout') }}">Login</a></li>
-            <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
+            <li><a href="{{ url_for('signup') }}">Sign Up</a></li> -->
         </ul>
     </div>
 </header>
