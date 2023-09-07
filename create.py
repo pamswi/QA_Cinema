@@ -44,7 +44,7 @@ with app.app_context():
     '15:00','18:00','21:00',
     ]
     screening_days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-    selected_movies = movies[:7]
+    selected_movies = movies[:13]
     all_screening_times = []
 
     for _ in range(3):

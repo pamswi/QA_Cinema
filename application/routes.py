@@ -19,7 +19,8 @@ the following app.py file defines all known routes
 '''
 @app.route("/")
 def home():
-    return render_template ("homepage.html")
+    all_films = Movie.query.all()
+    return render_template ("homepage.html", films=all_films)
 
 @app.route("/about")
 def about():
