@@ -297,6 +297,24 @@ form input {
     margin-left: 4rem;
 }
 
+/* FORUM PAGE STYLES*/
+
+.forum-heading {
+    color: white;
+    padding-left: 40%;
+    margin-bottom: -2rem;
+}
+
+table tr td h2 {
+    color: white;
+    padding-top: 3rem;
+}
+
+td {
+    color: white;
+    padding-top: 2rem;
+}
+
 
 /* styles.css */
 /* Style the movie list container */
@@ -385,8 +403,6 @@ form input {
 .date-button:hover {
     background-color: orangered;
 }
-
-/* CAROUSEL*/
 
 
 
