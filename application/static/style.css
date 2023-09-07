@@ -120,6 +120,36 @@ footer i {
     padding-right: 0.5rem;
 }
 
+button.btn, .cardContainer a.btn {
+    background-color: orangered;
+}
+
+button.btn:hover, .cardContainer a.btn:hover {
+    background-color: lightcoral;
+}
+
+/* FILM PAGES*/
+
+.movie-details img {
+    width: 40%;
+    margin-left: 30%;
+}
+
+.movie-details h2 {
+    margin-left: 10%;
+    color: white;
+}
+
+.movie-details p {
+    color: white;
+    margin-left: 10%;
+}
+
+.date-buttons {
+    margin-top: -1rem;
+    padding-top: 45px;
+}
+
 
 
 /* ABOUT US PAGE STYLES*/
@@ -337,9 +367,9 @@ form input {
 /* styles.css */
 .date-buttons {
     display: flex;
-    justify-content: center;
-    align-items: center;
     gap: 10px; /* Adjust the gap between buttons */
+    padding-left: 10%;
+    padding-bottom: 6%;
 }
 
 .date-button {
