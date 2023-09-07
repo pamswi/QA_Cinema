@@ -315,6 +315,22 @@ td {
     padding-top: 2rem;
 }
 
+.comment input {
+    width: 400px;
+} 
+
+/* PAYMENT PAGE */
+
+.payment-heading {
+    color: white;
+    padding-left: 35%;
+    margin-bottom: -2rem;
+}
+
+.form-input input {
+    width: 350px;
+}
+
 
 /* styles.css */
 /* Style the movie list container */

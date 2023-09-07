@@ -1,35 +1,36 @@
 {% include 'navbar.html' %}
 
 <body>
-    <h1>Payment Form</h1>
+    <h1 class="payment-heading">Payment Form</h1>
+
     <form method="POST">
         {{ form.hidden_tag() }}
-        <div>
+        <div class="form-input">
             <label for="first_name">First Name:</label>
             {{ form.first_name.label }}
             {{ form.first_name() }}
         </div>
-        <div>
+        <div class="form-input">
             <label for="last_name">Last Name:</label>
             {{ form.last_name.label }}
             {{ form.last_name() }}
         </div>
-        <div>
+        <div class="form-input">
             <label for="address">Address:</label>
             {{ form.address.label }}
             {{ form.address() }}
         </div>
-        <div>
+        <div class="form-input">
             <label for="card_number">Card Number:</label>
             {{ form.card_number.label }}
             {{ form.card_number() }}
         </div>
-        <div>
+        <div class="form-input">
             <label for="expiry_date">Expiry Date:</label>
             {{ form.expiry_date.label }}
             {{ form.expiry_date() }}
         </div>
-        <div>
+        <div class="form-input">
             <label for="cvc_number">CVC Number:</label>
             {{ form.cvc_number.label }}
             {{ form.cvc_number() }}
@@ -38,6 +39,7 @@
             {{ form.submit }}
         </div>
     </form>
+    
     <p>{{ message }}</p>
 
 </body>
