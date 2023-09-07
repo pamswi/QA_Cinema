@@ -1,0 +1,19 @@
+
+{% include 'navbar.html' %}
+
+<body>
+    <div class="movie-list">
+        <h2>Movie Listings</h2>
+        <div class="movie-items">
+            {% for film in films %}
+              <div class="movie-item">
+                
+                <img src="{{ film.poster }}" alt="{{ film.title }}" class="movie-poster">
+                <h3><span class="movie-title">{{ film.title }}</span></h3>
+              </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+{% include 'footer.html' %}

@@ -14,7 +14,6 @@
 </head>
 <body>
 
-    
   <header>
     <div class="logo">
       <h1>QA Cinemas</h1>
@@ -31,7 +30,7 @@
             <li><a href="{{ url_for('about') }}">Forum</a></li>
             <li><a href="{{ url_for('opening_times') }}">Opening Times</a></li>
             <li><a href="{{ url_for('login') }}">Login</a></li>
-            <li><a href="{{ url_for('signup') }}">Sign Up</a></li> -->
+            <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
         </ul>
     </div>
 </header>
@@ -94,7 +93,7 @@
 
     <section class="cardContainer">
         <div class="card" style="width: 18rem;">
-            <img src="/Images/Classifications.jpg" class="card-img-top" alt="...">
+            <img src="{{ url_for('static', filename='Classifications.jpg') }}" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">FILM CLASSIFICATIONS</h5>
               <a href="{{ url_for('home') }}" class="btn btn-primary">View</a>
@@ -102,7 +101,7 @@
         </div>
 
         <div class="card" style="width: 18rem;">
-            <img src="/Images/Screens.jpg" class="card-img-top" alt="...">
+            <img src="{{ url_for('static', filename='Screens.jpg') }}" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">SCREENS</h5>
               <a href="{{ url_for('home') }}" class="btn btn-primary">View</a>
@@ -110,7 +109,7 @@
           </div>
 
           <div class="card" style="width: 18rem;">
-            <img src="/Images/Book online.jpg" class="card-img-top" alt="...">
+            <img src="{{ url_for('static', filename='Book online.jpg') }}" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">BOOK ONLINE</h5>
               <a href="{{ url_for('home') }}" class="btn btn-primary">View</a>
@@ -118,7 +117,7 @@
           </div>
 
           <div class="card" style="width: 18rem;">
-            <img src="/Images/Cinema services.jpg" class="card-img-top" alt="...">
+            <img src="{{ url_for('static', filename='Cinema services.jpg') }}" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">CINEMA SERVICES</h5>
               <a href="{{ url_for('home') }}" class="btn btn-primary">View</a>
