@@ -84,8 +84,6 @@ def payment():
         card_cvc = form.cvc_number.data
         update_user = User.add_payment(session["username"], first_name, last_name, address, card_number, expiry_date, card_cvc)
 
-        message= "payment received"
-
     return render_template('payment.html', form=form, message=message)
 
 
