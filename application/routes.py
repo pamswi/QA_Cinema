@@ -1,12 +1,14 @@
+
 from application import app, db
-from flask import render_template, request, redirect, url_for, flash, session
+from flask import render_template, request, redirect, url_for, flash, session, jsonify
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, DateField, IntegerField, SelectField
 from wtforms.validators import ValidationError, DataRequired, Length
 from models import User
 from werkzeug.security import check_password_hash, generate_password_hash
-from models import Movie, Discussion
+from models import Movie, Screening, Discussion
 from forms import DiscussionPost, PayForm, BasicForm
+from datetime import date, timedelta
 
 app.config['SECRET_KEY'] = 'YOUR_SECRET_KEY'    
 
@@ -38,16 +40,40 @@ def cinema_services():
     return render_template("services.html")
 
 @app.route("/movies/<int:movie_id>")
-def view_movie():
-    return render_template("movie.html")
+def view_movie(movie_id):
+    current_date =date.today()
+    seven_days_from_now = current_date + timedelta(days=7)
+    movie = Movie.query.get(movie_id)
+    return render_template("movie.html", movie=movie)
+
+@app.route("/api/movies/<int:movie_id>")
+def api_view_screenings(movie_id):
+    selected_day = request.args.get('day')
+    screenings = Screening.query.filter_by(movie_id=movie_id, day=selected_day).all()
+    screening_data = []
+    
+    for screening in screenings:
+        screening_data.append({
+            'id': screening.id,
+            'title': screening.movie_id,
+            'screen_number': screening.screen_id,
+            'time': screening.time,
+            'current_capacity': screening.current_capacity
+
+        })
+    
+    if not screenings:
+        return 'There are currently no showings of this film'
+    
+    return jsonify(screening_data)
+
 
 @app.route("/listings")
 def listings():
     return render_template("gallery.html")
 
 @app.route('/newreleases', methods=['GET'])
-def new_releases():
-    from models import Movie  
+def new_releases(): 
 
     new_releases = Movie.get_current_movies()
     return render_template('new_releases.html', films=new_releases)

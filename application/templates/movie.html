@@ -1,0 +1,45 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Page</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+
+
+</head>
+<body>
+    <div class="product-list">
+                
+        <div class="guitar-details">
+            <img src="{{ movie.poster }}" alt="{{ movie.name }}">
+            <h2>{{ movie.title }}</h2>
+            <p>{{ movie.description }}</p>
+            <p>Director: {{ movie.director}}</p>
+            <p>Actors: {{ movie.actors}}</p>
+            <p>Release Date: {{ movie.release_date}}</p>
+        </div>
+    </div>
+
+    <div class="date-buttons">
+        <button class="date-button", data-date="Friday", data-movie-id={{movie.id}}>Friday 15th</button>
+        <button class="date-button", data-date="Saturday", data-movie-id={{movie.id}}>Saturday 16th</button>
+        <button class="date-button", data-date="Sunday", data-movie-id={{movie.id}}>Sunday 17th</button>
+        <button class="date-button", data-date="Monday", data-movie-id={{movie.id}}>Monday 18th</button>
+        <button class="date-button", data-date="Tuesday", data-movie-id={{movie.id}}>Tuesday 19th</button>
+        <button class="date-button", data-date="Wednesday", data-movie-id={{movie.id}}>Wednesday 20th</button>
+        <button class="date-button", data-date="Thursday", data-movie-id={{movie.id}}>Thursday 21st</button>
+        <!-- Add more buttons for other dates -->
+    </div>
+    
+    <div class="screening-times">
+        <!-- Screening times will be displayed here -->
+    </div>
+
+    
+
+
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
