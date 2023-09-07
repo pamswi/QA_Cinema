@@ -1,16 +1,19 @@
 from flask_wtf import FlaskForm
-
-
-from wtforms import SubmitField, StringField, IntegerField, DateTimeLocalField,DateField,SelectField
+from wtforms import SubmitField, StringField, IntegerField, DateTimeLocalField,DateField,SelectField, SelectField, HiddenField
 from wtforms.validators import DataRequired, Length
 
-class DiscussionPost(FlaskForm):
+class PostForm(FlaskForm):
     user_id = IntegerField('User ID', validators=[DataRequired()])
-    movie_id = IntegerField('Movie ID')
+    movie_id = SelectField('Movie')
     topic = StringField('Topic', validators=[DataRequired()])
-    comment = StringField('Message', validators=[DataRequired()])
-    timestamp = DateTimeLocalField('Timestamp', format='%Y-%m-%d %H:%M:%S')
-    send = SubmitField('Send')
+    content = StringField('Message', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+
+class CommentForm(FlaskForm):
+    user_id = IntegerField('User ID', validators=[DataRequired()])
+    post_id = HiddenField('Post ID')
+    content = StringField('Comment', validators=[DataRequired()])
+    submit = SubmitField('Submit')
 
 # payment form including Akber's validators
 class PayForm(FlaskForm):

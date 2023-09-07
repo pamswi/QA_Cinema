@@ -17,7 +17,7 @@ body {
 
 header {
     display: flex;
-    padding: 2% 6%;
+    padding: 2% 1%;
     justify-content: space-between;
     align-items: center;
 }
@@ -119,6 +119,8 @@ footer a:hover {
 footer i {
     padding-right: 0.5rem;
 }
+
+
 
 /* ABOUT US PAGE STYLES*/
 
@@ -252,6 +254,93 @@ form {
 }
 
 
+/* styles.css */
+/* Style the movie list container */
+.movie-list {
+    text-align: center;
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+/* Style the movie items container */
+.movie-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Style each movie item */
+.movie-item {
+    margin: 10px;
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-basis: calc(50% - 20px);
+    box-sizing: border-box;
+    transition: transform 0.2s, filter 0.2s; /* Add filter transition */
+}
+
+/* Style the movie title */
+.movie-title {
+    color: #333;
+    font-size: 18px;
+}
+
+
+/* Define the hover effect */
+.movie-item:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2); /* Increase brightness on hover */
+}
+
+/* Add a background overlay for the entire site */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+    z-index: 1; /* Place it above other content */
+    opacity: 0; /* Initially hidden */
+    pointer-events: none; /* Allow interactions with content below */
+}
+
+/* Highlight the movie item when it is hovered over */
+.movie-item:hover + .overlay {
+    opacity: 1; /* Show the overlay on hover */
+    pointer-events: auto; /* Allow interactions with the overlay */
+}
+/* styles.css */
+.movie-poster {
+    width: 200px; /* Set your desired width */
+    height: 300px; /* Set your desired height */
+    object-fit: cover; /* Maintain aspect ratio and cover the specified dimensions */
+}
+
+/* styles.css */
+.date-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Adjust the gap between buttons */
+}
+
+.date-button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.date-button:hover {
+    background-color: #0056b3;
+}
+
 
 
 
@@ -323,3 +412,5 @@ form {
         padding-top: 2%;
     }
 }
+
+

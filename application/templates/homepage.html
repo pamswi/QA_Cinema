@@ -14,37 +14,40 @@
 </head>
 <body>
 
-    <header>
-        <div class="logo">
-          <h1>QA Cinemas</h1>
-        </div>
-        <div class="nav-links">
-            <ul>
-                <li><a href="{{ url_for('home') }}">Home</a></li>
-                <li><a href="{{ url_for('about') }}">About Us</a></li>
-                <li><a href="{{ url_for('') }}">What's On</a></li>
-                <li><a href="{{ url_for('') }}">Book Online</a></li>  
-                <li><a href="{{ url_for('') }}">Login</a></li>
-                <li><a href="{{ url_for('') }}"><i class="fa-solid fa-cart-shopping"></i></a></li>    
-            </ul>
-        </div>
-    </header>
+    
+  <header>
+    <div class="logo">
+      <h1>QA Cinemas</h1>
+    </div>
+    <div class="nav-links">
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('about') }}">About Us</a></li>
+            <li><a href="{{ url_for('cinema_services') }}">Services</a></li>
+            <li><a href="{{ url_for('new_releases') }}">New Releases</a></li>
+            <li><a href="{{ url_for('listings') }}">Listings</a></li>
+            <li><a href="{{ url_for('classifications') }}">Classifications</a></li>
+            <li><a href="{{ url_for('about') }}">Book Online</a></li>  
+            <li><a href="{{ url_for('about') }}">Forum</a></li>
+            <li><a href="{{ url_for('opening_times') }}">Opening Times</a></li>
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('signup') }}">Sign Up</a></li> -->
+        </ul>
+    </div>
+</header>
 
     <section>
         <div id="homeCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active c-item">
-                <img src="/Images/Movie 1.jpeg" class="d-block w-100 c-img" alt="Film 1">
-                <!-- 
-                <div class="carousel-caption">
-                    <h1 class="slideHeading">New Releases</h1>
-                    <p class="slideParagraph">Film 1</p>
-                    <button class="btn btn-primary">Book Now</button>
-                </div>
-                -->
+                <img src="{{ url_for('static', filename='oppenheimer.jpg') }}"  class="d-block w-100 c-img" alt="Film 1">
+                
+                
+                
               </div>
               <div class="carousel-item c-item">
-                <img src="/Images/Extraction 2 Poster.jpeg" class="d-block w-100 c-img" alt="Film 2">
+                <img src="{{ url_for('static', filename='thenun2.jpeg') }}"  class="d-block w-100 c-img" alt="Film 2">
+                
                 <!--
                 <div class="carousel-caption">
                     <h1 class="slideHeading">Blockbuster</h1>
@@ -54,7 +57,7 @@
                 -->
               </div>
               <div class="carousel-item c-item">
-                <img src="/Images/PrettyWomanTheMusicalTour_Title_1920x1080.webp" class="d-block w-100 c-img" alt="Film 3">
+                <img src="{{ url_for('static', filename='scrapper.jpg') }}"  class="d-block w-100 c-img" alt="Film 3">
                 <!-- 
                 <div class="carousel-caption">
                     <h1 class="slideHeading">Comedy</h1>
@@ -90,7 +93,7 @@
             <img src="/Images/Classifications.jpg" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">FILM CLASSIFICATIONS</h5>
-              <a href="{{ url_for('product_listing') }}" class="btn btn-primary">View</a>
+              <a href="{{ url_for('home') }}" class="btn btn-primary">View</a>
             </div>
         </div>
 
@@ -98,7 +101,7 @@
             <img src="/Images/Screens.jpg" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">SCREENS</h5>
-              <a href="{{ url_for('categories') }}" class="btn btn-primary">View</a>
+              <a href="{{ url_for('home') }}" class="btn btn-primary">View</a>
             </div>
           </div>
 
@@ -106,7 +109,7 @@
             <img src="/Images/Book online.jpg" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">BOOK ONLINE</h5>
-              <a href="{{ url_for('product_listing') }}" class="btn btn-primary">View</a>
+              <a href="{{ url_for('home') }}" class="btn btn-primary">View</a>
             </div>
           </div>
 
@@ -114,7 +117,7 @@
             <img src="/Images/Cinema services.jpg" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">CINEMA SERVICES</h5>
-              <a href="{{ url_for('product_listing') }}" class="btn btn-primary">View</a>
+              <a href="{{ url_for('home') }}" class="btn btn-primary">View</a>
             </div>
           </div>
         </section>
@@ -125,41 +128,17 @@
             </div>
 
         <section class="listings-gallery">
-            <div class="card" style="width: 18rem;">
-                <img src="/Images/Film 1.webp" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">FILM 1</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                  <a href="{{ url_for('product_listing') }}" class="btn btn-primary">Find Out More</a>
-                </div>
+          <div class="movie-list">
+            <div class="movie-items">
+                {% for film in films %}
+                  <div class="movie-item">
+                    
+                    <img src="{{ film.poster }}" alt="{{ film.title }}" class="movie-poster">
+                    <h3><span class="movie-title">{{ film.title }}</span></h3>
+                  </div>
+                {% endfor %}
             </div>
-    
-            <div class="card" style="width: 18rem;">
-                <img src="/Images/Film 2.webp" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">FILM 2</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                  <a href="{{ url_for('categories') }}" class="btn btn-primary">Find Out More</a>
-                </div>
-              </div>
-    
-              <div class="card" style="width: 18rem;">
-                <img src="/Images/kandahar-movie-poster-md.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">FILM 3</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                  <a href="{{ url_for('product_listing') }}" class="btn btn-primary">Find Out More</a>
-                </div>
-              </div>
-    
-              <div class="card" style="width: 18rem;">
-                <img src="/Images/the-old-way-movie-poster-md.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">FILM 4</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                  <a href="{{ url_for('product_listing') }}" class="btn btn-primary">Find Out More</a>
-                </div>
-              </div>
+          </div>
         </section>
 
         <footer>
