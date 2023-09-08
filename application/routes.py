@@ -223,7 +223,23 @@ def forum():
     return render_template("forum.html", all_posts=all_posts, postform=postform, all_comments=all_comments)
 
 @app.route('/booking', methods=['GET', 'POST']) # AKBER
-def register():
+def view_booking():
+    
+    
+    screening_id = request.args.get('screening_id')
+    screening = Screening.query.get(screening_id)
+    
+    movie_id = screening.movie_id
+    selected_date = screening.day
+    time = screening.time
+    current_capacity = screening.current_capacity
+
+    movie = Movie.query.get(movie_id)
+
+    movie_title = movie.title
+    movie_poster= movie.poster
+
+
     message = ""
     form = BasicForm()
 
@@ -238,4 +254,5 @@ def register():
             else:
                 message = f'Thank you, {first_name} {last_name}. you have selected {num_of_tickets} ticket for {movie}.'
 
-    return render_template('booking.html', form=form, message=message)
+    return render_template('booking.html', movie_title=movie_title, movie_poster=movie_poster, screening_id=screening_id, selected_date=selected_date,movie_id=movie_id, time=time, current_capacity=current_capacity, form=form, message=message)
+
