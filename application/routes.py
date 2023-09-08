@@ -1,11 +1,11 @@
 
 from application import app, db
-from flask import render_template, request, redirect, url_for, flash, session, jsonify
+from flask import render_template, request, redirect, url_for, flash, session, jsonify, get_flashed_messages
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, DateField, IntegerField, SelectField
 from wtforms.validators import ValidationError, DataRequired, Length
-from models import User, Discussion, Movie, Comment, Screening
-from forms import PostForm, CommentForm
+from models import User, Discussion, Movie, Screening
+from forms import PostForm
 from werkzeug.security import check_password_hash, generate_password_hash
 import datetime
 from datetime import datetime
@@ -166,59 +166,73 @@ def logout():
         return redirect("/")
     return render_template("logout.html")
 
-
-app.config['SECRET_KEY'] = 'TEMP_SECRET_KEY'    
-@app.route('/discussion-board', methods=["GET","POST"])
-def discussionboard():
-    all_posts= Discussion.all_discussion()
-    all_movies = Movie.all_movies()
-    post_form = PostForm()
-    post_form.movie_id.choices = [(0,'Other')]
-    for movie in all_movies:
-        post_form.movie_id.choices.append(
-            (movie.id, f"{movie.title}")
-        )
-
-    for post in all_posts:
-        comment_form = CommentForm()
-        comment_form.post_id.data = post.id
-
-
-    if request.method == "POST":
-        local_datetime = datetime.now()
-        post_timestamp = local_datetime.strftime("%d/%m/%Y %H:%M")
-        if post_form.validate_on_submit():
-            with app.app_context():
-                new_post = Discussion().new_post(post_form.user_id.data, post_form.movie_id.data, post_form.topic.data, post_form.content.data, post_timestamp)
-                all_posts= Discussion.all_discussion()
-                return redirect(url_for('discussionboard'))
-        elif comment_form.validate_on_submit():
-            with app.app_context():
-                print(comment_form.post_id.data)
-                new_comment = Comment().new_comment(comment_form.user_id.data, comment_form.post_id.data, comment_form.content.data, post_timestamp)
-                return redirect(url_for('discussionboard'))
-    return render_template('discussion-board.html', all_posts=all_posts, post_form=post_form, comment_form=comment_form)
-        
 @app.route('/forum', methods=["GET", "POST"])
 def forum():
     # print(session["username"])
     all_posts= Discussion.all_posts()
     postform = PostForm()
     all_comments=Discussion.all_comments()
+    all_movies = Movie.all_movies()
 
-    for post in all_posts:
-        comments_for_post = [comment for comment in all_comments if comment.responding_to == post.id]
-        print(f"Comments for Post {post.id}: {comments_for_post}")
+    # creating choices for movie dropdown
+    postform.movie_id.choices = [(0,'Other')]
+    for movie in all_movies:
+        postform.movie_id.choices.append(
+            (movie.id, f"{movie.title}")
+        )
+
+    #swearword moderation
+    swearwords = {
+    "damn", "hell", "crap", "shit", "asshole",
+    "bastard", "bitch", "piss", "bollocks",
+    "bugger", "pissed", "screw", "screwed", "screwing",
+    "shite", "fuck", "bullshit", "motherfucker", "dick", 
+    "cock","pussy", "cunt", "twat", "ass", "douche", "douchebag",
+    "tit", "fag", "faggot", "asshole","whore", 
+    "slut", "bitchass", "dickhead", "cockhead",
+    "fuckhead", "prick", "fucktard", "fuckface",
+    "fucker", "wanker"
+    }
+    
+    def contains_swearword(text):
+        text = text.lower()  #converts all text to lower e.g. SwEaRwOrd = swearword can be caught.
+        return any(word in text.split() for word in swearwords)
+
+    def check_and_flash_inappropriate_language(field, field_name):
+        if contains_swearword(field):
+            flash(f"Your {field_name} contains inappropriate language!", "error")
+            return True
+        return False
 
     if request.method == "POST":
-        username = "user" # session["username"]
-        responding_to = request.form.get("responding_to")
-        topic = postform.topic.data
-        content = postform.content.data
-        local_datetime = datetime.now()
-        timestamp = local_datetime.strftime("%d/%m/%Y %H:%M")
-        add_post= Discussion.new_post(username, topic, responding_to, content, timestamp)
-        print(request.form)
+        if postform.validate_on_submit():
+            username = "user" # session["username"]
+            responding_to = request.form.get("responding_to")
+            movie_id = postform.movie_id.data
+            topic = postform.topic.data
+            content = postform.content.data
+            local_datetime = datetime.now()
+            timestamp = local_datetime.strftime("%d/%m/%Y %H:%M")
+            
+            # found_inappropriate_language = (
+            #     check_and_flash_inappropriate_language(topic, "topic") or
+            #     check_and_flash_inappropriate_language(content, "comment")
+            # )
+            found_inappropriate_language = False  # Initialize the flag
+
+            if contains_swearword(topic):
+                flash("Your topic contains inappropriate language!", "error")
+                found_inappropriate_language = True  # Set the flag to True
+
+            if contains_swearword(content):
+                flash("Your comment contains inappropriate language!", "error")
+                found_inappropriate_language = True  # Set the flag to True
+                
+            if not found_inappropriate_language:
+                flash("Comment posted successfully!", "success")
+                add_post= Discussion.new_post(username, movie_id, topic, responding_to, content, timestamp)
+            
+            return redirect(url_for('forum'))
 
     return render_template("forum.html", all_posts=all_posts, postform=postform, all_comments=all_comments)
 

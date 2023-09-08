@@ -156,34 +156,34 @@ with app.app_context():
     # db.session.commit()
 
     discussion_test = Discussion(
-            username=1,
-            movie_id=1,
-            topic='Test Topic',
-            responding_to=None,
-            content='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non velit sit amet risus condimentum tristique. Sed bibendum elit nec arcu auctor, in malesuada justo tincidunt. Nullam auctor auctor purus, ac dictum ipsum. Vivamus gravida, justo in tristique pulvinar, metus velit blandit metus.',
-            timestamp='2023-01-01 14:00:00'
+        username=1,
+        movie_id=1,
+        topic='Topic 1',
+        responding_to="Post",
+        content='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non velit sit amet risus condimentum tristique. Sed bibendum elit nec arcu auctor, in malesuada justo tincidunt. Nullam auctor auctor purus, ac dictum ipsum. Vivamus gravida, justo in tristique pulvinar, metus velit blandit metus.',
+        timestamp='2023-01-01 14:00:00'
     )
     db.session.add(discussion_test)
     db.session.commit()
 
     discussion_test2 = Discussion(
-            username=1,
-            movie_id=1,
-            topic='new test comment',
-            responding_to=1,
-            content='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non velit sit amet risus condimentum tristique. Sed bibendum elit nec arcu auctor, in malesuada justo tincidunt. Nullam auctor auctor purus, ac dictum ipsum. Vivamus gravida, justo in tristique pulvinar, metus velit blandit metus.',
-            timestamp='2023-01-01 14:00:00'
+        username=1,
+        movie_id=1,
+        topic='new test comment',
+        responding_to=1,
+        content='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non velit sit amet risus condimentum tristique. Sed bibendum elit nec arcu auctor, in malesuada justo tincidunt. Nullam auctor auctor purus, ac dictum ipsum. Vivamus gravida, justo in tristique pulvinar, metus velit blandit metus.',
+        timestamp='2023-01-01 14:00:00'
     )
     db.session.add(discussion_test2)
     db.session.commit()
 
     discussion_test = Discussion(
-    username=1,
-    movie_id=1,
-    topic='Test Topicccc',
-    responding_to=None,
-    content='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non velit sit amet risus condimentum tristique. Sed bibendum elit nec arcu auctor, in malesuada justo tincidunt. Nullam auctor auctor purus, ac dictum ipsum. Vivamus gravida, justo in tristique pulvinar, metus velit blandit metus.',
-    timestamp='2023-01-01 14:00:00'
-    )
+        username=1,
+        movie_id=1,
+        topic='Test Topic 2',
+        responding_to="Post",
+        content='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non velit sit amet risus condimentum tristique. Sed bibendum elit nec arcu auctor, in malesuada justo tincidunt. Nullam auctor auctor purus, ac dictum ipsum. Vivamus gravida, justo in tristique pulvinar, metus velit blandit metus.',
+        timestamp='2023-01-01 14:00:00'
+        )
     db.session.add(discussion_test)
     db.session.commit()
