@@ -4,30 +4,27 @@
     <title>Booking</title>
 </head>
 <body>
-        <h1>Booking </h1>
+    <h1>Booking </h1>
 
-            <img src="{{ movie_poster }}" alt="{{ movie_title }}" class="movie-poster">
-            <h1>{{ movie_title}}</h1>
-            <p>Screening ID: {{ screening_id }}</p>
-            <p>Date: {{ selected_date }}</p>
-            <p>Showtime: {{ time }}</p>
+    <img src="{{ movie_poster }}" alt="{{ movie_title }}" class="movie-poster">
+    <h1>{{ movie_title}}</h1>
+    <p>Screening ID: {{ screening_id }}</p>
+    <p>Date: {{ selected_date }}</p>
+    <p>Showtime: {{ time }}</p>
             
-                
-        
     <form method="post">
         {{ form.hidden_tag() }}
         {{ form.user_id.label }}: {{ form.user_id() }}<br>
-        {{ form.screening_id.label }}: {{ form.screening_id() }}<br>
-        {{ form.ticket_type.label }}: {{ form.ticket_type() }}<br>
-        {{ form.quantity.label }}: {{ form.quantity() }}<br>
-        {{ form.discounted_ticket_number.label }}: {{ form.discounted_ticket_number() }}<br>
-        {{ form.full_price_ticket_number.label }}: {{ form.full_price_ticket_number() }}<br>
+        
+        {{ form.Adult.label }}: {{ form.Adult() }}<br>
+        {{ form.Child.label }}: {{ form.Child() }}<br>
+        {{ form.Concession.label }}: {{ form.Concession() }}<br>
+        
         <input type="submit" value="Book">
     </form>
     
-
-{% if message %}
-<p>{{ message }}</p>
-{% endif %}
+    {% if message %}
+    <p>{{ message }}</p>
+    {% endif %}
 </body>
 </html>
