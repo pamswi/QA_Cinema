@@ -222,10 +222,33 @@ def forum():
 
     return render_template("forum.html", all_posts=all_posts, postform=postform, all_comments=all_comments)
 
+<<<<<<< HEAD
 @app.route('/booking', methods=['GET', 'POST'])
 def book_movie():
     form = BookingForm()
     form.screening_id.choices = [(s.id, s.id) for s in Screening.query.all()]  # Populate dynamically
+=======
+@app.route('/booking', methods=['GET', 'POST']) # AKBER
+def view_booking():
+    
+    
+    screening_id = request.args.get('screening_id')
+    screening = Screening.query.get(screening_id)
+    
+    movie_id = screening.movie_id
+    selected_date = screening.day
+    time = screening.time
+    current_capacity = screening.current_capacity
+
+    movie = Movie.query.get(movie_id)
+
+    movie_title = movie.title
+    movie_poster= movie.poster
+
+
+    message = ""
+    form = BasicForm()
+>>>>>>> 250089e41b1f0ba737881dc81ee02634d8396a90
 
     if form.validate_on_submit():
         ticket_prices = {
@@ -236,6 +259,7 @@ def book_movie():
         price_per_ticket = ticket_prices[form.ticket_type.data]
         total_price = price_per_ticket * form.quantity.data
 
+<<<<<<< HEAD
         booking = Booking.book_movie(
             user_id=form.user_id.data,
             screening_id=form.screening_id.data,
@@ -252,3 +276,7 @@ def book_movie():
         )
         return render_template('booking.html', form=form, message="Booking successful!")    
     return render_template('booking.html', form=form)
+=======
+    return render_template('booking.html', movie_title=movie_title, movie_poster=movie_poster, screening_id=screening_id, selected_date=selected_date,movie_id=movie_id, time=time, current_capacity=current_capacity, form=form, message=message)
+
+>>>>>>> 250089e41b1f0ba737881dc81ee02634d8396a90
