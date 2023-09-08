@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discussion Forum</title>
-</head>
+{% include 'navbar.html' %}
+
 <body>
-    <h1>Forum</h1>
+    <h1 class="forum-heading">QA Cinemas Forum</h1>
     <!-- Display Existing Posts -->
     {% for post in all_posts %}
         <table>
@@ -47,11 +42,11 @@
         <h2>Add a Comment</h2>
             {{ postform.hidden_tag() }}
             <input type="hidden" name="responding_to" value="{{ post.id }}">
-            <div>
+            <div class="comment">
                 {{ postform.topic.label }}
                 {{ postform.topic }}
             </div>
-            <div>
+            <div class="comment">
                 {{ postform.content.label }}
                 {{ postform.content }}
             </div>
@@ -61,4 +56,4 @@
         </form>
     {% endfor %}
 </body>
-</html>
+{% include 'footer.html' %}
