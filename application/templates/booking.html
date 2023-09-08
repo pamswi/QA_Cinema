@@ -1,26 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booking</title>
+</head>
+<body>
+    <form method="post">
+        {{ form.hidden_tag() }}
+        {{ form.user_id.label }}: {{ form.user_id() }}<br>
+        {{ form.screening_id.label }}: {{ form.screening_id() }}<br>
+        {{ form.ticket_type.label }}: {{ form.ticket_type() }}<br>
+        {{ form.quantity.label }}: {{ form.quantity() }}<br>
+        {{ form.discounted_ticket_number.label }}: {{ form.discounted_ticket_number() }}<br>
+        {{ form.full_price_ticket_number.label }}: {{ form.full_price_ticket_number() }}<br>
+        <input type="submit" value="Book">
+    </form>
+    
 
-{% include 'navbar.html' %}
-
-    <body>
-        <div class='form'>
-            <form method='POST' action=''>
-                {{ form.hidden_tag() }}
-                {{ form.first_name.label }} {{ form.first_name }}
-                <br>
-                {{ form.last_name.label }} {{ form.last_name }}
-                <br>
-                {{ form.movie_date.label }} {{ form.movie_date }}
-                <br>
-                {{ form.num_of_tickets.label }} {{ form.num_of_tickets }}
-                <br>
-                {{ form.movie.label }} {{ form.movie }}
-                <br>
-                {{ form.ticket_type.label }} {{ form.ticket_type }}
-                <br>
-                {{ form.submit }}
-                <br>
-            {{ message }}
-            </form>
-        </div>
-    </body>
-{% include 'footer.html' %}
+{% if message %}
+<p>{{ message }}</p>
+{% endif %}
+</body>
+</html>
