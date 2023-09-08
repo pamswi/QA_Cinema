@@ -188,7 +188,7 @@ def forum():
 
     if request.method == "POST":
         if postform.validate_on_submit():
-            username = "user" # session["username"]
+            username = session["username"]
             responding_to = request.form.get("responding_to")
             movie_id = postform.movie_id.data
             topic = postform.topic.data

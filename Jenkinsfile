@@ -1,14 +1,13 @@
 pipeline {
     agent any
-    // environment {
-    //     SECRET_KEY=credentials('SECRET_KEY')
-    // }
+    environment {
+        DOCKERHUB_LOGIN=credentials('DOCKERHUB_LOGIN')
+        DATABASE_URI=credentials('DATABASE_URI')
+    }
     stages {
         stage('Build') {
             steps {
-                sh "sudo apt install -y python3-pip"
-                sh "export SECRET_KEY=${SECRET_KEY}"
-                sh "env"
+                sh "sudo apt update && install -y python3-pip"
             }
         }
         stage('Dependencies') {
