@@ -1,20 +1,31 @@
+from typing import Any
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, StringField, IntegerField, DateTimeLocalField,DateField,SelectField, SelectField, HiddenField
-from wtforms.validators import DataRequired, Length
+from wtforms import SubmitField, StringField, IntegerField, DateField, SelectField, SelectField, HiddenField
+from wtforms.validators import DataRequired, Length, ValidationError
+from filter.swearwords import swearwords
 
+
+class CheckSwearwords:
+    def __init__(self, message=None):
+        self.message=message
+    def __call__(self, form, field):
+        if any(word in field.data.lower().split() for word in swearwords):
+            raise ValidationError(self.message)
+        
 class PostForm(FlaskForm):
     post_id = HiddenField('Post ID')
     username = HiddenField('username')
-    topic = StringField('Topic', validators=[DataRequired()])
-    content = StringField('Message', validators=[DataRequired()])
-    submit = SubmitField('Submit')
-
-class CommentForm(FlaskForm):
-    user_id = IntegerField('User ID', validators=[DataRequired()])
-    post_id = HiddenField('Post ID')
-    content = StringField('Comment', validators=[DataRequired()])
-    submit = SubmitField('Submit')
-
+    movie_id = SelectField('Movie')
+    topic = StringField('Topic', validators=[
+        DataRequired(), 
+        #CheckSwearwords(message='Your topic contains inappropriate language!')
+        ])
+    content = StringField('Message', validators=[
+        DataRequired(),
+        #CheckSwearwords(message='Your content contains inappropriate language!')
+        ])
+    submit = SubmitField('Post')
+ 
 # payment form including Akber's validators
 class PayForm(FlaskForm):
     first_name = StringField('First Name', validators=[

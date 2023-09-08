@@ -1,6 +1,15 @@
 {% include 'navbar.html' %}
 
 <body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul>
+                {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
     <h1 class="forum-heading">QA Cinemas Forum</h1>
     <!-- Display Existing Posts -->
     {% for post in all_posts %}
@@ -9,6 +18,9 @@
             <!-- Post Content -->
             <tr>
                 <td><h2>{{ post.topic }}</h2></td>
+            </tr>
+            <tr>
+                <td>{{ post.movie.title }}</td>
             </tr>
             <tr>
                 <td>{{ post.timestamp }}</td>
@@ -24,7 +36,7 @@
             <table>
                 <!-- Comment Content -->
                 <tr>
-                    <td><h3>{{ comment.topic }}</h3></td>
+                    <td>{{ comment.username}}</td>
                 </tr>
                 <tr>
                     <td>{{ comment.timestamp }}</td>
@@ -38,22 +50,31 @@
 
         <!-- Comment Form for Each Post -->
         <form method="POST" action="/forum">
-
-        <h2>Add a Comment</h2>
             {{ postform.hidden_tag() }}
             <input type="hidden" name="responding_to" value="{{ post.id }}">
-            <div class="comment">
-                {{ postform.topic.label }}
-                {{ postform.topic }}
-            </div>
-            <div class="comment">
-                {{ postform.content.label }}
-                {{ postform.content }}
+            <input type="hidden" name="topic" value="{{ post.topic }}">
+            <input type="hidden" name="movie_id" value="{{ post.movie_id }}">
+            <div class="comment">>
+                {{ postform.content(placeholder='Comment')}}
             </div>
             <div>
                 {{ postform.submit() }}
             </div>
         </form>
     {% endfor %}
+    
+    <!-- Create a new post -->
+    <form method="POST" action="/forum">
+        <h2>New Post</h2>
+        {{ postform.hidden_tag() }}
+        <input type="hidden" name="responding_to" value="Post">
+        {{ postform.movie_id.label }} {{ postform.movie_id }}
+        <br>
+        {{ postform.topic.label }} {{ postform.topic }}
+        <br>
+        {{ postform.content.label }} {{ postform.content }}
+        <br>
+        {{ postform.submit }}
+    </form>
 </body>
 {% include 'footer.html' %}
