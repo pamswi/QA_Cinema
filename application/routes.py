@@ -1,9 +1,9 @@
 
 from application import app, db
 from flask import render_template, request, redirect, url_for, flash, session, jsonify
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, DateField, IntegerField, SelectField
-from wtforms.validators import ValidationError, DataRequired, Length
+# from flask_wtf import FlaskForm
+# from wtforms import StringField, SubmitField, DateField, IntegerField, SelectField
+# from wtforms.validators import ValidationError, DataRequired, Length
 from models import User, Discussion, Movie, Comment, Screening, Booking, BookingDetail
 from forms import PostForm, CommentForm
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -104,6 +104,18 @@ def payment():
     message = ""
     form = PayForm()
 
+     #<ALEX
+    screening_id = request.args.get('screening_id')
+    screening = Screening.query.get(screening_id)  
+    movie_id = screening.movie_id
+    selected_date = screening.day
+    time = screening.time
+    current_capacity = screening.current_capacity
+    movie = Movie.query.get(movie_id)
+    movie_title = movie.title
+    movie_poster = movie.poster 
+    #/ALEX>
+
     if request.method == 'POST':
         first_name = form.first_name.data
         last_name = form.last_name.data
@@ -113,7 +125,16 @@ def payment():
         card_cvc = form.cvc_number.data
         update_user = User.add_payment(session["username"], first_name, last_name, address, card_number, expiry_date, card_cvc)
 
-    return render_template('payment.html', form=form, message=message)
+    return render_template(
+            'payment.html', 
+            form=form, 
+            message=message, 
+            movie_title=movie_title, 
+            movie_poster=movie_poster, 
+            selected_date=selected_date,
+            time=time, 
+            current_capacity=current_capacity
+            )
 
 
 @app.route("/signup", methods=["GET","POST"])
@@ -229,44 +250,56 @@ def forum():
 
 @app.route('/booking', methods=['GET', 'POST'])
 def book_movie():
-    form = BookingForm()
-    form.screening_id.choices = [(s.id, s.id) for s in Screening.query.all()]  # Populate dynamically
-##def view_booking():  #####################################  
-    screening_id = request.args.get('screening_id')####
-    screening = Screening.query.get(screening_id)  ###  
-    movie_id = screening.movie_id####
-    selected_date = screening.day###
-    time = screening.time####
-    current_capacity = screening.current_capacity####
-####
-    movie = Movie.query.get(movie_id)####
-    movie_title = movie.title####
-    movie_poster= movie.poster#####
-##########################################
+    form = BookingForm()  
+     #<ALEX
+    screening_id = request.args.get('screening_id')
+    screening = Screening.query.get(screening_id)  
+    movie_id = screening.movie_id
+    selected_date = screening.day
+    time = screening.time
+    current_capacity = screening.current_capacity
+
+    movie = Movie.query.get(movie_id)
+    movie_title = movie.title
+    movie_poster = movie.poster 
+    #/ALEX>
+
     if form.validate_on_submit():
-        ticket_prices = {
-            'Adult': 10,
-            'Kids': 5,
-            'Concession': 7
-        }
-        price_per_ticket = ticket_prices[form.ticket_type.data]
-        total_price = price_per_ticket * form.quantity.data
+        ticket_prices = {'Adult': 10.0,'Kids': 7.5,'Concession': 15.0}        
+        total_price = 0
+        tickets = [
+            ("Adult", form.Adult.data),
+            ("Kids", form.Child.data),
+            ("Concession", form.Concession.data)
+        ]
+        for ticket_type, quantity in tickets:
+            total_price += ticket_prices[ticket_type] * quantity
 
         booking = Booking.book_movie(
             user_id=form.user_id.data,
-            screening_id=form.screening_id.data,
-            booking_date=datetime.now(),
-            total_price=total_price,
-            discounted_ticket_number=form.discounted_ticket_number.data,
-            full_price_ticket_number=form.full_price_ticket_number.data
-        )        
-        BookingDetail.add_booking_detail(
-            booking_id=booking.id,
-            ticket_type=form.ticket_type.data,
-            quantity=form.quantity.data,
-            price=price_per_ticket
-        )
-        #return render_template('booking.html', form=form, message="Booking successful!")    
-    
-    return render_template('booking.html', movie_title=movie_title, movie_poster=movie_poster, screening_id=screening_id, selected_date=selected_date,movie_id=movie_id, time=time, current_capacity=current_capacity, form=form, message=message)
-############
+            screening_id=request.args.get('screening_id'),
+            total_price=total_price
+        ) 
+        
+        for ticket_type, quantity in tickets:
+
+            BookingDetail.add_booking_detail(
+                booking_id=booking.id,
+                ticket_type=ticket_type,
+                quantity=quantity,
+                price=ticket_prices[ticket_type]
+            )
+        return redirect(url_for('payment', screening_id=screening_id))
+   
+    return render_template(
+        'booking.html', 
+        movie_title=movie_title, 
+        movie_poster=movie_poster, 
+        screening_id=screening_id, 
+        selected_date=selected_date,
+        movie_id=movie_id, 
+        time=time, 
+        current_capacity=current_capacity, 
+        form=form
+    )
+     
