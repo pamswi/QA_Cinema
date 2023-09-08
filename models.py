@@ -153,32 +153,15 @@ class Discussion(db.Model):
     
     @classmethod
     def all_posts(cls):
-        return cls.query.filter_by(responding_to=None).all()
+        return cls.query.filter_by(responding_to="Post").all()
     
     @classmethod
     def all_comments(cls):
-        return cls.query.filter(cls.responding_to.isnot(None)).all()
+        return cls.query.filter(cls.responding_to.isnot("Post")).all()
     
     @classmethod
-    def new_post(self, username, topic, responding_to, content, timestamp):
-        new_post=Discussion(username=username, responding_to=responding_to, content=content, timestamp=timestamp)
+    def new_post(self, username, movie_id, topic, responding_to, content, timestamp):
+        new_post=Discussion(username=username, movie_id=movie_id, topic=topic, responding_to=responding_to, content=content, timestamp=timestamp)
         db.session.add(new_post)
         db.session.commit()
         return new_post
-
-class Comment(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    post_id = db.Column(db.Integer, db.ForeignKey('discussion.id'))
-    content = db.Column(db.String(255))
-    timestamp = db.Column(db.String)
-
-    user = db.relationship('User', backref='comments')
-    post = db.relationship('Discussion', backref='comments')
-
-    @classmethod
-    def new_comment(self, user_id, post_id, content, timestamp):
-        new_comment=Comment(user_id=user_id, post_id=post_id, content=content,timestamp=timestamp)
-        db.session.add(new_comment)
-        db.session.commit()
-        return new_comment
