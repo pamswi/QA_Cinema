@@ -2,6 +2,16 @@
 {% include 'navbar.html' %}
 
     <body>
+        <h1>Booking </h1>
+
+            <img src="{{ movie_poster }}" alt="{{ movie_title }}" class="movie-poster">
+            <h1>{{ movie_title}}</h1>
+            <p>Screening ID: {{ screening_id }}</p>
+            <p>Date: {{ selected_date }}</p>
+            <p>Showtime: {{ time }}</p>
+            
+                
+        
         <div class='form'>
             <form method='POST' action=''>
                 {{ form.hidden_tag() }}

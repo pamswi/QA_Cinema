@@ -17,11 +17,15 @@ dateButtons.forEach((button) => {
                 return response.json();
             })
             .then((screeningData) => {
-                
+                // Create a list of screening times with buttons to display
                 const screeningTimesList = screeningData.map((screening) => `
                     <li>
-                        Screen ${screening.screen_number}: ${screening.time}
-                        (Current Capacity: ${screening.current_capacity})
+                        <a href="/booking?screening_id=${screening.id}">
+                            <button class="screening-button" data-screening-id="${screening.id}">
+                                Screen ${screening.screen_number}: ${screening.time}
+                                Book Now
+                            </button>
+                        </a>
                     </li>
                 `).join('');
 
@@ -30,11 +34,22 @@ dateButtons.forEach((button) => {
                     <h3>All Showtimes ${selectedDate}</h3>
                     <ul>${screeningTimesList}</ul>
                 `;
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                screeningTimesContainer.innerHTML = 'Failed to fetch screening data.';
+
+                // Add a click event listener to each screening button if needed
+                // Add a click event listener to each screening button
+                const screeningButtons = document.querySelectorAll('.screening-button');
+                screeningButtons.forEach((screeningButton) => {
+                screeningButton.addEventListener('click', () => {
+                // Handle button click actions here
+                // You can retrieve the screening ID using screeningButton.getAttribute('data-screening-id')
+                });
             });
+        })
+        .catch((error) => {
+        console.error('Error:', error);
+            screeningTimesContainer.innerHTML = 'Failed to fetch screening data.';
+        });
     });
 });
 
+// Add more JavaScript code here if needed
