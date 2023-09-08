@@ -4,12 +4,12 @@ from flask import render_template, request, redirect, url_for, flash, session, j
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, DateField, IntegerField, SelectField
 from wtforms.validators import ValidationError, DataRequired, Length
-from models import User, Discussion, Movie, Comment, Screening
+from models import User, Discussion, Movie, Comment, Screening, Booking, BookingDetail
 from forms import PostForm, CommentForm
 from werkzeug.security import check_password_hash, generate_password_hash
 import datetime
 from datetime import datetime
-from forms import PostForm, PayForm, BasicForm
+from forms import PostForm, PayForm, BookingForm
 from datetime import date, timedelta
 
 app.config['SECRET_KEY'] = 'YOUR_SECRET_KEY'    
@@ -222,20 +222,33 @@ def forum():
 
     return render_template("forum.html", all_posts=all_posts, postform=postform, all_comments=all_comments)
 
-@app.route('/booking', methods=['GET', 'POST']) # AKBER
-def register():
-    message = ""
-    form = BasicForm()
+@app.route('/booking', methods=['GET', 'POST'])
+def book_movie():
+    form = BookingForm()
+    form.screening_id.choices = [(s.id, s.id) for s in Screening.query.all()]  # Populate dynamically
 
-    if request.method == 'POST':
-        if form.validate_on_submit():
-            first_name = form.first_name.data
-            last_name = form.last_name.data
-            num_of_tickets = form.num_of_tickets.data
-            movie = form.movie.data
-            if len(first_name) == 0 or len(last_name) == 0:
-                message = "Please supply both first and last name"
-            else:
-                message = f'Thank you, {first_name} {last_name}. you have selected {num_of_tickets} ticket for {movie}.'
+    if form.validate_on_submit():
+        ticket_prices = {
+            'Adult': 10,
+            'Kids': 5,
+            'Concession': 7
+        }
+        price_per_ticket = ticket_prices[form.ticket_type.data]
+        total_price = price_per_ticket * form.quantity.data
 
-    return render_template('booking.html', form=form, message=message)
+        booking = Booking.book_movie(
+            user_id=form.user_id.data,
+            screening_id=form.screening_id.data,
+            booking_date=datetime.now(),
+            total_price=total_price,
+            discounted_ticket_number=form.discounted_ticket_number.data,
+            full_price_ticket_number=form.full_price_ticket_number.data
+        )        
+        BookingDetail.add_booking_detail(
+            booking_id=booking.id,
+            ticket_type=form.ticket_type.data,
+            quantity=form.quantity.data,
+            price=price_per_ticket
+        )
+        return render_template('booking.html', form=form, message="Booking successful!")    
+    return render_template('booking.html', form=form)
