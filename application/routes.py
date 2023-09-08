@@ -11,6 +11,7 @@ import datetime
 from datetime import datetime
 from forms import PostForm, PayForm, BasicForm
 from datetime import date, timedelta
+from filter.swearwords import swearwords
 
 app.config['SECRET_KEY'] = 'YOUR_SECRET_KEY'    
 
@@ -180,29 +181,10 @@ def forum():
         postform.movie_id.choices.append(
             (movie.id, f"{movie.title}")
         )
-
-    #swearword moderation
-    swearwords = {
-    "damn", "hell", "crap", "shit", "asshole",
-    "bastard", "bitch", "piss", "bollocks",
-    "bugger", "pissed", "screw", "screwed", "screwing",
-    "shite", "fuck", "bullshit", "motherfucker", "dick", 
-    "cock","pussy", "cunt", "twat", "ass", "douche", "douchebag",
-    "tit", "fag", "faggot", "asshole","whore", 
-    "slut", "bitchass", "dickhead", "cockhead",
-    "fuckhead", "prick", "fucktard", "fuckface",
-    "fucker", "wanker"
-    }
     
     def contains_swearword(text):
         text = text.lower()  #converts all text to lower e.g. SwEaRwOrd = swearword can be caught.
         return any(word in text.split() for word in swearwords)
-
-    def check_and_flash_inappropriate_language(field, field_name):
-        if contains_swearword(field):
-            flash(f"Your {field_name} contains inappropriate language!", "error")
-            return True
-        return False
 
     if request.method == "POST":
         if postform.validate_on_submit():
@@ -214,20 +196,16 @@ def forum():
             local_datetime = datetime.now()
             timestamp = local_datetime.strftime("%d/%m/%Y %H:%M")
             
-            # found_inappropriate_language = (
-            #     check_and_flash_inappropriate_language(topic, "topic") or
-            #     check_and_flash_inappropriate_language(content, "comment")
-            # )
-            found_inappropriate_language = False  # Initialize the flag
+            found_inappropriate_language = False 
 
             if contains_swearword(topic):
                 flash("Your topic contains inappropriate language!", "error")
-                found_inappropriate_language = True  # Set the flag to True
+                found_inappropriate_language = True
 
             if contains_swearword(content):
                 flash("Your comment contains inappropriate language!", "error")
-                found_inappropriate_language = True  # Set the flag to True
-                
+                found_inappropriate_language = True 
+
             if not found_inappropriate_language:
                 flash("Comment posted successfully!", "success")
                 add_post= Discussion.new_post(username, movie_id, topic, responding_to, content, timestamp)
