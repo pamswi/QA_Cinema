@@ -113,9 +113,23 @@ class Booking(db.Model):
     total_price = db.Column(db.Integer)
     discounted_ticket_number = db.Column(db.Integer)
     full_price_ticket_number = db.Column(db.Integer)
+    
 
     user = db.relationship('User', backref='booking')
     screening = db.relationship('Screening', backref='booking')
+
+    @classmethod
+    def book_movie(cls, user_id, screening_id, booking_date, total_price, discounted_ticket_number, full_price_ticket_number):
+        new_booking = cls(
+            user_id=user_id,
+            screening_id=screening_id,
+            booking_date=booking_date,
+            total_price=total_price,
+            discounted_ticket_number=discounted_ticket_number,
+            full_price_ticket_number=full_price_ticket_number)    
+        db.session.add(new_booking)
+        db.session.commit()
+        return new_booking
 
     @classmethod
     def booking_by_id(cls, booking_id):
@@ -133,6 +147,19 @@ class BookingDetail(db.Model):
     price = db.Column(db.Integer)
 
     booking = db.relationship('Booking', backref='detail')
+
+    @classmethod
+    def add_booking_detail(cls, booking_id, ticket_type, quantity, price):
+        detail = cls(
+            booking_id=booking_id,
+            ticket_type=ticket_type,
+            quantity=quantity,
+            price=price
+        )
+        db.session.add(detail)
+        db.session.commit()
+        return detail
+    
 
 
 class Discussion(db.Model):
