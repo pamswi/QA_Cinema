@@ -72,9 +72,10 @@ def api_view_screenings(movie_id):
     return jsonify(screening_data)
 
 
-@app.route("/listings")
+@app.route("/listings", methods=["GET"])
 def listings():
-    return render_template("gallery.html")
+    all_films = Movie.query.all()
+    return render_template("listings.html", films=all_films)
 
 @app.route('/newreleases', methods=['GET'])
 def new_releases(): 
