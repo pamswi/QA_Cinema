@@ -185,6 +185,7 @@ class Discussion(db.Model):
     
     @classmethod
     def all_comments(cls):
+        # return cls.query.filter(cls.responding_to != "Post").all()
         return cls.query.filter(cls.responding_to != "Post").all()
     
     @classmethod
