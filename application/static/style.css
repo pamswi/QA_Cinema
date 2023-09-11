@@ -106,14 +106,20 @@ footer a:hover {
     padding-bottom: 20px;
 }
 
-.footer-row1, .footer-row2, .footer-row4, .footer-row5  {
+.footer-row1, .footer-row2, .footer-row4, .footer-row5, .footer-row7, .footer-row8  {
     padding-bottom: 15px;
+}
+
+.footer-info {
+    position: relative;
+    bottom: 6rem;
+    left: 20rem;
 }
 
 .socials {
     position: relative;
-    bottom: 6rem;
-    left: 20rem;
+    bottom: 12.5rem;
+    left: 40rem;
 }
 
 footer i {
@@ -150,6 +156,12 @@ button.btn:hover, .cardContainer a.btn:hover {
     padding-top: 45px;
 }
 
+.screening-times {
+    color: orangered;
+    padding-left: 10%;
+    text-decoration: none;
+}
+
 
 
 /* ABOUT US PAGE STYLES*/
@@ -163,6 +175,14 @@ button.btn:hover, .cardContainer a.btn:hover {
 .aboutus-pageheading {
     padding-left: 20%;
     padding-bottom: 1rem;
+}
+
+.aboutUs a {
+    background-color: orangered;
+}
+
+.aboutUs a:hover {
+    background-color: lightcoral;
 }
 
 .meet-our-team {
@@ -336,7 +356,6 @@ td {
 /* Style the movie list container */
 .movie-list {
     text-align: center;
-    background-color: black;
     padding: 20px;
 }
 
@@ -351,12 +370,6 @@ td {
 .movie-item {
     margin: -2rem;
     padding: 10px;
-    background-color: black;
-    border: 1px solid black;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    flex-basis: calc(50% - 20px);
-    box-sizing: border-box;
-    transition: transform 0.2s, filter 0.2s; /* Add filter transition */
 }
 
 /* Style the movie title */
@@ -419,6 +432,110 @@ td {
 .date-button:hover {
     background-color: orangered;
 }
+
+
+/* SERVICES PAGE*/
+.cinema-services-heading {
+    color: white;
+    padding-left: 32%;
+    margin-bottom: -1rem;
+}
+
+.services-paragraph {
+    color: white;
+    padding-left: 22%;
+    padding-top: 5rem;
+    padding-bottom: 2rem;
+    margin-bottom: -2rem;
+}
+
+.services-menu {
+    margin-top: -1rem;
+}
+
+.menu-card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 10px;
+    width: 100%;
+    animation: fadein-bottom 2.5s ease-in-out both;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-around;
+    color: white;
+}
+
+.menu-card:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.menu-card:nth-child(3) {
+    animation-delay: 1s;
+}
+
+@keyframes fadein-bottom {
+  0% {
+    transform: translateY(2rem);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.check-mark {
+    background: orangered;
+    width: 0%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(100%);
+    transition: 0.6s ease-in-out;
+}
+
+.price {
+    position: relative;
+    width: 10%;
+    transition: 0.6s ease-in-out;
+    transform: translateX(-15px);
+    display: flex;
+    justify-content: center;
+}
+
+.menu-card:hover i {
+    animation: rotate 1s forwards;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(-360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.menu-card:hover {
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+.menu-card:hover .check-mark {
+    transform: translateX(0%);
+    width: 20%;
+    
+}
+
+.cafe-img img {
+    width: 50%;
+    margin-left: 21%;
+    padding-top: 3rem;
+}
+
+
+
+
 
 
 
