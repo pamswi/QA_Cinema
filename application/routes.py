@@ -22,12 +22,18 @@ the following app.py file defines all known routes
 @app.route("/")
 def home():
     all_films = Movie.query.all()
-    # print(session["username"])
+   # username = session["username"]
+   # print(username)
     return render_template ("homepage.html", films=all_films)
 
 @app.route("/about")
 def about():
     return render_template("about.html")
+
+@app.route("/filmbooking")
+def filmbooking():
+    all_films = Movie.query.all()
+    return render_template("filmbooking.html", films=all_films)
 
 @app.route("/openingtimes")
 def opening_times():
@@ -78,6 +84,7 @@ def api_view_screenings(movie_id):
 def listings():
     all_films = Movie.query.all()
     return render_template("listings.html", films=all_films)
+
 
 @app.route('/newreleases', methods=['GET'])
 def new_releases(): 
@@ -150,6 +157,7 @@ def signup():
         password = request.form.get("password")
         confirmation = request.form.get("confirmation")
         
+        # password validation: https://www.geeksforgeeks.org/python-program-check-validity-password/
         if User.check_unique_username(username) != True:
             print("username already exists")
         elif password != confirmation:
@@ -184,13 +192,15 @@ def login():
 
         # below we retrieve user by username and check if the password is correct
         user = User.retrieve_user(username)
-
         if user is None:
             print("no account associated with this username - please sign up")
             return render_template ("signup.html")
         elif user is not None:
             if check_password_hash(user.password, password) == True:
                 session["username"] = user.username
+                session["user_id"] = user.id
+                # print(session["username"])
+                # print(session["user_id"])
                 print("successfully logged in")
             else:
                 print("incorrect username and/or password")

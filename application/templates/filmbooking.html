@@ -1,10 +1,10 @@
-
 {% include 'navbar.html' %}
 
 <body>
-  <div class="movie-list">
-      <h2 class="listings-heading">Current Listings</h2>
-      <div class="movie-items">
+
+    <div class="movie-list">
+        <h2 class="listings-heading">Book a Movie</h2>
+        <div class="movie-items">
             {% for film in films %}
               <div class="movie-item">
                 
@@ -12,8 +12,8 @@
                 <h3><span class="movie-title">{{ film.title }}</span></h3>
               </div>
             {% endfor %}
-      </div>
-  </div>
+        </div>
+    </div>
 </body>
 
 {% include 'footer.html' %}
