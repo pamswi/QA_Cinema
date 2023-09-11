@@ -3,3 +3,6 @@ flask_sqlalchemy
 flask_testing
 pytest
 pytest-cov
+pymysql
+cryptography
+flask-wtf

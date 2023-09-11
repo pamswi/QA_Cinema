@@ -8,8 +8,8 @@ with app.app_context():
     db.create_all()
 
     movies = [
-    Movie(title="Casablanca", director="Michael Curtiz", actors="Humphrey Bogart, Ingrid Bergman", release_date="1942-01-23", description="A classic romance set during World War II.", poster="{{ url_for('static', filename='casablanca.jpg') }}", classic=True, age_restricted=False),
-    Movie(title="Gone with the Wind", director="Victor Fleming", actors="Clark Gable, Vivien Leigh", release_date="1939-12-15", description="An epic historical drama.", poster="{{ url_for('static', filename='gonewiththewind.jpeg') }}", classic=True, age_restricted=False),
+    Movie(title="Casablanca", director="Michael Curtiz", actors="Humphrey Bogart, Ingrid Bergman", release_date="1942-01-23", description="A classic romance set during World War II.", poster="casablanca.jpg", classic=True, age_restricted=False),
+    Movie(title="Gone with the Wind", director="Victor Fleming", actors="Clark Gable, Vivien Leigh", release_date="1939-12-15", description="An epic historical drama.", poster="gonewiththewind.jpeg", classic=True, age_restricted=False),
     Movie(title="The Godfather", director="Francis Ford Coppola", actors="Marlon Brando, James Caan, Al Pacino, Robert Duvall", release_date="24 March 1972", description="The Godfather \"Don\" Vito Corleone is the head of the Corleone mafia family in New York. He is at the event of his daughter's wedding. Michael, Vito's youngest son and a decorated WW II Marine is also present at the wedding. Michael seems to be uninterested in being a part of the family business.", poster="https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg", classic=True, age_restricted=True),
     Movie(title="Citizen Kane", director="Orson Welles", actors="Orson Welles, Joseph Cotten", release_date="1941-09-05", description="A groundbreaking drama film.", poster="{{ url_for('static', filename='citizenkane.jpeg') }}", classic=True, age_restricted=False),
     Movie(title="Schindler's List", director="Steven Spielberg", actors="Liam Neeson, Ralph Fiennes", release_date="1993-12-15", description="A powerful Holocaust drama.", poster="{{ url_for('static', filename='schindlerslist.jpeg') }}", classic=True, age_restricted=False),
@@ -96,19 +96,19 @@ with app.app_context():
     # db.session.commit()
 
     
-    # test_user = User(
-    #         username='testuser',
-    #         email='testuser@example.com',
-    #         password='password123',
-    #         address='123 Test St',
-    #         first_name='Test',
-    #         last_name='User',
-    #         card_number='1234567890123456',
-    #         card_expiry='12/24',
-    #         card_cvc=123
-    #     )
-    # db.session.add(test_user)
-    # db.session.commit()
+    test_user = User(
+            username='testuser',
+            email='testuser@example.com',
+            password='password123',
+            address='123 Test St',
+            first_name='Test',
+            last_name='User',
+            card_number='1234567890123456',
+            card_expiry='12/24',
+            card_cvc=123
+        )
+    db.session.add(test_user)
+    db.session.commit()
 
     # test_movie =  Movie(
     #         title='Test Movie',
@@ -156,34 +156,34 @@ with app.app_context():
     # db.session.commit()
 
     discussion_test = Discussion(
-            username=1,
-            movie_id=1,
-            topic='Test Topic',
-            responding_to=None,
-            content='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non velit sit amet risus condimentum tristique. Sed bibendum elit nec arcu auctor, in malesuada justo tincidunt. Nullam auctor auctor purus, ac dictum ipsum. Vivamus gravida, justo in tristique pulvinar, metus velit blandit metus.',
-            timestamp='2023-01-01 14:00:00'
+        username="testuser",
+        movie_id=1,
+        topic='Topic 1',
+        responding_to=1,
+        content='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non velit sit amet risus condimentum tristique. Sed bibendum elit nec arcu auctor, in malesuada justo tincidunt. Nullam auctor auctor purus, ac dictum ipsum. Vivamus gravida, justo in tristique pulvinar, metus velit blandit metus.',
+        timestamp='2023-01-01 14:00:00'
     )
     db.session.add(discussion_test)
     db.session.commit()
 
     discussion_test2 = Discussion(
-            username=1,
-            movie_id=1,
-            topic='new test comment',
-            responding_to=1,
-            content='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non velit sit amet risus condimentum tristique. Sed bibendum elit nec arcu auctor, in malesuada justo tincidunt. Nullam auctor auctor purus, ac dictum ipsum. Vivamus gravida, justo in tristique pulvinar, metus velit blandit metus.',
-            timestamp='2023-01-01 14:00:00'
+        username="testuser",
+        movie_id=1,
+        topic='new test comment',
+        responding_to=1,
+        content='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non velit sit amet risus condimentum tristique. Sed bibendum elit nec arcu auctor, in malesuada justo tincidunt. Nullam auctor auctor purus, ac dictum ipsum. Vivamus gravida, justo in tristique pulvinar, metus velit blandit metus.',
+        timestamp='2023-01-01 14:00:00'
     )
     db.session.add(discussion_test2)
     db.session.commit()
 
     discussion_test = Discussion(
-    username=1,
-    movie_id=1,
-    topic='Test Topicccc',
-    responding_to=None,
-    content='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non velit sit amet risus condimentum tristique. Sed bibendum elit nec arcu auctor, in malesuada justo tincidunt. Nullam auctor auctor purus, ac dictum ipsum. Vivamus gravida, justo in tristique pulvinar, metus velit blandit metus.',
-    timestamp='2023-01-01 14:00:00'
-    )
+        username="testuser",
+        movie_id=1,
+        topic='Test Topic 2',
+        responding_to=2,
+        content='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non velit sit amet risus condimentum tristique. Sed bibendum elit nec arcu auctor, in malesuada justo tincidunt. Nullam auctor auctor purus, ac dictum ipsum. Vivamus gravida, justo in tristique pulvinar, metus velit blandit metus.',
+        timestamp='2023-01-01 14:00:00'
+        )
     db.session.add(discussion_test)
     db.session.commit()
