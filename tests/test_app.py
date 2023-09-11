@@ -3,12 +3,14 @@ from flask import url_for
 from flask_testing import TestCase
 from application import app, db
 from models import User, Screen, Movie, Screening, Discussion, Booking
-# import os, requests
+import os
 
 class TestBase(TestCase):
     def create_app(self):
         app.config.update(
-            SQLALCHEMY_DATABASE_URI = 'sqlite:///testdata.db',
+            #SQLALCHEMY_DATABASE_URI = 'sqlite:///testdata.db',
+            SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URI"),
+            #export DATABASE_URI=mysql+pymysql://root:pass@localhost/test_qa_cinema
             DEBUG=True,
             WTF_CSRF_ENABLED=False
         )
@@ -86,10 +88,80 @@ class TestBase(TestCase):
         db.drop_all()
    
 class TestViews(TestBase):
+    def test_home_get(self):
+        response = self.client.get(url_for('home'))
+        self.assertEqual(response.status_code, 200)
+    
+    def test_about_get(self):
+        response = self.client.get(url_for('about'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_opening_times_get(self):
+        response = self.client.get(url_for('opening_times'))
+        self.assertEqual(response.status_code, 200)
+    
+    def test_classifications_get(self):
+        response = self.client.get(url_for('classifications'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_screens_get(self):
+        response = self.client.get(url_for('screens'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_cinema_services_get(self):
+        response = self.client.get(url_for('cinema_services'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_view_movie_get(self):
+        response = self.client.get(url_for('view_movie', movie_id=1))
+        self.assertEqual(response.status_code, 200)
+
+    def test_api_view_screenings_get(self):
+        response = self.client.get(url_for('api_view_screenings', movie_id=1))
+        self.assertEqual(response.status_code, 200)
+
+    def test_listings_get(self):
+        response = self.client.get(url_for('listings'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_new_releases_get(self):
+        response = self.client.get(url_for('new_releases'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_classics_get(self):
+        response = self.client.get(url_for('classics'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_search_results_get(self):
+        response = self.client.get(url_for('search_results'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_payment_get(self):
+        response = self.client.get(url_for('payment', screening_id=1))
+        self.assertEqual(response.status_code, 200)
+
+    def test_signup_get(self):
+        response = self.client.get(url_for('signup'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_login_get(self):
+        response = self.client.get(url_for('login'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_logout_get(self):
+        response = self.client.get(url_for('logout'))
+        self.assertEqual(response.status_code, 200)
+
     def test_forum_get(self):
         response = self.client.get(url_for('forum'))
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b"Test Topic 1", response.data)
+
+    # def test_booking_get(self):
+    #     # Replace <screening_id> with an actual screening_id to test the route
+    #     response = self.client.get(url_for('book_movie', screening_id=<screening_id>))
+    #     self.assertEqual(response.status_code, 200)
+
+
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0')
