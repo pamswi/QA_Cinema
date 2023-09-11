@@ -56,7 +56,7 @@ class TestBase(TestCase):
         db.session.commit()
 
         test_discussions = [
-            Discussion(username=test_user.username, movie=test_movies[0], topic="Test Topic 1", responding_to="Post", content="Test content for Test Topic 1", timestamp="01/01/2023 12:00"),
+            Discussion(username=test_user.username, movie_id=test_movies[0], topic="Test Topic 1", responding_to="Post", content="Test content for Test Topic 1", timestamp="01/01/2023 12:00"),
             Discussion(username=test_user.username, movie=test_movies[1], topic="Test Topic 2", responding_to="Post", content="Test content for Test Topic 2", timestamp="01/01/2023 12:30"),
             Discussion(username=test_user.username, movie=test_movies[0], topic="Test Topic 1", responding_to=1, content="Test comment for Test Topic 1", timestamp="01/01/2023 13:00"),
         ]
@@ -152,9 +152,22 @@ class TestViews(TestBase):
         response = self.client.get(url_for('logout'))
         self.assertEqual(response.status_code, 200)
 
+    # Forum
     def test_forum_get(self):
         response = self.client.get(url_for('forum'))
         self.assertEqual(response.status_code, 200)
+
+    def test_forum_post(self):
+        response = self.client.post(
+            url_for('forum'),
+            data = {
+                "username": 'testuser', 
+                "responding_to": "Post",
+                "movie_id": 1,
+                "topic": "Test Topic 3",
+                responding_to="Post", content="Test content for Test Topic 1", timestamp="01/01/2023 12:00")
+            }
+        )
 
     # def test_booking_get(self):
     #     # Replace <screening_id> with an actual screening_id to test the route
