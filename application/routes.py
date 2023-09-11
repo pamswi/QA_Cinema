@@ -4,14 +4,15 @@ from flask import render_template, request, redirect, url_for, flash, session, j
 # from flask_wtf import FlaskForm
 # from wtforms import StringField, SubmitField, DateField, IntegerField, SelectField
 # from wtforms.validators import ValidationError, DataRequired, Length
-from models import User, Discussion, Movie, Comment, Screening, Booking, BookingDetail
-from forms import PostForm, CommentForm
+from models import User, Discussion, Movie, Screening, Booking, BookingDetail
+from forms import PostForm
 from werkzeug.security import check_password_hash, generate_password_hash
 import datetime
 from datetime import datetime
 from forms import PostForm, PayForm, BookingForm
 from datetime import date, timedelta
 from filter.swearwords import swearwords
+import re
 
 app.config['SECRET_KEY'] = 'YOUR_SECRET_KEY'    
 
@@ -21,6 +22,7 @@ the following app.py file defines all known routes
 @app.route("/")
 def home():
     all_films = Movie.query.all()
+    # print(session["username"])
     return render_template ("homepage.html", films=all_films)
 
 @app.route("/about")
@@ -147,14 +149,25 @@ def signup():
         password = request.form.get("password")
         confirmation = request.form.get("confirmation")
         
-        if User.check_unique_username != True:
-            flash("user already exists")
-        
-        password_hash = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)
+        if User.check_unique_username(username) != True:
+            print("username already exists")
+        elif password != confirmation:
+            print("password & confirm password do not match")
+        else:
+            if (
+                len(password) >= 8 and               
+                re.search(r'[a-z]', password) and   
+                re.search(r'[A-Z]', password) and   
+                re.search(r'[0-9]', password) and  
+                re.search(r'[_@$]', password)      
+            ):
+                password_hash = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)
+                new_user = User.add_user(username, email, password_hash)
+                print("sign up successful")
 
-        new_user = User.add_user(username, email, password_hash)
-
-        return redirect("/login")
+                return redirect("/login")
+            else:
+                print("password does not meet security requirements")
 
     return render_template("signup.html")
 
@@ -170,11 +183,16 @@ def login():
 
         # below we retrieve user by username and check if the password is correct
         user = User.retrieve_user(username)
-        if user is not None:
+
+        if user is None:
+            print("no account associated with this username - please sign up")
+            return render_template ("signup.html")
+        elif user is not None:
             if check_password_hash(user.password, password) == True:
                 session["username"] = user.username
+                print("successfully logged in")
             else:
-                flash("incorrect username and/or password")
+                print("incorrect username and/or password")
                 return redirect ("/login")
         return redirect ("/")
     
@@ -185,6 +203,7 @@ def logout():
     if request.method == "POST":
         # Clear the user's session
         session.clear()
+        print("successfully logged out")
         return redirect("/")
     return render_template("logout.html")
 
