@@ -1,8 +1,8 @@
 {% include 'navbar.html' %}
 
 <body>
-    <h1>QA Cinema Services</h1>
-    <p>
+    <h1 class="cinema-services-heading">QA Cinema Services</h1>
+    <p class="services-paragraph">
         Welcome to QA Cinemas, where your cinematic experience is our top priority. Beyond the <br>
         silver screen, we offer a range of services and amenities to enhance your visit and ensure<br>
         your time with us is nothing short of spectacular. <br><br>
@@ -12,19 +12,86 @@
         beverage, we have you covered.
     </p>
 
-    
+    <section class="services-menu">  
         <div class="menu-card">
             <div class="menucard-description">
-            <h3>Citrus Squid Carpaccio</h3>
-                <p>With orange zest</p>
+            <h3>Popcorn</h3>
+                <p>Sweet & Salty</p>
             </div>
             <div class="price">
-                <h4>25€</h4>
+                <h4>7€</h4>
             </div>
             <div class="check-mark">
                 <i class="fa fa-check-circle"></i>
             </div>
         </div>
+
+        <div class="menu-card">
+            <div class="menucard-description">
+            <h3>Hot Dog</h3>
+                <p>Vegan option available</p>
+            </div>
+            <div class="price">
+                <h4>9.99€</h4>
+            </div>
+            <div class="check-mark">
+                <i class="fa fa-check-circle"></i>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <div class="menucard-description">
+            <h3>Fizzy Drinks</h3>
+                <p>Alcohol available</p>
+            </div>
+            <div class="price">
+                <h4>3€</h4>
+            </div>
+            <div class="check-mark">
+                <i class="fa fa-check-circle"></i>
+            </div>
+        </div>
+    </section> 
+    
+    <p class="services-paragraph">
+        <strong>Coming Soon:</strong> QA Cafe Lux - Prepare your taste buds for an exciting addition to QA Cinemas – the<br> 
+        QA Café Lux. Soon, you'll be able to savour a delightful array of culinary delights in our indoor<br> 
+        restaurant. From gourmet burgers to mouth-watering pasta dishes, our menu will cater to<br> 
+        diverse palates. Whether you're looking for a pre-show dinner or a post-movie dessert, QA<br> 
+        Café Lux will provide a cosy and delicious dining experience for you and your companions.
+    </p>
+
+   <div class="cafe-img">
+    <img src="{{ url_for('static', filename='QAcafe.jpg') }}" alt="Cafe Image">
+   </div>
+
+
+   <p class="services-paragraph">
+    <strong>QA Indoor Arcade</strong> At QA Cinemas, the fun doesn't stop when the credits roll. Step into<br> 
+    QA-cade, our indoor arcade, and discover a world of entertainment beyond the big screen.<br> 
+    We have an assortment of classic and modern arcade games, perfect for kids and adults<br> 
+    alike. Challenge your friends to a game of air hockey, test your skills on the claw machines,<br> 
+    or try your luck at our selection of video games. QA-cade promises hours of amusement and<br> 
+    is an excellent way to pass the time before or after your movie.
+</p>
+
+<div class="cafe-img">
+<img src="{{ url_for('static', filename='QAarcade.jpg') }}" alt="Arcade Image">
+</div>
+
+<p class="services-paragraph">
+    <strong>Accessibility and Comfort</strong> We care about your comfort during your visit. Our cinemas are<br> 
+    designed to be accessible to all, with spacious seating arrangements and dedicated areas for<br> 
+    patrons with special needs. We also offer hearing-impaired devices and closed captioning<br> 
+    services for select screenings.<br><br>
+
+    <strong>Loyalty Program</strong> Don't forget to inquire about our loyalty program, which rewards our<br> 
+    frequent visitors with exclusive discounts, free tickets, and special event invitations. Your<br> 
+    loyalty is highly valued, and we want to express our appreciation in meaningful ways.
+
+</p>
+
+
 </body>
 
 {% include 'footer.html' %}
