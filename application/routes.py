@@ -22,7 +22,8 @@ the following app.py file defines all known routes
 @app.route("/")
 def home():
     all_films = Movie.query.all()
-    # print(session["username"])
+    username = session["username"]
+    print(username)
     return render_template ("homepage.html", films=all_films)
 
 @app.route("/about")
@@ -149,6 +150,7 @@ def signup():
         password = request.form.get("password")
         confirmation = request.form.get("confirmation")
         
+        # password validation: https://www.geeksforgeeks.org/python-program-check-validity-password/
         if User.check_unique_username(username) != True:
             print("username already exists")
         elif password != confirmation:
