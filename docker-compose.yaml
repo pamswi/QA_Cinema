@@ -1,0 +1,31 @@
+version: "3.9"
+services:
+  services:
+  cinema:
+    container_name: cinema
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    volumes:
+      - type: volume
+        source: cinema-data
+        target: /var/lib/mysql
+
+  service-1:
+    container_name: service-1
+    image: theearlofgray/service-1:latest
+    build: service_1
+    deploy:
+      replicas: 3
+  
+  proxy:
+    container_name: nginx-proxy
+    image: nginx:alpine
+    ports:
+      - 80:80
+    volumes:
+      - type: bind
+        source: ./nginx.conf
+        target: /etc/nginx/nginx.conf
+    depends_on:
+      - "service-1"

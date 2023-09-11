@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'sudo apt-get update && sudo apt-get install -y python3-pip'
+                sh "sudo apt-get update && sudo apt-get install -y python3-pip"
             }
         }
         stage('Dependencies') {
@@ -20,6 +20,13 @@ pipeline {
         //         // add testing steps
         //     }
         // }
+        stage('Building containers'){
+            steps{
+                sh "docker login -u ${DOCKERHUB_LOGIN_USR} -p ${DOCKERHUB_LOGIN_PSW}"
+                sh "bash scripts/containers.sh"
+            }
+        }
+
         stage('Deploy') {
             steps {
                 sh "python3 create.py"
