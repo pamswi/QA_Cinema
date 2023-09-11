@@ -134,6 +134,24 @@ button.btn:hover, .cardContainer a.btn:hover {
     background-color: lightcoral;
 }
 
+.screen-page-header {
+    color: white;
+    padding-left: 35%;
+    margin-bottom: -1rem;
+    padding-bottom: 5rem;
+}
+
+.standard-screen {
+    padding-left: 35%;
+    color: white;
+}
+
+.deluxe-screen {
+    padding-left: 35%;
+    padding-top: 3rem;
+    color: white;
+}
+
 /* FILM PAGES*/
 
 .movie-details img {
@@ -637,8 +655,12 @@ td {
         display: block;
     }
 
+    .nav-links ul li {
+        display: block;
+    }
+
     .logo {
-        margin-left: 5%;
+        margin-left: 25%;
     }
 
     .nav-links li a:hover {
