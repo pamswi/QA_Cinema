@@ -5,8 +5,8 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 db = SQLAlchemy()
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URI")
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URI")
 
 
 app.config["SESSION_PERNAMENT"] = False
