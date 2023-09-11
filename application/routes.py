@@ -22,13 +22,17 @@ the following app.py file defines all known routes
 @app.route("/")
 def home():
     all_films = Movie.query.all()
-    username = session["username"]
-    print(username)
+   # username = session["username"]
+   # print(username)
     return render_template ("homepage.html", films=all_films)
 
 @app.route("/about")
 def about():
     return render_template("about.html")
+
+@app.route("/filmbooking")
+def filmbooking():
+    return render_template("filmbooking.html")
 
 @app.route("/openingtimes")
 def opening_times():
@@ -77,7 +81,11 @@ def api_view_screenings(movie_id):
 
 @app.route("/listings")
 def listings():
-    return render_template("gallery.html")
+    all_films = Movie.query.all()
+    return render_template("listings.html", films=all_films)
+
+
+
 
 @app.route('/newreleases', methods=['GET'])
 def new_releases(): 
