@@ -539,6 +539,20 @@ td {
 }
 
 
+/*BOOKING PAGE*/
+
+.bookingpage-heading {
+    color: white;
+    padding-left: 40%;
+}
+
+.booking-details {
+    color: white;
+}
+
+.film-title {
+    padding-left: 40%;
+}
 
 
 

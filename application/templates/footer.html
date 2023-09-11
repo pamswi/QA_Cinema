@@ -10,16 +10,16 @@
         <h2 class="footer-logo">QA Cinemas</h2>
         <div class="footer-row1">
             <i class="fa-solid fa-info"></i>
-        <a href="#" class="footer-link">Help & FAQs</a>
+        <a href="{{ url_for('screens') }}" class="footer-link">Screen Info</a>
         </div>
         <div class="footer-row2">
             <i class="fa-regular fa-comment"></i>
-            <a href="#" class="footer-link">Discussion Board</a>
+            <a href="{{ url_for('forum') }}" class="footer-link">Discussion Board</a>
         </div>
 
         <div class="footer-row3">
-            <i class="fa fa-handshake-o"></i>
-            <a href="#" class="footer-link">Contact Us</a>
+            <i class="fa-solid fa-ticket"></i>
+            <a href="{{ url_for('filmbooking') }}" class="footer-link">Book Online</a>
         </div>
 
     <div class="footer-info">

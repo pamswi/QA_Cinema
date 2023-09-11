@@ -1,16 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Booking</title>
-</head>
-<body>
-    <h1>Booking </h1>
+{% include 'navbar.html' %}
 
-    <img src="{{ movie_poster }}" alt="{{ movie_title }}" class="movie-poster">
-    <h1>{{ movie_title}}</h1>
-    <p>Screening ID: {{ screening_id }}</p>
-    <p>Date: {{ selected_date }}</p>
-    <p>Showtime: {{ time }}</p>
+<body>
+    <h1 class="bookingpage-heading">Book Online </h1>
+
+    <div class="booking-details">
+        <img src="{{ movie_poster }}" alt="{{ movie_title }}" class="movie-poster">
+        <h1 class="film-title">{{ movie_title}}</h1>
+        <div class="screening-details">
+            <p>Screening ID: {{ screening_id }}</p>
+            <p>Date: {{ selected_date }}</p>
+            <p>Showtime: {{ time }}</p>
+        </div>
+    </div>
             
     <form method="post">
         {{ form.hidden_tag() }}
@@ -27,4 +28,5 @@
     <p>{{ message }}</p>
     {% endif %}
 </body>
-</html>
+
+{% include 'footer.html' %}
