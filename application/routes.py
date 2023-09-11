@@ -32,7 +32,8 @@ def about():
 
 @app.route("/filmbooking")
 def filmbooking():
-    return render_template("filmbooking.html")
+    all_films = Movie.query.all()
+    return render_template("filmbooking.html", films=all_films)
 
 @app.route("/openingtimes")
 def opening_times():
@@ -83,8 +84,6 @@ def api_view_screenings(movie_id):
 def listings():
     all_films = Movie.query.all()
     return render_template("listings.html", films=all_films)
-
-
 
 
 @app.route('/newreleases', methods=['GET'])
