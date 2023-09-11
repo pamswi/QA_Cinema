@@ -11,7 +11,7 @@ class Screen(db.Model):
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(255), unique=True)
+    username = db.Column(db.String(20), unique=True)
     email = db.Column(db.String(255))
     password = db.Column(db.String(255))
     first_name = db.Column(db.String(255))
@@ -62,7 +62,7 @@ class Movie(db.Model):
     title = db.Column(db.String(255))
     director = db.Column(db.String(255))
     actors = db.Column(db.Text)
-    release_date = db.Column(db.String)
+    release_date = db.Column(db.String(255))
     description = db.Column(db.Text)
     poster = db.Column(db.String(255))
     classic = db.Column(db.Boolean)
@@ -93,9 +93,9 @@ class Movie(db.Model):
 class Screening(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     movie_id = db.Column('movie_id', db.Integer, db.ForeignKey('movie.id'))
-    screen_id = db.Column('screen_id', db.String(5), db.ForeignKey('screen.id'))
-    time = db.Column(db.String)
-    day = db.Column(db.String)
+    screen_id = db.Column('screen_id', db.Integer, db.ForeignKey('screen.id'))
+    time = db.Column(db.String(50))
+    day = db.Column(db.String(50))
     current_capacity = db.Column(db.Integer)
 
     movie = db.relationship('Movie', backref='screening')
@@ -109,7 +109,7 @@ class Booking(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column('user_id', db.Integer, db.ForeignKey('user.id'))
     screening_id = db.Column('screening_id', db.Integer, db.ForeignKey('screening.id'))
-    booking_date = db.Column(db.String)
+    booking_date = db.Column(db.String(50))
     total_price = db.Column(db.Integer)
     discounted_ticket_number = db.Column(db.Integer)
     full_price_ticket_number = db.Column(db.Integer)
@@ -137,15 +137,15 @@ class BookingDetail(db.Model):
 
 class Discussion(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column('username', db.Integer, db.ForeignKey('user.username'))
+    username = db.Column('username', db.String(20), db.ForeignKey('user.username'))
     movie_id = db.Column('movie_id', db.Integer, db.ForeignKey('movie.id'))
     topic = db.Column(db.String(255))
-    responding_to = db.Column(db.Integer)
-    content = db.Column(db.String)
-    timestamp = db.Column(db.String)
+    responding_to = db.Column(db.String(20))
+    content = db.Column(db.String(500))
+    timestamp = db.Column(db.String(20))
 
-    user = db.relationship('User', backref='discussion')
-    movie = db.relationship('Movie', backref='discussion')
+    user = db.relationship('User', primaryjoin='Discussion.username == User.username',backref='discussion')
+    movie = db.relationship('Movie', primaryjoin='Discussion.movie_id == Movie.id',backref='discussion')
 
     @classmethod
     def all_discussion(cls):
@@ -153,11 +153,11 @@ class Discussion(db.Model):
     
     @classmethod
     def all_posts(cls):
-        return cls.query.filter_by(responding_to="Post").all()
+        return cls.query.filter(cls.responding_to == "Post").all()
     
     @classmethod
     def all_comments(cls):
-        return cls.query.filter(cls.responding_to.isnot("Post")).all()
+        return cls.query.filter(cls.responding_to != "Post").all()
     
     @classmethod
     def new_post(self, username, movie_id, topic, responding_to, content, timestamp):
