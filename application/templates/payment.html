@@ -2,7 +2,13 @@
 
 <body>
     <h1 class="payment-heading">Payment Form</h1>
+    <h2>{{ movie_title }}</h2>
+    <img src="{{ movie_poster }}" alt="Movie Poster for {{ movie_title }}">
+    <p>Date: {{ selected_date }}</p>
+    <p>Time: {{ time }}</p>
+    <p>Seats available: {{ current_capacity }}</p>
 
+    
     <form method="POST">
         {{ form.hidden_tag() }}
         <div class="form-input">
