@@ -106,14 +106,20 @@ footer a:hover {
     padding-bottom: 20px;
 }
 
-.footer-row1, .footer-row2, .footer-row4, .footer-row5  {
+.footer-row1, .footer-row2, .footer-row4, .footer-row5, .footer-row7, .footer-row8  {
     padding-bottom: 15px;
+}
+
+.footer-info {
+    position: relative;
+    bottom: 6rem;
+    left: 20rem;
 }
 
 .socials {
     position: relative;
-    bottom: 6rem;
-    left: 20rem;
+    bottom: 12.5rem;
+    left: 40rem;
 }
 
 footer i {
@@ -150,6 +156,12 @@ button.btn:hover, .cardContainer a.btn:hover {
     padding-top: 45px;
 }
 
+.screening-times {
+    color: orangered;
+    padding-left: 10%;
+    text-decoration: none;
+}
+
 
 
 /* ABOUT US PAGE STYLES*/
@@ -163,6 +175,14 @@ button.btn:hover, .cardContainer a.btn:hover {
 .aboutus-pageheading {
     padding-left: 20%;
     padding-bottom: 1rem;
+}
+
+.aboutUs a {
+    background-color: orangered;
+}
+
+.aboutUs a:hover {
+    background-color: lightcoral;
 }
 
 .meet-our-team {
@@ -336,7 +356,6 @@ td {
 /* Style the movie list container */
 .movie-list {
     text-align: center;
-    background-color: black;
     padding: 20px;
 }
 
@@ -351,12 +370,6 @@ td {
 .movie-item {
     margin: -2rem;
     padding: 10px;
-    background-color: black;
-    border: 1px solid black;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    flex-basis: calc(50% - 20px);
-    box-sizing: border-box;
-    transition: transform 0.2s, filter 0.2s; /* Add filter transition */
 }
 
 /* Style the movie title */
