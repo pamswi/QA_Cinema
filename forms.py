@@ -49,25 +49,15 @@ class PayForm(FlaskForm):
     
     submit = SubmitField('Pay Now')
 
-class BasicForm(FlaskForm): #Akber form for booking movies
-    first_name = StringField('First Name', validators=[
-        DataRequired(),
-        Length(min=2, max=30)
-    ])
-    last_name = StringField('Last Name')
-    movie_date = DateField('Movie date')
-    num_of_tickets = IntegerField('Number of Seats')
-    movie = SelectField('Choose Movie', choices=[
-        ('Movie 1', 'Movie 1'),
-        ('Movie 2', 'Movie 2'),
-        ('Movie 3', 'Movie 3')
-    ])
-    ticket_type = SelectField('Ticket Type', choices=[
-        ('Adult', 'Adult'),
-        ('Kids', 'Kids'),
-        ('Students', 'Students')
-    ])
-    username = StringField('Username')
-    submit = SubmitField('Add To Order')
+
+class BookingForm(FlaskForm):
+    user_id = IntegerField('User ID', validators=[DataRequired()])
+    
+    Adult = IntegerField('Number of Adult Tickets', default=0)
+    Child = IntegerField('Number of Child Tickets', default=0)
+    Concession = IntegerField('Number of Concession Tickets', default=0)
+    
+    submit = SubmitField('Book')
+
 
     

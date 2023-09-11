@@ -1,15 +1,15 @@
 
 from application import app, db
-from flask import render_template, request, redirect, url_for, flash, session, jsonify, get_flashed_messages
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, DateField, IntegerField, SelectField
-from wtforms.validators import ValidationError, DataRequired, Length
-from models import User, Discussion, Movie, Screening
-from forms import PostForm
+from flask import render_template, request, redirect, url_for, flash, session, jsonify
+# from flask_wtf import FlaskForm
+# from wtforms import StringField, SubmitField, DateField, IntegerField, SelectField
+# from wtforms.validators import ValidationError, DataRequired, Length
+from models import User, Discussion, Movie, Comment, Screening, Booking, BookingDetail
+from forms import PostForm, CommentForm
 from werkzeug.security import check_password_hash, generate_password_hash
 import datetime
 from datetime import datetime
-from forms import PostForm, PayForm, BasicForm
+from forms import PostForm, PayForm, BookingForm
 from datetime import date, timedelta
 from filter.swearwords import swearwords
 
@@ -105,6 +105,18 @@ def payment():
     message = ""
     form = PayForm()
 
+     #<ALEX
+    screening_id = request.args.get('screening_id')
+    screening = Screening.query.get(screening_id)  
+    movie_id = screening.movie_id
+    selected_date = screening.day
+    time = screening.time
+    current_capacity = screening.current_capacity
+    movie = Movie.query.get(movie_id)
+    movie_title = movie.title
+    movie_poster = movie.poster 
+    #/ALEX>
+
     if request.method == 'POST':
         first_name = form.first_name.data
         last_name = form.last_name.data
@@ -114,7 +126,16 @@ def payment():
         card_cvc = form.cvc_number.data
         update_user = User.add_payment(session["username"], first_name, last_name, address, card_number, expiry_date, card_cvc)
 
-    return render_template('payment.html', form=form, message=message)
+    return render_template(
+            'payment.html', 
+            form=form, 
+            message=message, 
+            movie_title=movie_title, 
+            movie_poster=movie_poster, 
+            selected_date=selected_date,
+            time=time, 
+            current_capacity=current_capacity
+            )
 
 
 @app.route("/signup", methods=["GET","POST"])
@@ -214,37 +235,63 @@ def forum():
 
     return render_template("forum.html", all_posts=all_posts, postform=postform, all_comments=all_comments)
 
-@app.route('/booking', methods=['GET', 'POST']) # AKBER
-def view_booking():
-    
-    
+
+
+
+
+
+@app.route('/booking', methods=['GET', 'POST'])
+def book_movie():
+    form = BookingForm()  
+     #<ALEX
     screening_id = request.args.get('screening_id')
-    screening = Screening.query.get(screening_id)
-    
+    screening = Screening.query.get(screening_id)  
     movie_id = screening.movie_id
     selected_date = screening.day
     time = screening.time
     current_capacity = screening.current_capacity
 
     movie = Movie.query.get(movie_id)
-
     movie_title = movie.title
-    movie_poster= movie.poster
+    movie_poster = movie.poster 
+    #/ALEX>
 
+    if form.validate_on_submit():
+        ticket_prices = {'Adult': 10.0,'Kids': 7.5,'Concession': 15.0}        
+        total_price = 0
+        tickets = [
+            ("Adult", form.Adult.data),
+            ("Kids", form.Child.data),
+            ("Concession", form.Concession.data)
+        ]
+        for ticket_type, quantity in tickets:
+            total_price += ticket_prices[ticket_type] * quantity
 
-    message = ""
-    form = BasicForm()
+        booking = Booking.book_movie(
+            user_id=form.user_id.data,
+            screening_id=request.args.get('screening_id'),
+            total_price=total_price
+        ) 
+        
+        for ticket_type, quantity in tickets:
 
-    if request.method == 'POST':
-        if form.validate_on_submit():
-            first_name = form.first_name.data
-            last_name = form.last_name.data
-            num_of_tickets = form.num_of_tickets.data
-            movie = form.movie.data
-            if len(first_name) == 0 or len(last_name) == 0:
-                message = "Please supply both first and last name"
-            else:
-                message = f'Thank you, {first_name} {last_name}. you have selected {num_of_tickets} ticket for {movie}.'
-
-    return render_template('booking.html', movie_title=movie_title, movie_poster=movie_poster, screening_id=screening_id, selected_date=selected_date,movie_id=movie_id, time=time, current_capacity=current_capacity, form=form, message=message)
-
+            BookingDetail.add_booking_detail(
+                booking_id=booking.id,
+                ticket_type=ticket_type,
+                quantity=quantity,
+                price=ticket_prices[ticket_type]
+            )
+        return redirect(url_for('payment', screening_id=screening_id))
+   
+    return render_template(
+        'booking.html', 
+        movie_title=movie_title, 
+        movie_poster=movie_poster, 
+        screening_id=screening_id, 
+        selected_date=selected_date,
+        movie_id=movie_id, 
+        time=time, 
+        current_capacity=current_capacity, 
+        form=form
+    )
+     
