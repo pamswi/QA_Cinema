@@ -31,6 +31,7 @@ pipeline {
                     // Log in to Docker Hub securely
                     withCredentials([usernamePassword(credentialsId: 'DOCKERHUB_LOGIN', usernameVariable: 'DOCKERHUB_LOGIN_USR', passwordVariable: 'DOCKERHUB_LOGIN_PSW')]) {
                         sh "docker login -u \$DOCKERHUB_LOGIN_USR -p \$DOCKERHUB_LOGIN_PSW"
+			sh "export DATABASE_URI=${DATABASE_URI}"
 
                         // Build containers using a script
                         sh "bash scripts/containers.sh"
