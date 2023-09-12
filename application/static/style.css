@@ -391,6 +391,14 @@ td {
     font-size: 18px;
 }
 
+/* Payment page styling akber */
+.movie_pay_detail {
+    padding-left: -20%;
+    color: white;
+
+
+
+}
 
 /* Define the hover effect */
 .movie-item:hover {
