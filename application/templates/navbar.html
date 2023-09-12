@@ -14,9 +14,10 @@
 
     <header>
         <div class="logo">
-          <h1>QA Cinemas</h1>
+          <img src="{{ url_for('static', filename='Logo.jpg') }}" alt="QA Cinema Logo">
         </div>
         <div class="nav-links">
+
             <ul>
                 <li><a href="{{ url_for('home') }}">Home</a></li>
                 <li><a href="{{ url_for('about') }}">About Us</a></li>
@@ -25,7 +26,19 @@
                 <li><a href="{{ url_for('forum') }}">Forum</a></li>
                 <li><a href="{{ url_for('login') }}">Login</a></li>
                 <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
+
+                <!--SEARCH BAR-->
+                <li>
+                    <div class="box">
+                        <input type="text" placeholder="Search...">
+                        <a href="#">
+                            <i class="fas fa-search"></i>
+                        </a>
+                    </div>
+                </li>
+                    
             </ul>
+            
         </div>
     </header>
 </head>
