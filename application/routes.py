@@ -15,6 +15,7 @@ from filter.swearwords import swearwords
 import re
 
 app.config['SECRET_KEY'] = 'YOUR_SECRET_KEY'    
+app.secret_key = 'key'
 
 '''
 the following app.py file defines all known routes
@@ -22,12 +23,18 @@ the following app.py file defines all known routes
 @app.route("/")
 def home():
     all_films = Movie.query.all()
-    # print(session["username"])
+   # username = session["username"]
+   # print(username)
     return render_template ("homepage.html", films=all_films)
 
 @app.route("/about")
 def about():
     return render_template("about.html")
+
+@app.route("/filmbooking")
+def filmbooking():
+    all_films = Movie.query.all()
+    return render_template("filmbooking.html", films=all_films)
 
 @app.route("/openingtimes")
 def opening_times():
@@ -79,6 +86,7 @@ def listings():
     all_films = Movie.query.all()
     return render_template("listings.html", films=all_films)
 
+
 @app.route('/newreleases', methods=['GET'])
 def new_releases(): 
 
@@ -105,9 +113,13 @@ def search_results():
 
 @app.route('/payment', methods=['GET', 'POST'])
 def payment():
+    print(session)
     message = ""
     form = PayForm()
 
+    tickets = session.get('tickets', [])
+    total_price = session.get('total_price', 0)
+    print(tickets, total_price)
      #<ALEX
     screening_id = request.args.get('screening_id')
     screening = Screening.query.get(screening_id)  
@@ -129,6 +141,14 @@ def payment():
         card_cvc = form.cvc_number.data
         update_user = User.add_payment(session["username"], first_name, last_name, address, card_number, expiry_date, card_cvc)
 
+        total_tickets_booked = sum(quantity for _, quantity in tickets)
+        screening.current_capacity -= total_tickets_booked
+        db.session.commit()
+    
+
+    
+
+
     return render_template(
             'payment.html', 
             form=form, 
@@ -137,7 +157,9 @@ def payment():
             movie_poster=movie_poster, 
             selected_date=selected_date,
             time=time, 
-            current_capacity=current_capacity
+            current_capacity=current_capacity,
+            tickets=tickets,              
+            total_price=total_price      
             )
 
 
@@ -150,10 +172,13 @@ def signup():
         password = request.form.get("password")
         confirmation = request.form.get("confirmation")
         
+        # password validation: https://www.geeksforgeeks.org/python-program-check-validity-password/
         if User.check_unique_username(username) != True:
-            print("username already exists")
+            flash("username already exists")
+            return redirect ("/signup")
         elif password != confirmation:
-            print("password & confirm password do not match")
+            flash("password & confirm password do not match")
+            return redirect ("/signup")
         else:
             if (
                 len(password) >= 8 and               
@@ -164,11 +189,11 @@ def signup():
             ):
                 password_hash = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)
                 new_user = User.add_user(username, email, password_hash)
-                print("sign up successful")
+                flash("sign up successful")
 
                 return redirect("/login")
             else:
-                print("password does not meet security requirements")
+                flash("password does not meet security requirements")
 
     return render_template("signup.html")
 
@@ -184,13 +209,15 @@ def login():
 
         # below we retrieve user by username and check if the password is correct
         user = User.retrieve_user(username)
-
         if user is None:
-            print("no account associated with this username - please sign up")
+            flash("no account associated with this username - please sign up")
             return render_template ("signup.html")
         elif user is not None:
             if check_password_hash(user.password, password) == True:
                 session["username"] = user.username
+                session["user_id"] = user.id
+                # print(session["username"])
+                # print(session["user_id"])
                 print("successfully logged in")
             else:
                 print("incorrect username and/or password")
@@ -277,7 +304,7 @@ def book_movie():
     #/ALEX>
 
     if form.validate_on_submit():
-        ticket_prices = {'Adult': 10.0,'Kids': 7.5,'Concession': 15.0}        
+        ticket_prices = {'Adult': 15.0,'Kids': 7.5,'Concession': 10.0}        
         total_price = 0
         tickets = [
             ("Adult", form.Adult.data),
@@ -285,10 +312,11 @@ def book_movie():
             ("Concession", form.Concession.data)
         ]
         for ticket_type, quantity in tickets:
-            total_price += ticket_prices[ticket_type] * quantity
+                              
+         total_price += ticket_prices[ticket_type] * quantity
 
         booking = Booking.book_movie(
-            user_id=form.user_id.data,
+            user_id=session["user_id"],
             screening_id=request.args.get('screening_id'),
             total_price=total_price
         ) 
@@ -301,6 +329,8 @@ def book_movie():
                 quantity=quantity,
                 price=ticket_prices[ticket_type]
             )
+        session['tickets'] = tickets
+        session['total_price'] = total_price
         return redirect(url_for('payment', screening_id=screening_id))
    
     return render_template(
