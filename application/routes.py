@@ -15,6 +15,7 @@ from filter.swearwords import swearwords
 import re
 
 app.config['SECRET_KEY'] = 'YOUR_SECRET_KEY'    
+app.secret_key = 'key'
 
 '''
 the following app.py file defines all known routes
@@ -159,9 +160,11 @@ def signup():
         
         # password validation: https://www.geeksforgeeks.org/python-program-check-validity-password/
         if User.check_unique_username(username) != True:
-            print("username already exists")
+            flash("username already exists")
+            return redirect ("/signup")
         elif password != confirmation:
-            print("password & confirm password do not match")
+            flash("password & confirm password do not match")
+            return redirect ("/signup")
         else:
             if (
                 len(password) >= 8 and               
@@ -172,11 +175,11 @@ def signup():
             ):
                 password_hash = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)
                 new_user = User.add_user(username, email, password_hash)
-                print("sign up successful")
+                flash("sign up successful")
 
                 return redirect("/login")
             else:
-                print("password does not meet security requirements")
+                flash("password does not meet security requirements")
 
     return render_template("signup.html")
 
@@ -193,7 +196,7 @@ def login():
         # below we retrieve user by username and check if the password is correct
         user = User.retrieve_user(username)
         if user is None:
-            print("no account associated with this username - please sign up")
+            flash("no account associated with this username - please sign up")
             return render_template ("signup.html")
         elif user is not None:
             if check_password_hash(user.password, password) == True:
