@@ -50,9 +50,7 @@ class PayForm(FlaskForm):
     submit = SubmitField('Pay Now')
 
 
-class BookingForm(FlaskForm):
-    user_id = IntegerField('User ID', validators=[DataRequired()])
-    
+class BookingForm(FlaskForm):  
     Adult = IntegerField('Number of Adult Tickets', default=0)
     Child = IntegerField('Number of Child Tickets', default=0)
     Concession = IntegerField('Number of Concession Tickets', default=0)

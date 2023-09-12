@@ -1,0 +1,34 @@
+version: "3.11"
+services:
+  service-1:
+    container_name: cinema-app
+    image: pamswi/cinema-app:v1
+    build: ./
+    deploy:
+      replicas: 1
+
+
+  service-2:
+    container_name: cinema
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - type: volume
+        source: cinema-data
+        target: /var/lib/mysql
+  proxy:
+    container_name: nginx-proxy
+    image: nginx:alpine
+    ports:
+      - 80:80
+    volumes:
+      - type: bind
+        source: ./nginx.conf
+        target: /etc/nginx/nginx.conf
+    depends_on:
+      - "service-1"
+volumes:
+  cinema-data:

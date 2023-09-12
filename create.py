@@ -159,7 +159,7 @@ with app.app_context():
         username="testuser",
         movie_id=1,
         topic='Topic 1',
-        responding_to=1,
+        responding_to="Post",
         content='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non velit sit amet risus condimentum tristique. Sed bibendum elit nec arcu auctor, in malesuada justo tincidunt. Nullam auctor auctor purus, ac dictum ipsum. Vivamus gravida, justo in tristique pulvinar, metus velit blandit metus.',
         timestamp='2023-01-01 14:00:00'
     )
@@ -169,7 +169,7 @@ with app.app_context():
     discussion_test2 = Discussion(
         username="testuser",
         movie_id=1,
-        topic='new test comment',
+        topic='Topic 1',
         responding_to=1,
         content='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non velit sit amet risus condimentum tristique. Sed bibendum elit nec arcu auctor, in malesuada justo tincidunt. Nullam auctor auctor purus, ac dictum ipsum. Vivamus gravida, justo in tristique pulvinar, metus velit blandit metus.',
         timestamp='2023-01-01 14:00:00'
@@ -181,7 +181,7 @@ with app.app_context():
         username="testuser",
         movie_id=1,
         topic='Test Topic 2',
-        responding_to=2,
+        responding_to="Post",
         content='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non velit sit amet risus condimentum tristique. Sed bibendum elit nec arcu auctor, in malesuada justo tincidunt. Nullam auctor auctor purus, ac dictum ipsum. Vivamus gravida, justo in tristique pulvinar, metus velit blandit metus.',
         timestamp='2023-01-01 14:00:00'
         )
