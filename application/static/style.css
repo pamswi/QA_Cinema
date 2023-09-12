@@ -10,17 +10,15 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-.logo, .footer-logo {
-    font-family: 'shrikhand', sans-serif;
-    color: orangered;
-}
+
 
 header {
     display: flex;
-    padding: 2% 1%;
     justify-content: space-between;
     align-items: center;
 }
+
+
 
 .nav-links ul li {
     list-style: none;
@@ -42,6 +40,10 @@ header {
     border-right: 0px;
     border-bottom: 0px;
     padding-top: 30px;
+}
+
+.logo img {
+    width: 200px;
 }
 
 .tag-line h2 {
@@ -132,6 +134,24 @@ button.btn, .cardContainer a.btn {
 
 button.btn:hover, .cardContainer a.btn:hover {
     background-color: lightcoral;
+}
+
+.screen-page-header {
+    color: white;
+    padding-left: 35%;
+    margin-bottom: -1rem;
+    padding-bottom: 5rem;
+}
+
+.standard-screen {
+    padding-left: 35%;
+    color: white;
+}
+
+.deluxe-screen {
+    padding-left: 35%;
+    padding-top: 3rem;
+    color: white;
 }
 
 /* FILM PAGES*/
@@ -590,8 +610,33 @@ td {
 }
 
 
+/* SEARCH BAR*/
 
+.box {
+    height: 30px;
+    display: flex;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 30px;
+    align-items: center;
+}
 
+.box:hover input {
+    width: 200px;
+}
+
+.box input {
+    width: 0;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    transition: 0.8s;
+    background: transparent;
+}
+
+.box a .fas {
+    color: orangered;
+}
 
 
 
@@ -612,6 +657,8 @@ td {
 
     .nav-links {
         margin-left: 0rem;
+        margin-bottom: -1rem;
+        padding-bottom: 1rem;
     }
 
     .tag-line h2 {
@@ -641,17 +688,22 @@ td {
 /* MEDIA QUERIES - MOBILE*/
 
 @media only screen and (max-width: 768px) {
-    header {
-        display: block;
+    .nav-links ul li a {
+        font-size: 14px;
     }
 
     .logo {
-        margin-left: 5%;
+        margin-left: 25%;
     }
 
     .nav-links li a:hover {
         padding-top: 10px;
     }
+
+    #homeCarousel {
+        margin-top: -1rem;
+    }
+
 
     .tag-line h2 {
         font-size: 2rem;
@@ -675,7 +727,12 @@ td {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding-left: 10%;
+    }
+
+    div.movie-item a img {
+        width: 90%;
+        object-fit: contain;
+        
     }
 
     .socials {
