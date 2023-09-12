@@ -3,9 +3,10 @@ services:
   service-1:
     container_name: cinema-app
     image: pamswi/cinema-app:v1
-    build: cinema-app
+    build: ./
     deploy:
       replicas: 1
+
 
   service-2:
     container_name: cinema
