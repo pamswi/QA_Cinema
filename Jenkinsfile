@@ -42,7 +42,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Create and run Python scripts for deployment
-                sh "python3 create.py"
+                // "python3 create.py"
                 // sh "python3 app.py"
                 sh "docker-compose up -d"
             }
