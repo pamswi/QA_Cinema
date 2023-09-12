@@ -105,9 +105,13 @@ def search_results():
 
 @app.route('/payment', methods=['GET', 'POST'])
 def payment():
+    print(session)
     message = ""
     form = PayForm()
 
+    tickets = session.get('tickets', [])
+    total_price = session.get('total_price', 0)
+    print(tickets, total_price)
      #<ALEX
     screening_id = request.args.get('screening_id')
     screening = Screening.query.get(screening_id)  
@@ -129,6 +133,14 @@ def payment():
         card_cvc = form.cvc_number.data
         update_user = User.add_payment(session["username"], first_name, last_name, address, card_number, expiry_date, card_cvc)
 
+        total_tickets_booked = sum(quantity for _, quantity in tickets)
+        screening.current_capacity -= total_tickets_booked
+        db.session.commit()
+    
+
+    
+
+
     return render_template(
             'payment.html', 
             form=form, 
@@ -137,7 +149,9 @@ def payment():
             movie_poster=movie_poster, 
             selected_date=selected_date,
             time=time, 
-            current_capacity=current_capacity
+            current_capacity=current_capacity,
+            tickets=tickets,              
+            total_price=total_price      
             )
 
 
@@ -192,6 +206,7 @@ def login():
         elif user is not None:
             if check_password_hash(user.password, password) == True:
                 session["username"] = user.username
+                session["user_id"] = user.id
                 print("successfully logged in")
             else:
                 print("incorrect username and/or password")
@@ -289,7 +304,7 @@ def book_movie():
             total_price += ticket_prices[ticket_type] * quantity
 
         booking = Booking.book_movie(
-            user_id=form.user_id.data,
+            user_id=session["user_id"],
             screening_id=request.args.get('screening_id'),
             total_price=total_price
         ) 
@@ -302,6 +317,8 @@ def book_movie():
                 quantity=quantity,
                 price=ticket_prices[ticket_type]
             )
+        session['tickets'] = tickets
+        session['total_price'] = total_price
         return redirect(url_for('payment', screening_id=screening_id))
    
     return render_template(
