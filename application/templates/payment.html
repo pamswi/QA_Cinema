@@ -7,8 +7,16 @@
     <p>Date: {{ selected_date }}</p>
     <p>Time: {{ time }}</p>
     <p>Seats available: {{ current_capacity }}</p>
-
     
+    <br>
+    <h3>Booking Details:</h3>
+    <ul>
+    {% for ticket_type, quantity in tickets %}
+        <li>{{ ticket_type }}: {{ quantity }}</li>
+    {% endfor %}
+    </ul>
+    <p>Total Price: £{{ total_price }}</p>
+<br>
     <form method="POST">
         {{ form.hidden_tag() }}
         <div class="form-input">
