@@ -3,6 +3,7 @@ pipeline {
     environment {
         DOCKERHUB_LOGIN=credentials('DOCKERHUB_LOGIN')
         DATABASE_URI=credentials('DATABASE_URI')
+        MYSQL_ROOT_PASSWORD=credentials('MYSQL_ROOT_PASSWORD')
     }
     stages {
         stage('Build') {
