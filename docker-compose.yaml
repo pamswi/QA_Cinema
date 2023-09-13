@@ -7,7 +7,9 @@ services:
       DATABASE_URI: ${DATABASE_URI}
     build: ./
     deploy:
-      replicas: 1
+      replicas: 4
+    networks:
+      - my-network
 
 
   service-2:
@@ -21,6 +23,9 @@ services:
       - type: volume
         source: cinema-data
         target: /var/lib/mysql
+    networks:
+      - my-network
+
   proxy:
     container_name: nginx-proxy
     image: nginx:alpine
@@ -32,5 +37,11 @@ services:
         target: /etc/nginx/nginx.conf
     depends_on:
       - "service-1"
+    networks:
+      - my-network
+
 volumes:
   cinema-data:
+
+networks:
+  my-network:
