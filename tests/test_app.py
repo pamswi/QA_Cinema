@@ -19,9 +19,6 @@ class TestBase(TestCase):
     
     def setUp(self):
 
-        self.client = app.test_client()
-
-        db.drop_all()
         db.create_all()
 
         test_user = User(
