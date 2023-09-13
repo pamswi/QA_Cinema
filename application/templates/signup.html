@@ -2,8 +2,15 @@
     
 <body>
 
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <p style="color:#ffffff">{{ message }}</p>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
     <h3 class="signup-heading">Sign Up</h3>
-    <form method="POST">
+    <form method="POST" action="/signup">
         <div class="email-details">
             <label for="email">Email:</label>
             <input type="email" name="email" id="email" required>

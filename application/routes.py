@@ -15,7 +15,7 @@ from filter.swearwords import swearwords
 import re
 
 app.config['SECRET_KEY'] = 'YOUR_SECRET_KEY'    
-app.secret_key = 'key'
+app.secret_key = 'verysecretappkey'
 
 '''
 the following app.py file defines all known routes
@@ -102,13 +102,14 @@ def classics():
     return render_template('classics.html', films=classics)
 
 
-@app.route("/serchresults")
+@app.route("/searchresults", methods=["GET","POST"])
 def search_results():
     # currently hardcoded, however once search bar is designed it will accept dynamic input
-    user_input="the"
-    results = Movie.search(user_input)
-    for result in results:
-        print(result.title)
+    if request.method == "POST":
+        user_input="god"
+        results = Movie.search(user_input)
+        for result in results:
+            print(result.title)
 
     return render_template("classics.html", films=results)
 
@@ -219,9 +220,9 @@ def login():
                 session["user_id"] = user.id
                 # print(session["username"])
                 # print(session["user_id"])
-                print("successfully logged in")
+                flash("successfully logged in")
             else:
-                print("incorrect username and/or password")
+                flash("incorrect username and/or password")
                 return redirect ("/login")
         return redirect ("/")
     
