@@ -8,7 +8,8 @@ import os
 class TestBase(TestCase):
     def create_app(self):
         app.config.update(
-            SQLALCHEMY_DATABASE_URI=os.getenv("TESTDB_URI"),
+            SQLALCHEMY_DATABASE_URI='sqlite:///testdata.db',
+            DEBUG=True,
             WTF_CSRF_ENABLED=False
         )
         return app

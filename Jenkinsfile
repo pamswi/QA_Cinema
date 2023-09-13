@@ -22,7 +22,6 @@ pipeline {
         // testing steps to run
         stage('Testing') {
             steps {
-                sh "export TESTDB_URI=${TESTDB_URI}"
                 sh "bash scripts/testing.sh"
             }
         }
