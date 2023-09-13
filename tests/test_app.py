@@ -1,27 +1,25 @@
 import pytest
-from flask import url_for, session, Flask
+from flask import url_for, session
 from flask_testing import TestCase
-from flask_sqlalchemy import SQLAlchemy
+from application import app, db
 from models import User, Screen, Movie, Screening, Discussion, Booking
 import os
 from werkzeug.security import generate_password_hash
 
 class TestBase(TestCase):
     def create_app(self):
-        app=Flask(__name__)
-        db=SQLAlchemy(app)
-        return app
-    
-    def setUp(self):
         app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///cinema.db"
         app.config.update(
             # SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URI"),
             #export DATABASE_URI=mysql+pymysql://root:pass@localhost/test_qa_cinema
             DEBUG=True,
             WTF_CSRF_ENABLED=False
-        ) 
-        with app.app_context():
-            db.create_all()
+        )
+        return app
+    
+    def setUp(self):
+        
+        db.create_all()
 
         test_user = User(
             username="testuser",
@@ -87,7 +85,7 @@ class TestBase(TestCase):
         # db.session.commit()
 
     def tearDown(self):
-        session.clear()
+        db.session.clear()
         db.session.remove()
         db.drop_all()
    
