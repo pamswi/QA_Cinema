@@ -7,19 +7,19 @@ import os
 from werkzeug.security import generate_password_hash
 
 class TestBase(TestCase):
-    def create_app(self):
+    # def create_app(self):
+
+    #     return app
+    
+    def setUp(self):
         app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///cinema.db"
         app.config.update(
             # SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URI"),
             #export DATABASE_URI=mysql+pymysql://root:pass@localhost/test_qa_cinema
             DEBUG=True,
             WTF_CSRF_ENABLED=False
-        )
-        return app
-    
-    def setUp(self):
-        with app.test_client():
-            db.create_all()
+        ) 
+        db.create_all()
 
         test_user = User(
             username="testuser",
