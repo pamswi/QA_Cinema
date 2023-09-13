@@ -15,6 +15,8 @@ class TestBase(TestCase):
             DEBUG=True,
             WTF_CSRF_ENABLED=False
         )
+        db.init_app(app)
+
         return app
     
     def setUp(self):
