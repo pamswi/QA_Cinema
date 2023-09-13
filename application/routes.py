@@ -101,12 +101,13 @@ def classics():
     return render_template('classics.html', films=classics)
 
 
-@app.route("/searchresults", methods=["GET","POST"])
+@app.route("/searchresults", methods=["POST"])
 def search_results():
     # currently hardcoded, however once search bar is designed it will accept dynamic input
     if request.method == "POST":
+        searchquery = request.form['searchinput']
         user_input="god"
-        results = Movie.search(user_input)
+        results = Movie.search(searchquery)
         for result in results:
             print(result.title)
 

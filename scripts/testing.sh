@@ -6,4 +6,4 @@ source venv/bin/activate
 
 pip3 install -r requirements.txt
 
-py -m pytest --cov=. --cov-report html
+python3 -m pytest --cov=. --cov-report html
