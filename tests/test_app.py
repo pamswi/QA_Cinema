@@ -17,8 +17,9 @@ class TestBase(TestCase):
             WTF_CSRF_ENABLED=False
         )
         db.init_app(app)
-
+        from application import routes
         return app
+    
     
     def setUp(self):
         
