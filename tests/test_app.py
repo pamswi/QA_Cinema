@@ -7,9 +7,9 @@ import os
 from werkzeug.security import generate_password_hash
 
 class TestBase(TestCase):
-    # def create_app(self):
+    def create_app(self):
 
-    #     return app
+        return app
     
     def setUp(self):
         app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///cinema.db"
