@@ -1,5 +1,5 @@
 import pytest
-from flask import url_for, session, Flask
+from flask import url_for, Flask
 from flask_testing import TestCase
 from application import app, db
 from models import User, Screen, Movie, Screening, Discussion, Booking
