@@ -99,7 +99,7 @@ class TestStaticPages(TestBase):
         self.assertIn(b"Bringing Stories to Life, One Screen at a Time", response.data)
     
     def test_about_get(self):
-        response = self.client.get(url_for('about'))
+        response = self.client.get(url_for("about"))
         self.assertEqual(response.status_code, 200)
         self.assertIn(b"Who We Are", response.data)
 
