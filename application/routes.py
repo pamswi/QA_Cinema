@@ -191,7 +191,7 @@ def signup():
                 new_user = User.add_user(username, email, password_hash)
                 flash("sign up successful")
 
-                return redirect("/login")
+                return redirect(url_for('login'))
             else:
                 flash("password does not meet security requirements")
 
