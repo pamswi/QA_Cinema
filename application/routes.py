@@ -22,10 +22,11 @@ the following app.py file defines all known routes
 '''
 @app.route("/")
 def home():
+    user_is_authenticated = "user_id" in session
     all_films = Movie.query.all()
    # username = session["username"]
    # print(username)
-    return render_template ("homepage.html", films=all_films)
+    return render_template ("homepage.html", films=all_films,user_is_authenticated=user_is_authenticated)
 
 @app.route("/about")
 def about():
@@ -143,12 +144,8 @@ def payment():
 
         total_tickets_booked = sum(quantity for _, quantity in tickets)
         screening.current_capacity -= total_tickets_booked
-        db.session.commit()
-    
-
-    
-
-
+        db.session.commit() 
+        flash("Payment has been made successfully! Your booking is now complete")
     return render_template(
             'payment.html', 
             form=form, 
@@ -283,10 +280,6 @@ def forum():
     return render_template("forum.html", all_posts=all_posts, postform=postform, all_comments=all_comments)
 
 
-
-
-
-
 @app.route('/booking', methods=['GET', 'POST'])
 def book_movie():
     form = BookingForm()  
@@ -304,11 +297,11 @@ def book_movie():
     #/ALEX>
 
     if form.validate_on_submit():
-        ticket_prices = {'Adult': 15.0,'Kids': 7.5,'Concession': 10.0}        
+        ticket_prices = {'Adult': 15.0,'Child': 7.5,'Concession': 10.0}        
         total_price = 0
         tickets = [
             ("Adult", form.Adult.data),
-            ("Kids", form.Child.data),
+            ("Child", form.Child.data),
             ("Concession", form.Concession.data)
         ]
         for ticket_type, quantity in tickets:
@@ -331,6 +324,7 @@ def book_movie():
             )
         session['tickets'] = tickets
         session['total_price'] = total_price
+        flash("Booking complete!")
         return redirect(url_for('payment', screening_id=screening_id))
    
     return render_template(
