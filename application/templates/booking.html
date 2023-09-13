@@ -1,36 +1,35 @@
-
 {% include 'navbar.html' %}
 
-    <body>
-        <h1>Booking </h1>
+<body>
+    <h1 class="bookingpage-heading">Book Online </h1>
 
-            <img src="{{ movie_poster }}" alt="{{ movie_title }}" class="movie-poster">
-            <h1>{{ movie_title}}</h1>
+    <div class="booking-details">
+        <img src="{{ movie_poster }}" alt="{{ movie_title }}" class="movie-poster">
+        <h1 class="film-title">{{ movie_title}}</h1>
+        <div class="screening-details">
             <p>Screening ID: {{ screening_id }}</p>
             <p>Date: {{ selected_date }}</p>
             <p>Showtime: {{ time }}</p>
-            
-                
-        
-        <div class='form'>
-            <form method='POST' action=''>
-                {{ form.hidden_tag() }}
-                {{ form.first_name.label }} {{ form.first_name }}
-                <br>
-                {{ form.last_name.label }} {{ form.last_name }}
-                <br>
-                {{ form.movie_date.label }} {{ form.movie_date }}
-                <br>
-                {{ form.num_of_tickets.label }} {{ form.num_of_tickets }}
-                <br>
-                {{ form.movie.label }} {{ form.movie }}
-                <br>
-                {{ form.ticket_type.label }} {{ form.ticket_type }}
-                <br>
-                {{ form.submit }}
-                <br>
-            {{ message }}
-            </form>
         </div>
-    </body>
+    </div>
+            
+    <form class="bookingpage-form" method="post">
+        {{ form.hidden_tag() }}
+
+        {{ form.Adult.label }}: {{ form.Adult() }}<br>
+        {{ form.Child.label }}: {{ form.Child() }}<br>
+        {{ form.Concession.label }}: {{ form.Concession() }}<br>
+
+        <input type="submit" value="Book">
+
+        <br>
+        <br>
+        <p>*   Concession tickets - Valid for Students, OAP and Bluelights Proof required at cinema.</p>
+    </form>
+    
+    {% if message %}
+    <p>{{ message }}</p>
+    {% endif %}
+</body>
+
 {% include 'footer.html' %}

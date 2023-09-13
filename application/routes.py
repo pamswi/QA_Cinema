@@ -1,19 +1,21 @@
 
 from application import app, db
-from flask import render_template, request, redirect, url_for, flash, session, jsonify, get_flashed_messages
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, DateField, IntegerField, SelectField
-from wtforms.validators import ValidationError, DataRequired, Length
-from models import User, Discussion, Movie, Screening
+from flask import render_template, request, redirect, url_for, flash, session, jsonify
+# from flask_wtf import FlaskForm
+# from wtforms import StringField, SubmitField, DateField, IntegerField, SelectField
+# from wtforms.validators import ValidationError, DataRequired, Length
+from models import User, Discussion, Movie, Screening, Booking, BookingDetail
 from forms import PostForm
 from werkzeug.security import check_password_hash, generate_password_hash
 import datetime
 from datetime import datetime
-from forms import PostForm, PayForm, BasicForm
+from forms import PostForm, PayForm, BookingForm
 from datetime import date, timedelta
 from filter.swearwords import swearwords
+import re
 
 app.config['SECRET_KEY'] = 'YOUR_SECRET_KEY'    
+app.secret_key = 'key'
 
 '''
 the following app.py file defines all known routes
@@ -21,11 +23,18 @@ the following app.py file defines all known routes
 @app.route("/")
 def home():
     all_films = Movie.query.all()
+   # username = session["username"]
+   # print(username)
     return render_template ("homepage.html", films=all_films)
 
 @app.route("/about")
 def about():
     return render_template("about.html")
+
+@app.route("/filmbooking")
+def filmbooking():
+    all_films = Movie.query.all()
+    return render_template("filmbooking.html", films=all_films)
 
 @app.route("/openingtimes")
 def opening_times():
@@ -77,6 +86,7 @@ def listings():
     all_films = Movie.query.all()
     return render_template("listings.html", films=all_films)
 
+
 @app.route('/newreleases', methods=['GET'])
 def new_releases(): 
 
@@ -103,8 +113,24 @@ def search_results():
 
 @app.route('/payment', methods=['GET', 'POST'])
 def payment():
+    print(session)
     message = ""
     form = PayForm()
+
+    tickets = session.get('tickets', [])
+    total_price = session.get('total_price', 0)
+    print(tickets, total_price)
+     #<ALEX
+    screening_id = request.args.get('screening_id')
+    screening = Screening.query.get(screening_id)  
+    movie_id = screening.movie_id
+    selected_date = screening.day
+    time = screening.time
+    current_capacity = screening.current_capacity
+    movie = Movie.query.get(movie_id)
+    movie_title = movie.title
+    movie_poster = movie.poster 
+    #/ALEX>
 
     if request.method == 'POST':
         first_name = form.first_name.data
@@ -115,7 +141,26 @@ def payment():
         card_cvc = form.cvc_number.data
         update_user = User.add_payment(session["username"], first_name, last_name, address, card_number, expiry_date, card_cvc)
 
-    return render_template('payment.html', form=form, message=message)
+        total_tickets_booked = sum(quantity for _, quantity in tickets)
+        screening.current_capacity -= total_tickets_booked
+        db.session.commit()
+    
+
+    
+
+
+    return render_template(
+            'payment.html', 
+            form=form, 
+            message=message, 
+            movie_title=movie_title, 
+            movie_poster=movie_poster, 
+            selected_date=selected_date,
+            time=time, 
+            current_capacity=current_capacity,
+            tickets=tickets,              
+            total_price=total_price      
+            )
 
 
 @app.route("/signup", methods=["GET","POST"])
@@ -127,14 +172,28 @@ def signup():
         password = request.form.get("password")
         confirmation = request.form.get("confirmation")
         
-        if User.check_unique_username != True:
-            flash("user already exists")
-        
-        password_hash = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)
+        # password validation: https://www.geeksforgeeks.org/python-program-check-validity-password/
+        if User.check_unique_username(username) != True:
+            flash("username already exists")
+            return redirect ("/signup")
+        elif password != confirmation:
+            flash("password & confirm password do not match")
+            return redirect ("/signup")
+        else:
+            if (
+                len(password) >= 8 and               
+                re.search(r'[a-z]', password) and   
+                re.search(r'[A-Z]', password) and   
+                re.search(r'[0-9]', password) and  
+                re.search(r'[_@$]', password)      
+            ):
+                password_hash = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)
+                new_user = User.add_user(username, email, password_hash)
+                flash("sign up successful")
 
-        new_user = User.add_user(username, email, password_hash)
-
-        return redirect("/login")
+                return redirect("/login")
+            else:
+                flash("password does not meet security requirements")
 
     return render_template("signup.html")
 
@@ -150,11 +209,18 @@ def login():
 
         # below we retrieve user by username and check if the password is correct
         user = User.retrieve_user(username)
-        if user is not None:
+        if user is None:
+            flash("no account associated with this username - please sign up")
+            return render_template ("signup.html")
+        elif user is not None:
             if check_password_hash(user.password, password) == True:
                 session["username"] = user.username
+                session["user_id"] = user.id
+                # print(session["username"])
+                # print(session["user_id"])
+                print("successfully logged in")
             else:
-                flash("incorrect username and/or password")
+                print("incorrect username and/or password")
                 return redirect ("/login")
         return redirect ("/")
     
@@ -165,6 +231,7 @@ def logout():
     if request.method == "POST":
         # Clear the user's session
         session.clear()
+        print("successfully logged out")
         return redirect("/")
     return render_template("logout.html")
 
@@ -215,37 +282,66 @@ def forum():
 
     return render_template("forum.html", all_posts=all_posts, postform=postform, all_comments=all_comments)
 
-@app.route('/booking', methods=['GET', 'POST']) # AKBER
-def view_booking():
-    
-    
+
+
+
+
+
+@app.route('/booking', methods=['GET', 'POST'])
+def book_movie():
+    form = BookingForm()  
+     #<ALEX
     screening_id = request.args.get('screening_id')
-    screening = Screening.query.get(screening_id)
-    
+    screening = Screening.query.get(screening_id)  
     movie_id = screening.movie_id
     selected_date = screening.day
     time = screening.time
     current_capacity = screening.current_capacity
 
     movie = Movie.query.get(movie_id)
-
     movie_title = movie.title
-    movie_poster= movie.poster
+    movie_poster = movie.poster 
+    #/ALEX>
 
+    if form.validate_on_submit():
+        ticket_prices = {'Adult': 15.0,'Kids': 7.5,'Concession': 10.0}        
+        total_price = 0
+        tickets = [
+            ("Adult", form.Adult.data),
+            ("Kids", form.Child.data),
+            ("Concession", form.Concession.data)
+        ]
+        for ticket_type, quantity in tickets:
+                              
+         total_price += ticket_prices[ticket_type] * quantity
 
-    message = ""
-    form = BasicForm()
+        booking = Booking.book_movie(
+            user_id=session["user_id"],
+            screening_id=request.args.get('screening_id'),
+            total_price=total_price
+        ) 
+        
+        for ticket_type, quantity in tickets:
 
-    if request.method == 'POST':
-        if form.validate_on_submit():
-            first_name = form.first_name.data
-            last_name = form.last_name.data
-            num_of_tickets = form.num_of_tickets.data
-            movie = form.movie.data
-            if len(first_name) == 0 or len(last_name) == 0:
-                message = "Please supply both first and last name"
-            else:
-                message = f'Thank you, {first_name} {last_name}. you have selected {num_of_tickets} ticket for {movie}.'
-
-    return render_template('booking.html', movie_title=movie_title, movie_poster=movie_poster, screening_id=screening_id, selected_date=selected_date,movie_id=movie_id, time=time, current_capacity=current_capacity, form=form, message=message)
-
+            BookingDetail.add_booking_detail(
+                booking_id=booking.id,
+                ticket_type=ticket_type,
+                quantity=quantity,
+                price=ticket_prices[ticket_type]
+            )
+        session['tickets'] = tickets
+        session['total_price'] = total_price
+        return redirect(url_for('payment', screening_id=screening_id))
+   
+    return render_template(
+        'booking.html', 
+        movie_title=movie_title, 
+        movie_poster=movie_poster, 
+        screening_id=screening_id, 
+        selected_date=selected_date,
+        movie_id=movie_id, 
+        time=time, 
+        current_capacity=current_capacity, 
+        form=form
+    )
+     

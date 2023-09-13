@@ -1,5 +1,6 @@
 from application import db, app
 from flask import session
+from datetime import datetime
 
 '''
 once the connection to the database is established, the following file creates tables and their methods
@@ -109,13 +110,22 @@ class Booking(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column('user_id', db.Integer, db.ForeignKey('user.id'))
     screening_id = db.Column('screening_id', db.Integer, db.ForeignKey('screening.id'))
-    booking_date = db.Column(db.String(50))
+    booking_date = db.Column(db.Date, nullable=False, default=datetime.now)
     total_price = db.Column(db.Integer)
-    discounted_ticket_number = db.Column(db.Integer)
-    full_price_ticket_number = db.Column(db.Integer)
 
     user = db.relationship('User', backref='booking')
     screening = db.relationship('Screening', backref='booking')
+
+    @classmethod
+    def book_movie(cls, user_id, screening_id, total_price):
+        new_booking = cls(
+            user_id=user_id,
+            screening_id=screening_id,
+            total_price=total_price
+        )    
+        db.session.add(new_booking)
+        db.session.commit()
+        return new_booking
 
     @classmethod
     def booking_by_id(cls, booking_id):
@@ -132,7 +142,25 @@ class BookingDetail(db.Model):
     quantity = db.Column(db.Integer)
     price = db.Column(db.Integer)
 
-    booking = db.relationship('Booking', backref='detail')
+    booking = db.relationship('Booking', backref='details')
+
+    @classmethod
+    def add_booking_detail(cls, booking_id, ticket_type, quantity, price):
+        detail = cls(
+            booking_id=booking_id,
+            ticket_type=ticket_type,
+            quantity=quantity,
+            price=price
+        )
+        db.session.add(detail)
+        db.session.commit()
+        return detail
+
+    @classmethod
+    def details_by_booking(cls, booking_id):
+        return cls.query.filter_by(booking_id=booking_id).all()
+
+    
 
 
 class Discussion(db.Model):

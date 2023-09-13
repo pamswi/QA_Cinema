@@ -2,6 +2,32 @@
 
 <body>
     <h1 class="payment-heading">Payment Form</h1>
+    <h2 class="paymentpage-movietitle">{{ movie_title }}</h2>
+    <div class="payment-page-img">
+       <img src="{{ movie_poster }}" alt="Movie Poster for {{ movie_title }}">
+    </div>
+    <div class="screening-details">
+        <p>Date: {{ selected_date }}</p>
+        <p>Time: {{ time }}</p>
+        <p>Seats available: {{ current_capacity }}</p>
+    </div>
+
+    
+    <h2 class="movie_pay_detail"> {{ movie_title }}</h2>
+    <img src="{{ movie_poster }}" alt="Movie Poster for {{ movie_title }}">
+    <p>Date: {{ selected_date }}</p>
+    <p>Time: {{ time }}</p>
+    <p>Seats available: {{ current_capacity }}</p>
+    
+
+    <h4>Booking Details:</h4>
+    <ul>
+    {% for ticket_type, quantity in tickets %}
+        <li>{{ ticket_type }}: {{ quantity }}</li>
+    {% endfor %}
+    </ul>
+    <p>Total Price exc tax: £{{ "%.2f"|format(total_price * 0.8) }}</p>
+    <p>Total Price with tax included: £{{ "%.2f"|format(total_price) }}</p>
 
     <form method="POST">
         {{ form.hidden_tag() }}

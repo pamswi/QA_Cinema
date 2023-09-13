@@ -10,29 +10,47 @@
         <h2 class="footer-logo">QA Cinemas</h2>
         <div class="footer-row1">
             <i class="fa-solid fa-info"></i>
-        <a href="#" class="footer-link">Help & FAQs</a>
+        <a href="{{ url_for('screens') }}" class="footer-link">Screen Info</a>
         </div>
         <div class="footer-row2">
             <i class="fa-regular fa-comment"></i>
-            <a href="#" class="footer-link">Discussion Board</a>
+            <a href="{{ url_for('forum') }}" class="footer-link">Discussion Board</a>
         </div>
 
         <div class="footer-row3">
-            <i class="fa fa-handshake-o"></i>
-            <a href="#" class="footer-link">Contact Us</a>
+            <i class="fa-solid fa-ticket"></i>
+            <a href="{{ url_for('filmbooking') }}" class="footer-link">Book Online</a>
         </div>
+
+    <div class="footer-info">
+        <div class="footer-row4">
+            <i class="fa-solid fa-film"></i>
+            <a href="{{ url_for('cinema_services') }}">Cinema Services</a>
+        </div>
+
+        <div class="footer-row5">
+            <i class="fa-solid fa-video"></i>
+            <a href="{{ url_for('classifications') }}">Classifications</a>
+        </div>
+
+        <div class="footer-row6">
+            <i class="fa-regular fa-clock"></i>
+            <a href="{{ url_for('opening_times') }}">Opening Times</a>
+        </div>
+
+    </div>
     <div class="socials">
-            <div class="footer-row4">
+            <div class="footer-row7">
                 <i class="fa-brands fa-instagram"></i>
                 <a href="#" class="footer-link">Instagram</a>
             </div>
 
-            <div class="footer-row5">
+            <div class="footer-row8">
                 <i class="fa-brands fa-facebook"></i>
                 <a href="#" class="footer-link">Facebook</a>
             </div>
 
-            <div class="footer-row6">
+            <div class="footer-row9">
                 <i class="fa-brands fa-x-twitter"></i>
                 <a href="#" class="footer-link">X</a>
             </div>

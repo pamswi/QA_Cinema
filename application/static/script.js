@@ -31,9 +31,11 @@ dateButtons.forEach((button) => {
 
                 // Update the content of the screening times container
                 screeningTimesContainer.innerHTML = `
-                    <h3>All Showtimes ${selectedDate}</h3>
+                    <h3 id="allshowtimes">All Showtimes ${selectedDate}</h3>
                     <ul>${screeningTimesList}</ul>
                 `;
+
+                
 
                 // Add a click event listener to each screening button if needed
                 // Add a click event listener to each screening button

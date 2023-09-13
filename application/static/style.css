@@ -10,17 +10,15 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-.logo, .footer-logo {
-    font-family: 'shrikhand', sans-serif;
-    color: orangered;
-}
+
 
 header {
     display: flex;
-    padding: 2% 1%;
     justify-content: space-between;
     align-items: center;
 }
+
+
 
 .nav-links ul li {
     list-style: none;
@@ -42,6 +40,10 @@ header {
     border-right: 0px;
     border-bottom: 0px;
     padding-top: 30px;
+}
+
+.logo img {
+    width: 200px;
 }
 
 .tag-line h2 {
@@ -77,7 +79,7 @@ header {
 .gallery-heading {
     padding-left: 16rem;
     padding-top: 6rem;
-    padding-bottom: 2rem;
+    padding-bottom: 5rem;
     color: white;
 }
 
@@ -106,14 +108,20 @@ footer a:hover {
     padding-bottom: 20px;
 }
 
-.footer-row1, .footer-row2, .footer-row4, .footer-row5  {
+.footer-row1, .footer-row2, .footer-row4, .footer-row5, .footer-row7, .footer-row8  {
     padding-bottom: 15px;
+}
+
+.footer-info {
+    position: relative;
+    bottom: 6rem;
+    left: 20rem;
 }
 
 .socials {
     position: relative;
-    bottom: 6rem;
-    left: 20rem;
+    bottom: 12.5rem;
+    left: 40rem;
 }
 
 footer i {
@@ -126,6 +134,24 @@ button.btn, .cardContainer a.btn {
 
 button.btn:hover, .cardContainer a.btn:hover {
     background-color: lightcoral;
+}
+
+.screen-page-header {
+    color: white;
+    padding-left: 35%;
+    margin-bottom: -1rem;
+    padding-bottom: 5rem;
+}
+
+.standard-screen {
+    padding-left: 35%;
+    color: white;
+}
+
+.deluxe-screen {
+    padding-left: 35%;
+    padding-top: 3rem;
+    color: white;
 }
 
 /* FILM PAGES*/
@@ -150,6 +176,12 @@ button.btn:hover, .cardContainer a.btn:hover {
     padding-top: 45px;
 }
 
+.screening-times {
+    color: orangered;
+    padding-left: 10%;
+    text-decoration: none;
+}
+
 
 
 /* ABOUT US PAGE STYLES*/
@@ -163,6 +195,14 @@ button.btn:hover, .cardContainer a.btn:hover {
 .aboutus-pageheading {
     padding-left: 20%;
     padding-bottom: 1rem;
+}
+
+.aboutUs a {
+    background-color: orangered;
+}
+
+.aboutUs a:hover {
+    background-color: lightcoral;
 }
 
 .meet-our-team {
@@ -325,10 +365,23 @@ td {
     color: white;
     padding-left: 35%;
     margin-bottom: -2rem;
+    padding-bottom: 2rem;
 }
 
 .form-input input {
     width: 350px;
+}
+
+.paymentpage-movietitle {
+    color: white;
+    padding-left: 30%;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    margin-bottom: -1rem;
+}
+
+.payment-page-img img {
+    margin-left: 29%;
 }
 
 
@@ -336,7 +389,6 @@ td {
 /* Style the movie list container */
 .movie-list {
     text-align: center;
-    background-color: black;
     padding: 20px;
 }
 
@@ -351,12 +403,6 @@ td {
 .movie-item {
     margin: -2rem;
     padding: 10px;
-    background-color: black;
-    border: 1px solid black;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    flex-basis: calc(50% - 20px);
-    box-sizing: border-box;
-    transition: transform 0.2s, filter 0.2s; /* Add filter transition */
 }
 
 /* Style the movie title */
@@ -365,6 +411,14 @@ td {
     font-size: 18px;
 }
 
+/* Payment page styling akber */
+.movie_pay_detail {
+    padding-left: -20%;
+    color: white;
+
+
+
+}
 
 /* Define the hover effect */
 .movie-item:hover {
@@ -421,6 +475,168 @@ td {
 }
 
 
+/* SERVICES PAGE*/
+.cinema-services-heading {
+    color: white;
+    padding-left: 32%;
+    margin-bottom: -1rem;
+}
+
+.services-paragraph {
+    color: white;
+    padding-left: 22%;
+    padding-top: 5rem;
+    padding-bottom: 2rem;
+    margin-bottom: -2rem;
+}
+
+.services-menu {
+    margin-top: -1rem;
+}
+
+.menu-card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 10px;
+    width: 100%;
+    animation: fadein-bottom 2.5s ease-in-out both;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-around;
+    color: white;
+}
+
+.menu-card:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.menu-card:nth-child(3) {
+    animation-delay: 1s;
+}
+
+@keyframes fadein-bottom {
+  0% {
+    transform: translateY(2rem);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.check-mark {
+    background: orangered;
+    width: 0%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(100%);
+    transition: 0.6s ease-in-out;
+}
+
+.price {
+    position: relative;
+    width: 10%;
+    transition: 0.6s ease-in-out;
+    transform: translateX(-15px);
+    display: flex;
+    justify-content: center;
+}
+
+.menu-card:hover i {
+    animation: rotate 1s forwards;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(-360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.menu-card:hover {
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+.menu-card:hover .check-mark {
+    transform: translateX(0%);
+    width: 20%;
+    
+}
+
+.cafe-img img {
+    width: 50%;
+    margin-left: 21%;
+    padding-top: 3rem;
+}
+
+.listings-heading {
+    color: white;
+    padding-bottom: 8rem;
+}
+
+
+/*BOOKING PAGE*/
+
+.bookingpage-heading {
+    color: white;
+    padding-left: 35%;
+    padding-bottom: 3rem;
+    margin-bottom: -1rem;
+}
+
+.booking-details {
+    color: white;
+}
+
+.film-title {
+    padding-top: 2rem;
+    padding-left: 30%;
+}
+
+.screening-details {
+    margin-bottom: -2rem;
+    padding-left: 30%;
+    color: white;
+}
+
+.booking-details img {
+    margin-left: 29%;
+    padding-top: 3rem;
+}
+
+
+/* SEARCH BAR*/
+
+.box {
+    height: 30px;
+    display: flex;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 30px;
+    align-items: center;
+}
+
+.box:hover input {
+    width: 200px;
+}
+
+.box input {
+    width: 0;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    transition: 0.8s;
+    background: transparent;
+}
+
+.box a .fas {
+    color: orangered;
+}
 
 
 
@@ -435,8 +651,14 @@ td {
         
     }
 
+    header {
+        display: block;
+    }
+
     .nav-links {
         margin-left: 0rem;
+        margin-bottom: -1rem;
+        padding-bottom: 1rem;
     }
 
     .tag-line h2 {
@@ -446,23 +668,42 @@ td {
     .aboutUs {
         padding-left: 6%;
     }
+
+    .cardContainer {
+        display: flex;
+        flex-flow: wrap;
+    }
+
+    footer {
+        padding-top: 5rem;
+    }
+
+    .socials, .footer-info {
+        margin-left: -5rem;
+        
+    }
 }
 
 
 /* MEDIA QUERIES - MOBILE*/
 
-@media only screen and (max-width: 370px) {
-    header {
-        display: block;
+@media only screen and (max-width: 768px) {
+    .nav-links ul li a {
+        font-size: 14px;
     }
 
     .logo {
-        margin-left: 20%;
+        margin-left: 25%;
     }
 
     .nav-links li a:hover {
         padding-top: 10px;
     }
+
+    #homeCarousel {
+        margin-top: -1rem;
+    }
+
 
     .tag-line h2 {
         font-size: 2rem;
@@ -473,8 +714,9 @@ td {
     }
 
     .cardContainer {
-        display: block;
-        padding-left: 10%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .gallery-heading {
@@ -482,15 +724,31 @@ td {
     }
 
     .listings-gallery {
-        display: block;
-        padding-left: 10%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    div.movie-item a img {
+        width: 90%;
+        object-fit: contain;
+        
     }
 
     .socials {
         position: relative;
-        left: 1%;
+        left: 25%;
         bottom: 6%;
         padding-top: 2%;
+    }
+
+    footer {
+        padding-top: 5rem;
+    }
+
+    .footer-info {
+        margin-left: -20rem;
+        margin-top: 10rem;
     }
 }
 
