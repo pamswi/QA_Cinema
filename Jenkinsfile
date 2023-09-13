@@ -31,7 +31,7 @@ pipeline {
             steps {
                 sh "docker swarm init --advertise-addr 172.31.1.145"
 
-                sh "docker stack deploy -c docker-compose.yml cinema_app_stack"
+                sh "docker stack deploy -c docker-compose.yaml cinema_app_stack"
 
 
                 sh "docker stack services cinema_app_stack"
