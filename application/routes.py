@@ -108,8 +108,8 @@ def search_results():
     if request.method == "POST":
         searchquery = request.form['searchinput']
         results = Movie.search(searchquery)
-        # for result in results:
-        #     print(result.title)
+        for result in results:
+            print(result.title)
 
     return render_template("new_releases.html", films=results)
 
