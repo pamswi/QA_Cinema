@@ -34,12 +34,14 @@
 
                 <!--SEARCH BAR-->
                 <li>
-                    <div class="box">
-                        <input type="text" id="search-input" name="'search-input" placeholder="Search...">
-                        <a href="#">
-                            <i class="fas fa-search"></i>
-                        </a>
-                    </div>
+                    
+                        <form class="box" method="post" action="/searchresults">
+                        <input type="text" placeholder="Search..." name="searchinput">
+                        <button type="submit" class="searchpage-button" name="searchbtn">
+                            <a><i class="fas fa-search"></i></a>
+                        </button>
+                        </form>
+                    
                 </li>
                     
             </ul>
