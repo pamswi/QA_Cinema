@@ -88,7 +88,6 @@ class TestBase(TestCase):
         # db.session.commit()
 
     def tearDown(self):
-        db.session.clear()
         db.session.remove()
         db.drop_all()
    
