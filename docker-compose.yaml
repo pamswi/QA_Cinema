@@ -3,6 +3,8 @@ services:
   service-1:
     container_name: cinema-app
     image: pamswi/cinema-app:v1
+    environment:
+      DATABASE_URI: ${DATABASE_URI}
     build: ./
     deploy:
       replicas: 1
