@@ -19,7 +19,8 @@ class TestBase(TestCase):
             DEBUG=True,
             WTF_CSRF_ENABLED=False
         ) 
-        db.create_all()
+        with app.app_context():
+            db.create_all()
 
         test_user = User(
             username="testuser",
