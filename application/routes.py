@@ -221,7 +221,7 @@ def login():
                 print("successfully logged in")
             else:
                 print("incorrect username and/or password")
-                return redirect ("/login")
+                return redirect(url_for('login'))
         return redirect ("/")
     
     return render_template ("login.html")
