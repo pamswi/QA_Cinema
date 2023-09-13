@@ -22,10 +22,11 @@ the following app.py file defines all known routes
 '''
 @app.route("/")
 def home():
+    user_is_authenticated = "user_id" in session
     all_films = Movie.query.all()
    # username = session["username"]
    # print(username)
-    return render_template ("homepage.html", films=all_films)
+    return render_template ("homepage.html", films=all_films, user_is_authenticated=user_is_authenticated)
 
 @app.route("/about")
 def about():
