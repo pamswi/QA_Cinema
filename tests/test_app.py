@@ -18,8 +18,8 @@ class TestBase(TestCase):
         return app
     
     def setUp(self):
-        db.session.remove()
-        db.create_all()
+        with app.test_client():
+            db.create_all()
 
         test_user = User(
             username="testuser",
