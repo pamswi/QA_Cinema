@@ -29,7 +29,7 @@ pipeline {
         }
         stage('Deploy to Docker Swarm') {
             steps {
-                sh "docker swarm init"
+                
 
                 sh "docker stack deploy -c docker-compose.yaml cinema_app_stack"
 
