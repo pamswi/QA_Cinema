@@ -5,6 +5,7 @@ from application import app, db
 from models import User, Screen, Movie, Screening, Discussion, Booking
 import os
 from werkzeug.security import generate_password_hash
+from application import routes
 
 class TestBase(TestCase):
     def create_app(self):
@@ -17,7 +18,6 @@ class TestBase(TestCase):
             WTF_CSRF_ENABLED=False
         )
         db.init_app(app)
-        from application import routes
         return app
     
     
