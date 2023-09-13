@@ -13,21 +13,22 @@
     </div>
 
     
-    <h2>{{ movie_title }}</h2>
+    <h2 class="movie_pay_detail"> {{ movie_title }}</h2>
     <img src="{{ movie_poster }}" alt="Movie Poster for {{ movie_title }}">
     <p>Date: {{ selected_date }}</p>
     <p>Time: {{ time }}</p>
     <p>Seats available: {{ current_capacity }}</p>
     
-    <br>
-    <h3>Booking Details:</h3>
+
+    <h4>Booking Details:</h4>
     <ul>
     {% for ticket_type, quantity in tickets %}
         <li>{{ ticket_type }}: {{ quantity }}</li>
     {% endfor %}
     </ul>
-    <p>Total Price: £{{ total_price }}</p>
-<br>
+    <p>Total Price exc tax: £{{ "%.2f"|format(total_price * 0.8) }}</p>
+    <p>Total Price with tax included: £{{ "%.2f"|format(total_price) }}</p>
+
     <form method="POST">
         {{ form.hidden_tag() }}
         <div class="form-input">
