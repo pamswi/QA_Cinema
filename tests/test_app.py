@@ -1,7 +1,7 @@
 import pytest
 from flask import url_for, session, Flask
 from flask_testing import TestCase
-from application import app, db
+from flask_sqlalchemy import SQLAlchemy
 from models import User, Screen, Movie, Screening, Discussion, Booking
 import os
 from werkzeug.security import generate_password_hash
@@ -9,6 +9,7 @@ from werkzeug.security import generate_password_hash
 class TestBase(TestCase):
     def create_app(self):
         app=Flask(__name__)
+        db=SQLAlchemy(app)
         return app
     
     def setUp(self):
