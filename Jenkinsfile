@@ -29,7 +29,7 @@ pipeline {
         }
         stage('Deploy to Docker Swarm') {
             steps {
-                sh "docker swarm init --advertise-addr 172.31.1.145"
+                sh "docker swarm init --advertise-addr 18.134.97.136"
 
                 sh "docker stack deploy -c docker-compose.yaml cinema_app_stack"
 
