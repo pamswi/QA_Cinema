@@ -25,7 +25,7 @@ class TestBase(TestCase):
         db.create_all()
 
         test_user = User(
-            username="testuser",
+            username="testuserrrr",
             email="testuser@example.com",
             password= generate_password_hash("password123",method='pbkdf2:sha256', salt_length=8),
             address="123 Test St",
