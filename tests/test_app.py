@@ -3,13 +3,12 @@ from flask import url_for, Flask
 from flask_testing import TestCase
 from application import app, db
 from models import User, Discussion, Movie, Screening, Booking, BookingDetail
-
+import os
 
 class TestBase(TestCase):
     def create_app(self):
         app.config.update(
-            SQLALCHEMY_DATABASE_URI='sqlite:///testdata.db',
-            DEBUG=True,
+            SQLALCHEMY_DATABASE_URI=os.getenv("TESTDB_URI"),
             WTF_CSRF_ENABLED=False
         )
         return app
