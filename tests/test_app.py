@@ -7,14 +7,12 @@ from models import User, Discussion, Movie, Screening, Booking, BookingDetail
 
 class TestBase(TestCase):
     def create_app(self):
-        app=Flask(__name__)
         app.config.update(
             
             SQLALCHEMY_DATABASE_URI='sqlite:///testdata.db',
             DEBUG=True,
             WTF_CSRF_ENABLED=False
         )
-        db.init_app(app)
         return app
         
     def setUp(self):
@@ -44,7 +42,7 @@ class TestViews(TestBase):
         self.assertEqual(response.status_code, 200)
 
     def test_search_post(self):
-        response = self.client.post(url_for('searchresults'), data={'searchinput': 'the'})
+        response = self.client.post(url_for('search_results'), data={'searchinput': 'the'})
     
         assert response.status_code == 200
         assert b'new_releases.html' in response.data
