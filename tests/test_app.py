@@ -1,5 +1,5 @@
 import pytest
-from flask import url_for, session
+from flask import url_for, session, Flask
 from flask_testing import TestCase
 from application import app, db
 from models import User, Screen, Movie, Screening, Discussion, Booking
@@ -8,7 +8,7 @@ from werkzeug.security import generate_password_hash
 
 class TestBase(TestCase):
     def create_app(self):
-
+        app=Flask(__name__)
         return app
     
     def setUp(self):
