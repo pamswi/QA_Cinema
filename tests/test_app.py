@@ -1,5 +1,5 @@
 import pytest
-from flask import url_for
+from flask import url_for, Flask
 from flask_testing import TestCase
 from application import app, db
 from models import User, Discussion, Movie, Screening, Booking, BookingDetail
@@ -7,11 +7,14 @@ from models import User, Discussion, Movie, Screening, Booking, BookingDetail
 
 class TestBase(TestCase):
     def create_app(self):
+        app=Flask(__name__)
         app.config.update(
+            
             SQLALCHEMY_DATABASE_URI='sqlite:///testdata.db',
             DEBUG=True,
             WTF_CSRF_ENABLED=False
         )
+        db.init_app(app)
         return app
         
     def setUp(self):
