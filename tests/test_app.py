@@ -8,7 +8,6 @@ from models import User, Discussion, Movie, Screening, Booking, BookingDetail
 class TestBase(TestCase):
     def create_app(self):
         app.config.update(
-            
             SQLALCHEMY_DATABASE_URI='sqlite:///testdata.db',
             DEBUG=True,
             WTF_CSRF_ENABLED=False
