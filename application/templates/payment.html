@@ -2,6 +2,8 @@
 
 <body>
     <h1 class="payment-heading">Payment Form</h1>
+
+
     <h2 class="paymentpage-movietitle">{{ movie_title }}</h2>
     <div class="payment-page-img">
        <img src="{{ movie_poster }}" alt="Movie Poster for {{ movie_title }}">
@@ -67,6 +69,14 @@
     </form>
     
     <p>{{ message }}</p>
-
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="flash-messages">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
 </body>
 {% include 'footer.html' %}
