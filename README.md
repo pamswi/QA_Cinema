@@ -149,7 +149,7 @@ This draft would give a visual to the links on the database and would allow us t
 Ultimatly a version 2 of Database tables were discussed and would than be implementned, 
 ![image](https://github.com/akber360/QA_Cinema/assets/139133081/fcc73d29-137e-454f-b660-fbac0b5d6291)
  
-This is the final ERD diagram that contains the relationships.
+This is the final Working ERD diagram to our Cinema Database which contains the relationships.
 ![Final_ERD](https://github.com/akber360/QA_Cinema/assets/139133081/6de93f93-0d75-45c7-99e8-224a4d2c8190)
 
 
