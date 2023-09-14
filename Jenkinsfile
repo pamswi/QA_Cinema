@@ -24,7 +24,7 @@ pipeline {
         //     steps {
         //         sh "bash scripts/testing.sh"
         //     }
-        }
+        // }
         stage('Building Containers') {
             steps {
                 script {
