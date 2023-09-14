@@ -3,22 +3,23 @@
 The project goal is to create a cinema website that allows users to buy tickets for movies they wish to see.
 
 ## Table of Contents
-1. [Introduction](#introduction)
-2. [Project Structure](#project-structure)
-3. [Tech Stack](#tech-stack)
-4. [Requirements Gathering](#requirements-gathering)
-5. [Design Choices](#design-choices)
-6. [Wireframe](#wireframe)
-7. [ERD Diagram](#erd-diagram)
-8. [CRUD Features](#crud-features)
-9. [Component Diagram](#component-diagram)
-10. [Pipeline Diagram](#pipeline-diagram)
-11. [Testing](#testing)
-12. [Risk Assessment](#risk-assessment)
-13. [Code Refactoring](#code-refactoring)
-14. [Conclusion](#Conclusion)
-15. [Acknowledgements](#acknowledgements)
-16. [References](#references)
+1. [Introduction](#1-introduction)
+2. [Project Structure](#2-project-structure)
+3. [Tech Stack](#3-tech-stack)
+4. [Requirements Gathering](#4-requirements-gathering)
+5. [Design Choices](#5-design-choices)
+6. [Wireframe](#6-wireframe)
+7. [ERD Diagram](#7-erd-diagram)
+8. [CRUD Features](#8-crud-features)
+9. [Component Diagram](#9-component-diagram)
+10. [Pipeline Diagram](#10-pipeline-diagram)
+11. [Testing](#11-testing)
+12. [Risk Assessment](#12-risk-assessment)
+13. [Code Refactoring](#13-code-refactoring)
+14. [Conclusion](#14-conclusion)
+15. [Acknowledgements](#15-acknowledgements)
+16. [References](#16-references)
+
 
 
 
@@ -133,8 +134,30 @@ Present and describe any wireframes, mockups, or design blueprints for your proj
 
 Present and discuss your Entity Relationship Diagram:
 
+Firstly we wanted to see how the movielens DB looked like to take some ideas, ultimatley we decided not to go ahead with how the DB was used in movie lens and opted for our own due to having tables that were not relevant to our specifications. 
+
+![Screenshot 2023-09-04 224559](https://github.com/akber360/QA_Cinema/assets/139133081/3cd74bb5-3dd2-4a3a-add6-08468d9bf2a6) 
+
+Based on our first rundown of posible Tables to exist, a draft ERD was constructed 
+
+![image](https://github.com/akber360/QA_Cinema/assets/139133081/faf22559-731d-4ba4-bef4-25722714fae8)
+
+
+![Draft_ERD](https://github.com/akber360/QA_Cinema/assets/139133081/cae20d4e-53b7-4fbd-a78d-7d9fe8eb54c5)
+This draft would give a visual to the links on the database and would allow us to asses the relationships between them, 
+
+Ultimatly a version 2 of Database tables were discussed and would than be implementned, 
+![image](https://github.com/akber360/QA_Cinema/assets/139133081/fcc73d29-137e-454f-b660-fbac0b5d6291)
+ 
+This is the final Working ERD diagram to our Cinema Database which contains the relationships.
+![Final_ERD](https://github.com/akber360/QA_Cinema/assets/139133081/6de93f93-0d75-45c7-99e8-224a4d2c8190)
+
+
+
+
+
 - **[Link/Embed of ERD Diagram]**
-- **Key Entities and Relationships**: Discuss the main tables/entities and their connections.
+- **Key Entities and Relationships**: Discuss the main tables/entities and their connections. (PAM)
 
 ---
 ## 8. CRUD Features
@@ -275,6 +298,8 @@ The QA Cinemas training project is an opportunity to enhance technical skills an
 Thank any individuals, organizations, or resources that were instrumental in the project:
 
 - Person/Resource name: Brief description or reason for acknowledgement.
+
+- AA: I want to thank Earl for his awesome Github repo which I was using as examples to do the booking forms and validators among other things.
 
 ---
 
