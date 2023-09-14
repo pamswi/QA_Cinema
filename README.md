@@ -153,6 +153,29 @@ This is the final Working ERD diagram to our Cinema Database which contains the 
 ![Final_ERD](https://github.com/akber360/QA_Cinema/assets/139133081/6de93f93-0d75-45c7-99e8-224a4d2c8190)
 
 
+In this database, several tables work in concert to create a comprehensive cinema management system.  
+
+The `User` Table is central, capturing user information for registration, login and payment.  
+Movies are cataloged in the `Movie` Table, which includes details like titles, directors, and actors.  
+Screenings, including times and capacities, are tracked in the `Screening` Table, linked to specific movies and screens.   
+When users book tickets, their data is recorded in the `Booking` Table, including booking dates and total prices, associated with both users and screenings. Further granular details of these bookings, such as ticket types and quantities, are stored in the `BookingDetail` Table.   
+Meanwhile, the `Discussion` Table fosters movie-related discussions, collecting topics, content and timestamps.  
+Lastly, the `Screen` Table represents various cinema screens, capturing seating capacity data and classifications.  
+
+Although there are no explicit many-to-many relationships in this database, it demonstrates robust interconnections among users, movies, bookings, and discussions, resulting in a comprehensive cinema management platform.
+
+
+The primary relationships include:
+
+- `User` and `Booking`: The `User` table represents users of the application and is associated with the Booking table, allowing each user to make multiple bookings. This forms a one-to-many relationship where one user can have many bookings.
+
+- `Movie` and `Screening`: The `Movie` table stores information about movies, and the `Screening` table represents individual screenings of those movies. This relationship enables each movie to have multiple screenings, forming a one-to-many relationship from Movie to `Screening`.
+
+- `Screening` and `Booking`: The `Booking` table captures user bookings for specific screenings, creating a one-to-many relationship from `Screening` to `Booking`. Each screening can have multiple bookings, representing the fact that multiple users can book tickets for the same screening.
+
+- `Booking` and `BookingDetail`: The `Booking` table relates to the `BookingDetail` table, which stores details about each booking, such as ticket types and quantities. This relationship forms a one-to-many relationship from `Booking` to `BookingDetail`, where each booking can have multiple booking details.
+
+- `User` and `Discussion`: The User table relates to the `Discussion` table, allowing users to participate in discussions. Each user can create multiple discussion posts or comments, creating a one-to-many relationship from `User` to `Discussion`.
 
 
 
