@@ -33,6 +33,7 @@ header {
     font-size: 15px;
 }
 
+
 .nav-links li a:hover {
     color: orangered;
     border: solid 2px orangered;
@@ -41,6 +42,7 @@ header {
     border-bottom: 0px;
     padding-top: 30px;
 }
+
 
 .logo img {
     width: 200px;
@@ -102,10 +104,6 @@ footer a:hover {
     padding-top: 30px;
     padding-bottom: 30px;
     padding-left: 40px;
-}
-
-.footer-logo {
-    padding-bottom: 20px;
 }
 
 .footer-row1, .footer-row2, .footer-row4, .footer-row5, .footer-row7, .footer-row8  {
@@ -236,6 +234,11 @@ button.btn:hover, .cardContainer a.btn:hover {
 
 footer {
     margin-top: -1rem;
+}
+
+.pam, .kes, .akber, .alex, .tom {
+    padding-bottom: 3rem;
+    padding-top: 4rem;
 }
 
 /*LOGIN PAGE STYLES*/
@@ -621,6 +624,10 @@ td {
     align-items: center;
 }
 
+button.searchpage-button {
+    margin-bottom: -2rem;
+}
+
 .box:hover input {
     width: 200px;
 }
@@ -643,10 +650,13 @@ td {
 
 
 
+
+
+
 /* MEDIA QUERIES - TABLET*/
 
 @media only screen and (max-width: 992px) {
-    .logo, .footer-logo {
+    .logo {
         width: 15rem;
         
     }
@@ -658,7 +668,8 @@ td {
     .nav-links {
         margin-left: 0rem;
         margin-bottom: -1rem;
-        padding-bottom: 1rem;
+        padding-bottom: 3rem;
+        font-size: 16px;
     }
 
     .tag-line h2 {
@@ -681,6 +692,10 @@ td {
     .socials, .footer-info {
         margin-left: -5rem;
         
+    }
+
+    .aboutus-details, .meet-our-team  {
+        padding-left: 6%;
     }
 }
 
@@ -713,6 +728,22 @@ td {
         margin-left: 25%;
     }
 
+    .aboutus-details, .meet-our-team {
+        padding-left: 4%;
+    }
+
+    .aboutus-pageparagraph, .our-team-paragraph {
+        font-size: 13px;
+    }
+
+    .team-members {
+        padding-left: 0;
+    }
+
+    .pam-img, .kes-img, .akber-img, .tom-img, .alex-img {
+        display: none;
+    }
+
     .cardContainer {
         display: flex;
         justify-content: center;
@@ -730,7 +761,7 @@ td {
     }
 
     div.movie-item a img {
-        width: 90%;
+        width: 100%;
         object-fit: contain;
         
     }
@@ -749,6 +780,45 @@ td {
     .footer-info {
         margin-left: -20rem;
         margin-top: 10rem;
+    }
+
+    .forum-heading {
+        font-size: 22px;
+        padding-left: 25%;
+    }
+
+    form {
+        padding-left: 2%;
+    }
+
+    .comment input {
+        width: 300px;
+    }
+
+    input#submit {
+        margin-left: 4%;
+    }
+
+    .newpost-form {
+        padding: 3rem 2rem;
+    }
+
+    .login-form input, .login-pwd input {
+        width: 20rem;
+    }
+
+    div.login-form, div.login-pwd, div.login-btn {
+        margin-left: 5%;
+        padding-top: 1rem;
+    }
+
+    .email-details input, .username-details input, .user-pwd input, .confirm-pwd input {
+        margin-left: 5%;
+        width: 20rem;
+    }
+
+    .email-details label, .username-details label, .user-pwd label, .confirm-pwd label, .signup-btn {
+        margin-left: 5%;
     }
 }
 

@@ -64,8 +64,8 @@
     {% endfor %}
     
     <!-- Create a new post -->
-    <form method="POST" action="/forum">
-        <h2>New Post</h2>
+    <form method="POST" class="newpost-form" action="/forum">
+        <h2 class="new-post">New Post</h2>
         {{ postform.hidden_tag() }}
         <input type="hidden" name="responding_to" value="Post">
         {{ postform.movie_id.label }} {{ postform.movie_id }}
