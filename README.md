@@ -133,6 +133,10 @@ Present and describe any wireframes, mockups, or design blueprints for your proj
 
 Present and discuss your Entity Relationship Diagram:
 
+Firstly we wanted to see how the movielens DB looked like to take some ideas, ultimatley we decided not to go ahead with how the DB was used in movie lens and opted for our own. 
+![Screenshot 2023-09-04 224559](https://github.com/akber360/QA_Cinema/assets/139133081/3cd74bb5-3dd2-4a3a-add6-08468d9bf2a6) 
+
+
 - **[Link/Embed of ERD Diagram]**
 - **Key Entities and Relationships**: Discuss the main tables/entities and their connections.
 
