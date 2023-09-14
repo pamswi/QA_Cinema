@@ -3,22 +3,23 @@
 The project goal is to create a cinema website that allows users to buy tickets for movies they wish to see.
 
 ## Table of Contents
-1. [Introduction](#introduction)
-2. [Project Structure](#project-structure)
-3. [Tech Stack](#tech-stack)
-4. [Requirements Gathering](#requirements-gathering)
-5. [Design Choices](#design-choices)
-6. [Wireframe](#wireframe)
-7. [ERD Diagram](#erd-diagram)
-8. [CRUD Features](#crud-features)
-9. [Component Diagram](#component-diagram)
-10. [Pipeline Diagram](#pipeline-diagram)
-11. [Testing](#testing)
-12. [Risk Assessment](#risk-assessment)
-13. [Code Refactoring](#code-refactoring)
-14. [Conclusion](#conclusion)
-15. [Acknowledgements](#acknowledgements)
-16. [References](#references)
+1. [Introduction](#1-introduction)
+2. [Project Structure](#2-project-structure)
+3. [Tech Stack](#3-tech-stack)
+4. [Requirements Gathering](#4-requirements-gathering)
+5. [Design Choices](#5-design-choices)
+6. [Wireframe](#6-wireframe)
+7. [ERD Diagram](#7-erd-diagram)
+8. [CRUD Features](#8-crud-features)
+9. [Component Diagram](#9-component-diagram)
+10. [Pipeline Diagram](#10-pipeline-diagram)
+11. [Testing](#11-testing)
+12. [Risk Assessment](#12-risk-assessment)
+13. [Code Refactoring](#13-code-refactoring)
+14. [Conclusion](#14-conclusion)
+15. [Acknowledgements](#15-acknowledgements)
+16. [References](#16-references)
+
 
 
 
