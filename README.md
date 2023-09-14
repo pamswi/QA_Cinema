@@ -299,6 +299,8 @@ Thank any individuals, organizations, or resources that were instrumental in the
 
 - Person/Resource name: Brief description or reason for acknowledgement.
 
+- AA: I want to thank Earl for his awesome Github repo which I was using as examples to do the booking forms and validators among other things.
+
 ---
 
 ## 16. References
