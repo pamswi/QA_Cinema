@@ -1,71 +1,96 @@
-# QA_Cinema
-Final-project:
+# QA Cinema
 
-Fibonacci story points in agile estimation
-Introduction:
-In Agile and Scrum methodologies, estimating the complexity and effort of user stories is crucial for effective project planning. The Fibonacci sequence is a widely adopted method for assigning story points, providing a structured approach to relative estimation.
-Understanding the Fibonacci Sequence:
-The Fibonacci sequence is a series of numbers where each number is the sum of the two preceding ones.
-It starts with 0 and 1 and continues as follows: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...
-Each number in the sequence represents a story point, which is used to estimate the complexity of user stories.
-Stages of process:
-CONSENSUS
-ESTIMATION
-DISCUSSION
-Benefits of Using Fibonacci Story Points:
-Relative Sizing: Story points allow for relative comparison of complexity.
-Flexibility: The Fibonacci sequence accommodates a wide range of task sizes.
-Focus on Discussion: Estimation sessions foster team discussion and understanding.
-Velocity Tracking: Story points aid in tracking team velocity for capacity planning.
+The project goal is to create a cinema website that allows users to buy tickets for movies they wish to see.
 
-Design Decision 1: Forking Central Repository and Using Pull/Merge Requests with Pam as Request Validator
+## Table of Contents
+1. [Introduction](#introduction)
+2. [Project Structure](#project-structure)
+3. [Tech Stack](#tech-stack)
+4. [Requirements Gathering](#requirements-gathering)
+5. [Design Choices](#design-choices)
+6. [Wireframe](#wireframe)
+7. [ERD Diagram](#erd-diagram)
+8. [CRUD Features](#crud-features)
+9. [Component Diagram](#component-diagram)
+10. [Pipeline Diagram](#pipeline-diagram)
+11. [Testing](#testing)
+12. [Risk Assessment](#risk-assessment)
+13. [Code Refactoring](#code-refactoring)
+14. [Conclusion](#Conclusion)
+15. [Acknowledgements](#acknowledgements)
+16. [References](#references)
+
+
+
+## 1. Introduction
+
+Introduce the project's purpose, goals, and high-level overview.
+
+The project goal is to create a cinema website that allows users to buy tickets for movies they wish to see.
+
+---
+
+## 2. Project Structure
+
+- **Directory Structure**: Describe the organizational structure of your directories and files.
+- **Main Components**: Explain the primary components/modules of your application and their roles.
+- **Flow**: If applicable, describe the flow or sequence in which different parts of your project interact.
+
+---
+
+## 3. Tech Stack
+
+Detail all the technologies you used in this project:
+
+- **Languages**: (Python, JavaScript, HTML, CSS)
+- **Frameworks**: (Flask)
+- **Databases**: (SQlite, MySQL)
+- **Deployment**: ( Docker)
+- **Other Tools**: (Github, Jenkins)
+
+---
+
+## 4. Requirements Gathering
+
+Discuss the process by which you gathered requirements for your project:
+
+
+- **Research**: Did you use existing literature or projects to inform your design?
+- **Iterations**: Describe how the requirements might have evolved over time.
+
+---
+
+## 5. Design Choices
+
+Discuss the major design decisions you made for this project:
+
+### Design Decision 1: Forking Central Repository and Using Pull/Merge Requests with Pam as Request Validator
 
 Title: Forking Central Repository and Pull/Merge Requests
 
 Date: [Insert Date]
 
-Background:
-In the QA Cinemas project, we need to establish a workflow for collaborative development and version control. To ensure a systematic and controlled approach to code changes, we have decided to fork the central repository on GitHub and utilize the pull/merge request system, with Pam as the central repository request validator.
+Background: In the QA Cinemas project, we need to establish a workflow for collaborative development and version control. To ensure a systematic and controlled approach to code changes, we have decided to fork the central repository on GitHub and utilize the pull/merge request system, with Pam as the central repository request validator.
 
 Alternatives:
 
-Direct Commit to Central Repository: Allowing team members to directly commit changes to the central repository without a forking and pull/merge request process.
-Different Request Validator: Choosing a different team member or an automated system as the request validator.
-Pros and Cons:
+Direct Commit to Central Repository: Allowing team members to directly commit changes to the central repository without a forking and pull/merge request process. Different Request Validator: Choosing a different team member or an automated system as the request validator. Pros and Cons:
 
-Alternative	Pros	Cons
-Direct Commit to Central Repo	Simple and quick, less overhead.	Lack of control and validation of code changes.
-Different Request Validator	Distributed responsibility, multiple validators.	Potential inconsistency in validation process.
-Chosen Solution:
-We have chosen to fork the central repository on GitHub and utilize the pull/merge request system with Pam as the central repository request validator for the following reasons:
+Alternative Pros Cons Direct Commit to Central Repo Simple and quick, less overhead. Lack of control and validation of code changes. Different Request Validator Distributed responsibility, multiple validators. Potential inconsistency in validation process. Chosen Solution: We have chosen to fork the central repository on GitHub and utilize the pull/merge request system with Pam as the central repository request validator for the following reasons:
 
-It provides a structured and controlled approach to code changes, ensuring code quality and consistency.
-Forking allows team members to work on changes independently and submit them for review.
-Pam's experience and expertise make her an ideal candidate for request validation.
-Dependencies:
+It provides a structured and controlled approach to code changes, ensuring code quality and consistency. Forking allows team members to work on changes independently and submit them for review. Pam's experience and expertise make her an ideal candidate for request validation. Dependencies:
 
-Setting up individual forks of the central repository for each team member.
-Ensuring that team members are familiar with the pull/merge request workflow.
-Pam's availability and willingness to review and validate pull/merge requests.
-Rationale:
+Setting up individual forks of the central repository for each team member. Ensuring that team members are familiar with the pull/merge request workflow. Pam's availability and willingness to review and validate pull/merge requests. Rationale:
 
-The chosen approach ensures code quality, version control, and collaboration among team members.
-Forking allows parallel development without conflicting changes in the central repository.
-Pam's role as the request validator ensures consistency in code validation and maintains project standards.
-References:
+The chosen approach ensures code quality, version control, and collaboration among team members. Forking allows parallel development without conflicting changes in the central repository. Pam's role as the request validator ensures consistency in code validation and maintains project standards. References:
 
-GitHub Pull Requests Documentation: https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests
-Review and Approval:
+GitHub Pull Requests Documentation: https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests Review and Approval:
 
-Reviewed and approved by [Your Name], Lead Developer, on [Insert Date].
-Updates and Revisions:
+Reviewed and approved by [Your Name], Lead Developer, on [Insert Date]. Updates and Revisions:
 
-None at this time.
-Conclusion:
-The decision to fork the central repository and utilize the pull/merge request system with Pam as the request validator enhances our version control and collaboration process. It ensures code quality, consistency, and controlled access to the central repository, aligning with our project's goals of efficient and organized development.
+None at this time. Conclusion: The decision to fork the central repository and utilize the pull/merge request system with Pam as the request validator enhances our version control and collaboration process. It ensures code quality, consistency, and controlled access to the central repository, aligning with our project's goals of efficient and organized development.
 
-
-Design Decision One: Separate Booking Page for QA Cinema
+### Design Decision 2: Separate Booking Page for QA Cinema
 
 Introduction
 
@@ -79,35 +104,79 @@ Problem Statement
 
 The dynamic generation of booking forms on the same page as movie listings posed several challenges:
 
-Complex Data Management: Managing user selections, movie details, and booking data dynamically on a single page introduced complexity.
-Overloaded Routes: Incorporating booking functionality within the movie listing routes could lead to overloaded routes, making the code less maintainable.
-URL Structure: Maintaining a clear and user-friendly URL structure became challenging as the page needed to handle various states and data.
-Proposed Solution
+Complex Data Management: Managing user selections, movie details, and booking data dynamically on a single page introduced complexity. Overloaded Routes: Incorporating booking functionality within the movie listing routes could lead to overloaded routes, making the code less maintainable. URL Structure: Maintaining a clear and user-friendly URL structure became challenging as the page needed to handle various states and data. Proposed Solution
 
 To address the challenges mentioned above, we decided to create a separate booking page for movie screenings. Here's how this solution works:
 
-Dedicated Booking Page: We have a dedicated HTML page specifically for booking movie screenings. This page provides a clear and focused user interface for booking tickets.
-Simplified Routing: By separating the booking functionality into its own page, we maintain a clear and straightforward URL structure. Users can access the booking page directly from the movie listing page.
-Data Flow: The booking page receives data, such as the screening ID and movie details, through URL parameters. This data is used to pre-fill the booking form and provide context to users.
-Streamlined User Interface: The separate booking page provides a more intuitive and streamlined user interface, improving the overall user experience.
-Simplified Data Management: Data management becomes more straightforward, as each page has a dedicated purpose and scope. It also allows for better error handling and validation.
-Benefits
+Dedicated Booking Page: We have a dedicated HTML page specifically for booking movie screenings. This page provides a clear and focused user interface for booking tickets. Simplified Routing: By separating the booking functionality into its own page, we maintain a clear and straightforward URL structure. Users can access the booking page directly from the movie listing page. Data Flow: The booking page receives data, such as the screening ID and movie details, through URL parameters. This data is used to pre-fill the booking form and provide context to users. Streamlined User Interface: The separate booking page provides a more intuitive and streamlined user interface, improving the overall user experience. Simplified Data Management: Data management becomes more straightforward, as each page has a dedicated purpose and scope. It also allows for better error handling and validation. Benefits
 
 Creating a separate booking page for movie screenings offers several advantages:
 
-Improved User Experience: Users can access a dedicated booking page, making the ticket booking process more user-friendly and intuitive.
-Clear URL Structure: Maintaining a clear and concise URL structure enhances user understanding and navigation.
-Simplified Data Management: Data handling becomes more manageable, reducing the risk of errors and improving the reliability of the booking process.
-Enhanced Maintainability: Separating the booking functionality into its own page improves code organization and maintainability.
-Flexible Routing: This approach provides flexibility for future enhancements and modifications to the booking process.
-Conclusion
+Improved User Experience: Users can access a dedicated booking page, making the ticket booking process more user-friendly and intuitive. Clear URL Structure: Maintaining a clear and concise URL structure enhances user understanding and navigation. Simplified Data Management: Data handling becomes more manageable, reducing the risk of errors and improving the reliability of the booking process. Enhanced Maintainability: Separating the booking functionality into its own page improves code organization and maintainability. Flexible Routing: This approach provides flexibility for future enhancements and modifications to the booking process. Conclusion
 
-The decision to create a separate booking page for movie screenings aligns with our goals of simplifying the user experience, enhancing maintainability, and improving the clarity of our URL structure. This design decision contributes to a more efficient and user-friendly QA Cinema website, ensuring a smoother booking process for our users while simplifying data management and routing on the backend.
+The decision to create a separate booking page for movie screenings aligns with our goals of simplifying the user experience, enhancing maintainability, and improving the clarity of our URL 
+structure. This design decision contributes to a more efficient and user-friendly QA Cinema website, ensuring a smoother booking process for our users while simplifying data management and 
+routing on the backend.
 
+---
 
+## 6. Wireframe
 
-Risk Assessment for QA Cinemas Training Project
-Project Overview:
+Present and describe any wireframes, mockups, or design blueprints for your project:
+
+- **[Link to Wireframe]**
+- **Design Notes**: Any specific components or flow mechanisms to highlight?
+
+---
+
+## 7. ERD Diagram
+
+Present and discuss your Entity Relationship Diagram:
+
+- **[Link/Embed of ERD Diagram]**
+- **Key Entities and Relationships**: Discuss the main tables/entities and their connections.
+
+---
+## 8. CRUD Features
+
+Detail the CRUD (Create, Read, Update, Delete) features of your project:
+
+- **Create**: How do users add new data?
+- **Read**: How is data retrieved and presented?
+- **Update**: How can data be modified?
+- **Delete**: How can data be removed? Any safeguards?
+
+---
+
+## 9. Component Diagram
+
+- **VMS Containers**: Jenkins
+- **Description**: A brief explanation of the component diagram and its significance.
+- **Link/Embed**: Link to or embed the component diagram.
+
+---
+
+## 10. Pipeline Diagram
+
+- **Diagrams**: Webhooks, environments
+- **Description**: Describe the pipeline, its stages, and its role in the CI/CD process.
+- **Link/Embed**: Link to or embed the pipeline diagram.
+
+---
+
+## 11. Testing
+
+- **What You Did**: Describe the testing steps, scenarios, and any innovative methods applied.
+- **Testing Analysis**: Detail the problems you faced during testing and how you overcame them.
+- **Strategy**: Explain the testing approach, the types of tests employed (unit, integration, etc.), and any tools or frameworks used.
+- **Results**: Summarize key findings, link to detailed results or reports if available.
+
+---
+
+## 12. Risk Assessment
+
+- **Approach**: Describe the methodology used for risk assessment.
+- **Key Risks**: Highlight the main risks identified and the proposed mitigation strategies.
 
 The QA Cinemas training project involves the development of a full-stack web application for a cinema chain. This assessment identifies potential technical and learning-related risks that may impact the project's success.
 Risk Identification:
@@ -185,8 +254,36 @@ Create a supportive learning environment within the team by encouraging communic
 
 Regular integration and bug fixes to mitigate integration challenges.
 
-Conclusion:
+---
+
+## 13. Code Refactoring
+
+- **Screenshots**: Consider embedding or linking to before-and-after screenshots to showcase changes.
+- **Overview**: Explain the need and benefits of the refactoring, including aspects like efficiency improvements or readability enhancements.
+- **Key Changes**: Detail major changes made, with before-and-after code snippets where useful.
+
+
+
+---
+## 14. Conclusion
 
 The QA Cinemas training project is an opportunity to enhance technical skills and gain practical experience. By proactively addressing potential risks, focusing on collaboration and learning and ensuring a clear understanding of Devops principles, the team can maximize the benefits of this training project.
 
+---
+## 15. Acknowledgements
+
+Thank any individuals, organizations, or resources that were instrumental in the project:
+
+- Person/Resource name: Brief description or reason for acknowledgement.
+
+---
+
+## 16. References
+
+List all sources, tools, or libraries you referred to during the project:
+
+1. [Name of Source](URL) - Brief description of the source.
+
+
+[Footer or any additional notes or links you want to add]
 
