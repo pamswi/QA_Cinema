@@ -1,7 +1,6 @@
 version: "3.11"
 services:
   service-1:
-    container_name: cinema-app
     image: pamswi/cinema-app:v1
     environment:
       DATABASE_URI: ${DATABASE_URI}
