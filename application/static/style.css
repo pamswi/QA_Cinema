@@ -342,22 +342,46 @@ form input {
 .forum-heading {
     color: white;
     padding-left: 40%;
+    padding-bottom: 1rem;
     margin-bottom: -2rem;
 }
 
-table tr td h2 {
+.post {
     color: white;
-    padding-top: 3rem;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 1rem;
+    margin-bottom: -2rem;
 }
 
-td {
+.comment {
     color: white;
-    padding-top: 2rem;
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-bottom: 1rem;
+    margin-bottom: -1rem;
 }
 
-.comment input {
+.username {
+    padding-right: 2rem;
+}
+
+.add_comment {
+    margin-top: -5%;
+    margin-left: -15%;
+}
+
+.comment_box input {
     width: 400px;
-} 
+    padding-top: -10%;
+    margin-top: -20%;
+}
+
+.comment_box input::placeholder {
+    color: white;
+    padding-left: 1rem;
+}
+
 
 /* PAYMENT PAGE */
 
