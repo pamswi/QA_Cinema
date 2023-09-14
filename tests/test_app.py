@@ -10,9 +10,7 @@ from werkzeug.security import generate_password_hash
 class TestBase(TestCase):
     def create_app(self):
         app.config.update(
-            #SQLALCHEMY_DATABASE_URI = "sqlite:///testdata.db",
             SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URI"),
-            #export DATABASE_URI=mysql+pymysql://root:pass@localhost/test_qa_cinema
             DEBUG=True,
             WTF_CSRF_ENABLED=False
         )
@@ -73,7 +71,8 @@ class TestBase(TestCase):
         session.clear()
         db.session.remove()
         db.drop_all()
-   
+
+
 class TestStaticPages(TestBase):
     def test_home_get(self):
         response = self.client.get(url_for("home"))
@@ -140,6 +139,7 @@ class TestStaticPages(TestBase):
         self.assertIn(b"Test_Movie(new release)", response.data)
         self.assertNotIn(b"Film123", response.data)
 
+
 class TestAPI(TestBase):
     def test_api_view_screenings_get(self):
         response = self.client.get(
@@ -148,8 +148,6 @@ class TestAPI(TestBase):
             )
         self.assertEqual(response.status_code, 200)
         self.assertIn(b"12:00:00", response.data)
-        #self.assertIn(b"Test_Movie(classic)", response.data)
-        #check with Alex re 'title' in screening data
 
     def test_api_view_screenings_no_screenings(self):
         response = self.client.get(
