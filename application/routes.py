@@ -145,12 +145,8 @@ def payment():
 
         total_tickets_booked = sum(quantity for _, quantity in tickets)
         screening.current_capacity -= total_tickets_booked
-        db.session.commit()
-    
-
-    
-
-
+        db.session.commit() 
+        flash("Payment has been made successfully! Your booking is now complete")
     return render_template(
             'payment.html', 
             form=form, 
@@ -193,7 +189,7 @@ def signup():
                 new_user = User.add_user(username, email, password_hash)
                 flash("sign up successful")
 
-                return redirect("/login")
+                return redirect(url_for('login'))
             else:
                 flash("password does not meet security requirements")
 
@@ -223,7 +219,7 @@ def login():
                 flash("successfully logged in")
             else:
                 flash("incorrect username and/or password")
-                return redirect ("/login")
+                return redirect(url_for('login'))
         return redirect ("/")
     
     return render_template ("login.html")
@@ -285,10 +281,6 @@ def forum():
     return render_template("forum.html", all_posts=all_posts, postform=postform, all_comments=all_comments)
 
 
-
-
-
-
 @app.route('/booking', methods=['GET', 'POST'])
 def book_movie():
     form = BookingForm()  
@@ -306,11 +298,11 @@ def book_movie():
     #/ALEX>
 
     if form.validate_on_submit():
-        ticket_prices = {'Adult': 15.0,'Kids': 7.5,'Concession': 10.0}        
+        ticket_prices = {'Adult': 15.0,'Child': 7.5,'Concession': 10.0}        
         total_price = 0
         tickets = [
             ("Adult", form.Adult.data),
-            ("Kids", form.Child.data),
+            ("Child", form.Child.data),
             ("Concession", form.Concession.data)
         ]
         for ticket_type, quantity in tickets:
@@ -333,6 +325,7 @@ def book_movie():
             )
         session['tickets'] = tickets
         session['total_price'] = total_price
+        flash("Booking complete!")
         return redirect(url_for('payment', screening_id=screening_id))
    
     return render_template(

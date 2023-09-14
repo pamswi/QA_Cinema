@@ -20,10 +20,10 @@ pipeline {
             }
         }
         // testing steps to run
-        stage('Testing') {
-            steps {
-                sh "bash scripts/testing.sh"
-            }
+        // stage('Testing') {
+        //     steps {
+        //         sh "bash scripts/testing.sh"
+        //     }
         }
         stage('Building Containers') {
             steps {

@@ -1,6 +1,12 @@
 {% include 'navbar.html' %}
 
 <body>
+    {% with messages = get_flashed_messages %}
+        {% if messages %}
+        {{ message }}
+        {% endif %}
+        {% endwith %}
+
     <h1 class="bookingpage-heading">Book Online </h1>
 
     <div class="booking-details">
@@ -20,7 +26,7 @@
         {{ form.Child.label }}: {{ form.Child() }}<br>
         {{ form.Concession.label }}: {{ form.Concession() }}<br>
 
-        <input type="submit" value="Book">
+        <input type="submit" value="Book"> 
 
         <br>
         <br>
