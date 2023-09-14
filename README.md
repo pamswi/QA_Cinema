@@ -125,8 +125,22 @@ routing on the backend.
 
 Present and describe any wireframes, mockups, or design blueprints for your project:
 
-- **[Link to Wireframe]**
-- **Design Notes**: Any specific components or flow mechanisms to highlight?
+Link to prototype of user interface(UI):
+
+[Mock Up                                               Home    About Us    What.docx](https://github.com/kesgermany/QA_Cinema/files/12610429/Mock.Up.Home.About.Us.What.docx)
+
+Header
+- Logo
+- Navigation Menu
+
+Hero Section 
+- New Releases Gallery
+
+Features and Services
+- Cards, Gallery
+
+Footer
+- Footer links 
 
 ---
 
