@@ -1,14 +1,12 @@
 {% include 'navbar.html' %}
 
 <body>
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            <ul>
-                {% for category, message in messages %}
-                <li class="{{ category }}">{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <p class="flash" style="color:#ffffff">{{ message }}</p>
+    {% endfor %}
+    {% endif %}
     {% endwith %}
     <h1 class="forum-heading">QA Cinemas Forum</h1>
     <br>
@@ -17,7 +15,7 @@
         <div class="post">
             <input type="hidden" name="post_id" value="{{ post.id }}">
             <!-- Post Content -->
-            <h2>{{ post.topic }}</h2>
+            <h2 class="post-topic">{{ post.topic }}</h2>
             <p><b class="username">{{ post.username }}</b>{{ post.timestamp }}</p>
             <p>{{ post.movie.title }}</p>
             <p>{{ post.content }}</p>

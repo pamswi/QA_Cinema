@@ -385,6 +385,28 @@ form input {
     padding-left: 1rem;
 }
 
+.post-topic {
+    padding-top: 3rem;
+}
+
+form.newpost-form {
+    padding-left: 10%;
+    padding-bottom: 4rem;
+}
+
+form.newpost-form h2 {
+    padding-top: 2rem;
+}
+
+form.newpost-form input#content, form.newpost-form input#topic, #movie_id  {
+    width: 280px;
+}
+
+#movie_id {
+    color: white;
+    background: orangered;
+}
+
 
 /* PAYMENT PAGE */
 
@@ -409,6 +431,19 @@ form input {
 
 .payment-page-img img {
     margin-left: 29%;
+}
+
+.booking-info {
+    padding-left: 35%;
+    color: white;
+    margin-bottom: -1rem;
+}
+
+.payment-amount {
+    color: white;
+    padding-left: 30%;
+    padding-top: 3rem;
+    margin-bottom: -0.5rem;
 }
 
 
@@ -669,6 +704,16 @@ button.searchpage-button {
     color: orangered;
 }
 
+.flash {
+    margin-bottom: -1rem;
+}
+
+button.screening-button {
+    color: white;
+}
+
+
+
 
 
 
@@ -741,7 +786,9 @@ button.searchpage-button {
 
     #homeCarousel {
         margin-top: -1rem;
+        
     }
+
 
 
     .tag-line h2 {
@@ -815,6 +862,8 @@ button.searchpage-button {
         padding-left: 2%;
     }
 
+    
+
     .comment input {
         width: 300px;
     }
@@ -823,7 +872,7 @@ button.searchpage-button {
         margin-left: 4%;
     }
 
-    .newpost-form {
+    form.newpost-form {
         padding: 3rem 2rem;
     }
 

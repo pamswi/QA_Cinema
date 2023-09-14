@@ -14,22 +14,14 @@
         <p>Seats available: {{ current_capacity }}</p>
     </div>
 
-    
-    <h2 class="movie_pay_detail"> {{ movie_title }}</h2>
-    <img src="{{ movie_poster }}" alt="Movie Poster for {{ movie_title }}">
-    <p>Date: {{ selected_date }}</p>
-    <p>Time: {{ time }}</p>
-    <p>Seats available: {{ current_capacity }}</p>
-    
-
-    <h4>Booking Details:</h4>
-    <ul>
+    <h4 class="paymentpage-movietitle">Booking Details:</h4>
+    <ul class="booking-info">
     {% for ticket_type, quantity in tickets %}
         <li>{{ ticket_type }}: {{ quantity }}</li>
     {% endfor %}
     </ul>
-    <p>Total Price exc tax: £{{ "%.2f"|format(total_price * 0.8) }}</p>
-    <p>Total Price with tax included: £{{ "%.2f"|format(total_price) }}</p>
+    <p class="payment-amount">Total Price exc tax: £{{ "%.2f"|format(total_price * 0.8) }}</p>
+    <p class="payment-amount">Total Price with tax included: £{{ "%.2f"|format(total_price) }}</p>
 
     <form method="POST">
         {{ form.hidden_tag() }}
@@ -68,6 +60,8 @@
         </div>
     </form>
     
+    <p class="flash">{{ message }}</p>
+
     <p>{{ message }}</p>
     {% with messages = get_flashed_messages() %}
     {% if messages %}
