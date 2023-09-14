@@ -3,6 +3,19 @@
 <body>
     <h1 class="payment-heading">Payment Form</h1>
 
+    <p class="flash">{{ message }}</p>
+
+    <p>{{ message }}</p>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="flash-messages">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
 
     <h2 class="paymentpage-movietitle">{{ movie_title }}</h2>
     <div class="payment-page-img">
@@ -60,17 +73,6 @@
         </div>
     </form>
     
-    <p class="flash">{{ message }}</p>
-
-    <p>{{ message }}</p>
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-        <div class="flash-messages">
-            {% for message in messages %}
-                <p>{{ message }}</p>
-            {% endfor %}
-        </div>
-    {% endif %}
-{% endwith %}
+    
 </body>
 {% include 'footer.html' %}
