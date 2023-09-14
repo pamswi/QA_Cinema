@@ -17,7 +17,7 @@
         <div class="post">
             <input type="hidden" name="post_id" value="{{ post.id }}">
             <!-- Post Content -->
-            <h2>{{ post.topic }}</h2>
+            <h2 class="post-topic">{{ post.topic }}</h2>
             <p><b class="username">{{ post.username }}</b>{{ post.timestamp }}</p>
             <p>{{ post.movie.title }}</p>
             <p>{{ post.content }}</p>

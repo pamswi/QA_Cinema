@@ -385,6 +385,28 @@ form input {
     padding-left: 1rem;
 }
 
+.post-topic {
+    padding-top: 3rem;
+}
+
+form.newpost-form {
+    padding-left: 10%;
+    padding-bottom: 4rem;
+}
+
+form.newpost-form h2 {
+    padding-top: 2rem;
+}
+
+form.newpost-form input#content, form.newpost-form input#topic, #movie_id  {
+    width: 280px;
+}
+
+#movie_id {
+    color: white;
+    background: orangered;
+}
+
 
 /* PAYMENT PAGE */
 
@@ -698,6 +720,8 @@ button.screening-button {
 
 
 
+
+
 /* MEDIA QUERIES - TABLET*/
 
 @media only screen and (max-width: 992px) {
@@ -762,7 +786,9 @@ button.screening-button {
 
     #homeCarousel {
         margin-top: -1rem;
+        
     }
+
 
 
     .tag-line h2 {
@@ -846,7 +872,7 @@ button.screening-button {
         margin-left: 4%;
     }
 
-    .newpost-form {
+    form.newpost-form {
         padding: 3rem 2rem;
     }
 
