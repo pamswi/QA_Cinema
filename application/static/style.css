@@ -387,6 +387,19 @@ td {
     margin-left: 29%;
 }
 
+.booking-info {
+    padding-left: 35%;
+    color: white;
+    margin-bottom: -1rem;
+}
+
+.payment-amount {
+    color: white;
+    padding-left: 30%;
+    padding-top: 3rem;
+    margin-bottom: -0.5rem;
+}
+
 
 /* styles.css */
 /* Style the movie list container */
@@ -645,6 +658,14 @@ button.searchpage-button {
     color: orangered;
 }
 
+.flash {
+    margin-bottom: -1rem;
+}
+
+button.screening-button {
+    color: white;
+}
+
 
 
 
@@ -790,6 +811,8 @@ button.searchpage-button {
     form {
         padding-left: 2%;
     }
+
+    
 
     .comment input {
         width: 300px;
