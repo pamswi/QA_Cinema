@@ -10,7 +10,7 @@
     <h1 class="bookingpage-heading">Book Online </h1>
 
     <div class="booking-details">
-        <img src="{{ movie_poster }}" alt="{{ movie_title }}" class="movie-poster">
+        <img src="{{ url_for('static',filename=movie_poster) }}" alt="{{ movie_title }}" class="movie-poster">
         <h1 class="film-title">{{ movie_title}}</h1>
         <div class="screening-details">
             <p>Screening ID: {{ screening_id }}</p>

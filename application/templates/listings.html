@@ -6,7 +6,9 @@
       <div class="movie-items">
             {% for film in films %}
               <div class="movie-item">
+                <a href = "{{ url_for('view_movie', movie_id=film.id) }}">
                 <img src="{{ url_for('static', filename=film.poster) }}" alt="{{ film.title }}" class="movie-poster">
+                </a>
                 <h3><span class="movie-title">{{ film.title }}</span></h3>
               </div>
             {% endfor %}
