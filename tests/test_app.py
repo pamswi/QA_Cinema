@@ -9,15 +9,14 @@ from application import routes
 
 class TestBase(TestCase):
     def create_app(self):
-        app=Flask(__name__)
-        app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///cinema.db"
+       
         app.config.update(
+            SQLALCHEMY_DATABASE_URI = "sqlite:///cinema.db",
             # SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URI"),
             #export DATABASE_URI=mysql+pymysql://root:pass@localhost/test_qa_cinema
             DEBUG=True,
             WTF_CSRF_ENABLED=False
         )
-        db.init_app(app)
         return app
     
     
