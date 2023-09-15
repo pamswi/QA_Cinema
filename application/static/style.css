@@ -446,6 +446,12 @@ form.newpost-form input#content, form.newpost-form input#topic, #movie_id  {
     margin-bottom: -0.5rem;
 }
 
+.flash-messages p {
+    color: white;
+    margin-bottom: -1rem;
+    padding-bottom: 1rem;
+}
+
 
 /* styles.css */
 /* Style the movie list container */
