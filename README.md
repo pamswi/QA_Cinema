@@ -16,7 +16,7 @@ The project goal is to create a cinema website that allows users to buy tickets 
 11. [Testing](#11-testing)
 12. [Risk Assessment](#12-risk-assessment)
 13. [Code Refactoring](#13-code-refactoring)
-14. [Installation Deployment and testing](#14-installation-Deployment-testing)
+14. [Installation Deployment and testing](#14-installation-deployment-and-testing)
 15. [Conclusion](#15-conclusion)
 16. [Acknowledgements](#16-acknowledgements)
 17. [References](#17-references)
