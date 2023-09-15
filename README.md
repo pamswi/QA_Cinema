@@ -16,13 +16,14 @@ The project goal is to create a cinema website that allows users to buy tickets 
 11. [Testing](#11-testing)
 12. [Risk Assessment](#12-risk-assessment)
 13. [Code Refactoring](#13-code-refactoring)
-14. [Conclusion](#14-conclusion)
-15. [Acknowledgements](#15-acknowledgements)
-16. [References](#16-references)
+14. [Installation Deployment and testing](#14-installation-Deployment-testing)
+15. [Conclusion](#15-conclusion)
+16. [Acknowledgements](#16-acknowledgements)
+17. [References](#17-references)
 
 
 
-
+ 
 ## 1. Introduction
 
 Introduce the project's purpose, goals, and high-level overview.
@@ -311,12 +312,17 @@ Regular integration and bug fixes to mitigate integration challenges.
 
 
 ---
-## 14. Conclusion
+## 14. Installation, Deployment and testing
 
 The QA Cinemas training project is an opportunity to enhance technical skills and gain practical experience. By proactively addressing potential risks, focusing on collaboration and learning and ensuring a clear understanding of Devops principles, the team can maximize the benefits of this training project.
 
 ---
-## 15. Acknowledgements
+## 15. Conclusion
+
+The QA Cinemas training project is an opportunity to enhance technical skills and gain practical experience. By proactively addressing potential risks, focusing on collaboration and learning and ensuring a clear understanding of Devops principles, the team can maximize the benefits of this training project.
+
+---
+## 16. Acknowledgements
 
 Thank any individuals, organizations, or resources that were instrumental in the project:
 
@@ -326,7 +332,7 @@ Thank any individuals, organizations, or resources that were instrumental in the
 
 ---
 
-## 16. References
+## 17. References
 
 List all sources, tools, or libraries you referred to during the project:
 
