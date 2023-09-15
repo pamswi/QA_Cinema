@@ -51,32 +51,43 @@ It should then be accessible on port 5000 of localhost
 
         QA-Cinema/
         │
-        ├── application/ # Application source code and main files
-        │ ├── static/ # Static files (CSS, JavaScript, images)
-        │ │ ├── script.js # JavaScript file for front-end functionality
-        │ │ ├── styles.css # CSS styling for the application
-        │ │ └── images/ # A subdirectory for storing image assets
-        │ ├── templates/ # HTML templates (if applicable)
-        │ ├── routes.py # Routing and URL handling for the application
-        │ └── init.py # Initialize the directory as a Python package
-        ├── scripts/ # Utility scripts and Docker scripts
-        │ ├── containers.sh # Script for managing containers in Jenkins Pipeline
-        │ ├── testing.sh # Script for automated testing in Jenkins Pipeline
-        ├── tests/ # Test scripts
-        │ ├── test_app.py # Test cases for specific features
-        ├── additional-resources/ # Additional project resources
-        ├── README.md # Project documentation
-        ├── app.py # Main application entry point
-        ├── create.py # Script for initialization and database setup
-        ├── models.py # Data models and database schema
-        ├── nginx.conf # Nginx configuration file
-        ├── Jenkinsfile # Jenkins pipeline file for CI/CD
-        ├── docker-compose.yaml # Configuration file for Docker to build multi-container app
-        ├── Dockerfile # Used to build the Docker image for the Flask app
-        └── requirements.txt # List of Python dependencies
+        ├── application/ 
+        │ ├── static/ 
+        │ │ ├── script.js 
+        │ │ ├── styles.css
+        │ │ └── images/ 
+        │ ├── templates/
+        │ ├── routes.py 
+        │ └── init.py 
+        ├── scripts/ 
+        │ ├── containers.sh
+        │ ├── testing.sh 
+        ├── tests/ 
+        │ ├── test_app.py 
+        ├── additional-resources/ 
+        ├── README.md 
+        ├── app.py
+        ├── create.py 
+        ├── models.py 
+        ├── nginx.conf
+        ├── Jenkinsfile
+        ├── docker-compose.yaml 
+        ├── Dockerfile 
+        └── requirements.txt 
 
 - **Main Components**: Explain the primary components/modules of your application and their roles.
-- **Flow**: If applicable, describe the flow or sequence in which different parts of your project interact.
+**Key modules**:
+ - `app.py`: This is the main entry point of the application. It sets up the web server, handles routing, and manages user requests.
+  - `models.py`: Defines data models and the database schema for storing information related to cinema, movies, users, and bookings.
+  - `routes.py`: Manages URL routing and handles HTTP requests, including rendering HTML templates and processing user interactions.
+  - `containers.sh`: A script used in Jenkins Pipeline for managing Docker containers, such as building, starting, stopping, or removing containers.
+  - `testing.sh`: A script used in Jenkins Pipeline for automating testing procedures, which may include running unit tests, integration tests, or other testing tasks.
+   - `test_app.py`: This test script focuses on testing specific features of the application, ensuring that they function as intended and identifying any issues or regressions.
+  - `docker-compose.yaml`: Configuration file for Docker Compose, defining the multi-container application setup.
+  - `Dockerfile`: Used to build the Docker image for the Flask application.
+  - `nginx.conf`: Nginx configuration file, if the application is deployed behind an Nginx web server.
+  - `requirements.txt`: A list of Python dependencies required for the application to run successfully.
+  - `Jenkinsfile` is a Jenkins pipeline file used for setting up continuous integration and continuous delivery (CI/CD) processes for the "QA-Cinema" application.
 
 ---
 
