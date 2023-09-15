@@ -111,7 +111,7 @@ class Booking(db.Model):
     user_id = db.Column('user_id', db.Integer, db.ForeignKey('user.id'))
     screening_id = db.Column('screening_id', db.Integer, db.ForeignKey('screening.id'))
     booking_date = db.Column(db.Date, nullable=False, default=datetime.now)
-    total_price = db.Column(db.Integer)
+    total_price = db.Column(db.Float)
 
     user = db.relationship('User', backref='booking')
     screening = db.relationship('Screening', backref='booking')
@@ -140,7 +140,7 @@ class BookingDetail(db.Model):
     booking_id = db.Column('booking_id', db.Integer, db.ForeignKey('booking.id'))
     ticket_type = db.Column(db.String(255))
     quantity = db.Column(db.Integer)
-    price = db.Column(db.Integer)
+    price = db.Column(db.Float)
 
     booking = db.relationship('Booking', backref='details')
 

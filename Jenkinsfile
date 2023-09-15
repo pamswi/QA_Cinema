@@ -22,7 +22,7 @@ pipeline {
         // testing steps to run
         // stage('Testing') {
         //     steps {
-        //         // Add testing steps here
+        //         sh "bash scripts/testing.sh"
         //     }
         // }
         stage('Building Containers') {

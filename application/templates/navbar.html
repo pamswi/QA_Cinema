@@ -24,17 +24,24 @@
                 <li><a href="{{ url_for('listings') }}">What's On</a></li>
                 <li><a href="{{ url_for('new_releases') }}">New Releases</a></li>  
                 <li><a href="{{ url_for('forum') }}">Forum</a></li>
+                
+                {% if user_is_authenticated %}
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
                 <li><a href="{{ url_for('login') }}">Login</a></li>
                 <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
+                {% endif %}
 
                 <!--SEARCH BAR-->
                 <li>
-                    <div class="box">
-                        <input type="text" placeholder="Search...">
-                        <a href="#">
-                            <i class="fas fa-search"></i>
-                        </a>
-                    </div>
+                    
+                        <form class="box" method="post" action="/searchresults">
+                        <input type="text" placeholder="Search..." name="searchinput">
+                        <button type="submit" class="searchpage-button" name="searchbtn">
+                            <a><i class="fas fa-search"></i></a>
+                        </button>
+                        </form>
+                    
                 </li>
                     
             </ul>

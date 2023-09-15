@@ -1,10 +1,16 @@
 {% include 'navbar.html' %}
 
 <body>
+    {% with messages = get_flashed_messages %}
+        {% if messages %}
+        {{ message }}
+        {% endif %}
+        {% endwith %}
+
     <h1 class="bookingpage-heading">Book Online </h1>
 
     <div class="booking-details">
-        <img src="{{ movie_poster }}" alt="{{ movie_title }}" class="movie-poster">
+        <img src="{{ url_for('static',filename=movie_poster) }}" alt="{{ movie_title }}" class="movie-poster">
         <h1 class="film-title">{{ movie_title}}</h1>
         <div class="screening-details">
             <p>Screening ID: {{ screening_id }}</p>
@@ -20,7 +26,7 @@
         {{ form.Child.label }}: {{ form.Child() }}<br>
         {{ form.Concession.label }}: {{ form.Concession() }}<br>
 
-        <input type="submit" value="Book">
+        <input type="submit" value="Book"> 
 
         <br>
         <br>
