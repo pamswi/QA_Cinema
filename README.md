@@ -135,9 +135,18 @@ Color can be used to guide users through a website. Buttons, links, and call-to-
 
 Present and describe any wireframes, mockups, or design blueprints for your project:
 
-Link to prototype of user interface(UI):
 
-[Mock Up                                               Home    About Us    What.docx](https://github.com/kesgermany/QA_Cinema/files/12610429/Mock.Up.Home.About.Us.What.docx)
+![IMG_0116](https://github.com/kesgermany/QA_Cinema/assets/122547808/45eba13b-b138-47ba-b35a-9e7a22b24320)
+
+![IMG_0117](https://github.com/kesgermany/QA_Cinema/assets/122547808/45ea1f2f-078e-4604-9888-44e0e9f039d9)
+
+
+![IMG_0120](https://github.com/kesgermany/QA_Cinema/assets/122547808/342f1bf9-55b2-496e-a7cd-bac0a88f53ae)
+
+
+![IMG_0121](https://github.com/kesgermany/QA_Cinema/assets/122547808/42f4f908-4422-4b68-b4e0-b4f3458c695c)
+
+SITE LAYOUT 
 
 Header
 - Logo
