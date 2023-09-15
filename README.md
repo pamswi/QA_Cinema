@@ -31,10 +31,50 @@ Introduce the project's purpose, goals, and high-level overview.
 The project goal is to create a cinema website that allows users to buy tickets for movies they wish to see.
 
 ---
+## Installation steps
+1. Clone the repo
+	`git clone https://github.com/pamswi/QA_Cinema`
+2. Create a virtual Environment
+	`python -m venv venv`
+	`venv\Scripts\activate`
+3. Install the dependencies
+	`pip install -r requirements.txt`
+4. Run create.py to feed the database
+	`python3 create.py`
+5. Finally run the app
+	`python3 app.py`
+It should then be accessible on port 5000 of localhost
 
 ## 2. Project Structure
 
 - **Directory Structure**: Describe the organizational structure of your directories and files.
+
+        QA-Cinema/
+        │
+        ├── application/ # Application source code and main files
+        │ ├── static/ # Static files (CSS, JavaScript, images)
+        │ │ ├── script.js # JavaScript file for front-end functionality
+        │ │ ├── styles.css # CSS styling for the application
+        │ │ └── images/ # A subdirectory for storing image assets
+        │ ├── templates/ # HTML templates (if applicable)
+        │ ├── routes.py # Routing and URL handling for the application
+        │ └── init.py # Initialize the directory as a Python package
+        ├── scripts/ # Utility scripts and Docker scripts
+        │ ├── containers.sh # Script for managing containers in Jenkins Pipeline
+        │ ├── testing.sh # Script for automated testing in Jenkins Pipeline
+        ├── tests/ # Test scripts
+        │ ├── test_app.py # Test cases for specific features
+        ├── additional-resources/ # Additional project resources
+        ├── README.md # Project documentation
+        ├── app.py # Main application entry point
+        ├── create.py # Script for initialization and database setup
+        ├── models.py # Data models and database schema
+        ├── nginx.conf # Nginx configuration file
+        ├── Jenkinsfile # Jenkins pipeline file for CI/CD
+        ├── docker-compose.yaml # Configuration file for Docker to build multi-container app
+        ├── Dockerfile # Used to build the Docker image for the Flask app
+        └── requirements.txt # List of Python dependencies
+
 - **Main Components**: Explain the primary components/modules of your application and their roles.
 - **Flow**: If applicable, describe the flow or sequence in which different parts of your project interact.
 
