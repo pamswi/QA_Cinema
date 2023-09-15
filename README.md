@@ -296,10 +296,86 @@ From the screening database to show all the screening ID and things such as curr
 
 ## 11. Testing
 
-- **What You Did**: Describe the testing steps, scenarios, and any innovative methods applied.
-- **Testing Analysis**: Detail the problems you faced during testing and how you overcame them.
-- **Strategy**: Explain the testing approach, the types of tests employed (unit, integration, etc.), and any tools or frameworks used.
-- **Results**: Summarize key findings, link to detailed results or reports if available.
+Unit testing was carried out using the Pytest module as a general testing framework, with Flask-Testing used to allow for testing of the web related functionalities.
+
+- TestBase class:
+
+	The TestBase class inherits from flask_testing’s TestCase class and is used as a base class for the other test classes. It provides functions to configure a test Flask app, sets up and populates a test database, as well as providing a function to clear the session and remove data from the database after each test case.
+
+- TestBasicPages class:
+
+	This class contains tests for the static and more simple dynamic pages of the application, such as the homepage, cinema services, listings, classics pages etc. Each of the functions in this class has an assertion to check that a successful response has been made (status code 200). Another assertion is then made to check that relevant data specific to each page is present in the response data.
+
+- TestSearch:
+  
+	This class contains tests for the search function, with assertions to check that a successful response has been made (status code 200), as well as assertions to check that the correct data is present in the response data.
+
+- TestAPI:
+  
+	This class provides tests for the view screenings api, with assertions to check that a successful response has been made (status code 200), as well as assertions to check that relevant data relating to each move is included in the response.data. There is also a function with assertions to check that an apporoptriate error message is included in the response data.
+
+- TestPayment:
+  
+	This class provides tests for the payment page with a function to check the GET response of the page and ensure the correct data is included in the response data. The second function and it’s assertions check that payment information is collected and correctly added to the User database.
+
+- TestSignup:
+
+	This class has a number of test functions to check the functionality of the Signup page, including functions and assertions to check that Signup details are correctly submitted to the User database, check that the username is unique, ensure that the passwords match as well as to test the password securtiy features.
+
+- TestLogin:
+
+	This class has functions to check the GET response of the page as well as functions which test whether the user as successfully logged into the session, check the response if there is no account associated with the username, as well as a function to check the response if an incorrect password is entered.
+
+- TestLogout:
+
+	This class has functions to check that a user is successfully logged out and assert that the user is no longer in the session as well as checking the user is correctly redirected to the Homepage.
+
+- TestForum:
+
+	This class’s GET function checks that the test discussions are correctly brought in from the Discussions database, as well as functions to check that new posts and comments are correctly added to the Forum page. Included is also a function to ensure the inappropriate language filter is working correctly.
+
+- TestBooking:
+
+	This class’s GET function checks that the correct movie details are included in the response data, as well as a function with assertions to check that the correct details have been added to the Booking database and BookingDetail databases respectively.
+
+- Initalising testing:
+
+	Ensure the DATABASE_URI is assigned to your MySQL testing database:
+
+		export DATABASE_URI=mysql+pymysql://[username]:[password]@[database name]
+
+	Ensure you’re bash shell is in the QA_Cinema folder and run one of the following commands, depending on preference:
+
+		py -m pytest --cov=application --cov-report term-missing
+
+		py -m pytest --cov=application --cov-report term-html
+
+- Results and analysis:
+
+	![Picture5](https://github.com/Tom-Freed/QA_Cinema/assets/91968539/1c075a5a-c310-4aba-a685-ce30249dea51)
+
+ 
+	We achieved a 99% coverage report on our main application file (routes.py), the remaining 1% is due to unused code in the routes.py file which could be removed in a future code refactoring (see below).
+
+	![Picture1](https://github.com/Tom-Freed/QA_Cinema/assets/91968539/53e4d681-b23a-44bb-b8d9-bf13c317347a)
+
+
+	The unit tests carried out are relatively robust, however further assertions for some test to ensure that all the relevant data is being provided on each page or all of the inputted data has correctly been added to the relevant database would be beneficial.
+
+	When carrying out testing the initial testing data had to be amended or added to on occasion to ensure functionality was being properly checked. The main example of this was for testing the search function, where in the initial data the movie titles were too similar and formatted in an unrealistic manner for correct testing. Additionally, a third Movie entry was later added to test that the search function was only displaying films relevant to the search entry:
+
+	![Picture2](https://github.com/Tom-Freed/QA_Cinema/assets/91968539/2848fcc2-f173-4188-8358-76e59356b8e7)
+
+	Initial test data
+
+	![Picture3](https://github.com/Tom-Freed/QA_Cinema/assets/91968539/74497409-456c-425c-b8fc-d7c856859e68)
+
+	Amended titles
+
+	![Picture4](https://github.com/Tom-Freed/QA_Cinema/assets/91968539/fbc1b6ff-0bf9-430e-88e0-5eea190ae74e)
+
+	Third Movie database entry added
+
 
 ---
 
