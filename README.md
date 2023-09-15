@@ -380,9 +380,16 @@ Regular integration and bug fixes to mitigate integration challenges.
 
 ## 13. Code Refactoring
 
-- **Screenshots**: Consider embedding or linking to before-and-after screenshots to showcase changes.
-- **Overview**: Explain the need and benefits of the refactoring, including aspects like efficiency improvements or readability enhancements.
-- **Key Changes**: Detail major changes made, with before-and-after code snippets where useful.
+### example 1
+Search bar code refactored once the front-end has been developed:
+![18](https://github.com/pamswi/QA_Cinema/assets/117832758/d61bcf73-2557-4f77-af63-1e2ec120c93e)
+![55](https://github.com/pamswi/QA_Cinema/assets/117832758/58feab30-7920-464c-92d5-f90ec58c9eb3)
+
+### example 2
+Signup page code refactored to reflect password validation:
+![35](https://github.com/pamswi/QA_Cinema/assets/117832758/218ab25e-1f50-4371-93e1-ac5ee6ffa562)
+![36](https://github.com/pamswi/QA_Cinema/assets/117832758/89ac825c-b170-4c9e-9885-0ab3d1e69ac9)
+
 
 ## 14. Deployment
 
