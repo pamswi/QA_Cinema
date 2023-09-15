@@ -16,14 +16,13 @@ The project goal is to create a cinema website that allows users to buy tickets 
 11. [Testing](#11-testing)
 12. [Risk Assessment](#12-risk-assessment)
 13. [Code Refactoring](#13-code-refactoring)
-14. [Installation Deployment and testing](#14-installation-deployment-and-testing)
-15. [Conclusion](#15-conclusion)
-16. [Acknowledgements](#16-acknowledgements)
-17. [References](#17-references)
+14. [Conclusion](#14-conclusion)
+15. [Acknowledgements](#15-acknowledgements)
+16. [References](#16-references)
 
 
 
- 
+
 ## 1. Introduction
 
 Introduce the project's purpose, goals, and high-level overview.
@@ -44,10 +43,10 @@ The project goal is to create a cinema website that allows users to buy tickets 
 
 Detail all the technologies you used in this project:
 
-- **Languages**: (Python 3.11.4, JavaScript, HTML 5, CSS)
+- **Languages**: (Python, JavaScript, HTML, CSS)
 - **Frameworks**: (Flask)
-- **Databases**: (SQlite, MySQL Ver 8.0.33)
-- **Deployment**: (Docker)
+- **Databases**: (SQlite, MySQL)
+- **Deployment**: ( Docker)
 - **Other Tools**: (Github, Jenkins)
 
 ---
@@ -189,17 +188,9 @@ The primary relationships include:
 Detail the CRUD (Create, Read, Update, Delete) features of your project:
 
 - **Create**: How do users add new data?
-using classmethods like shown here when this function would be called user data such as name email and password would be added to the database ![image](https://github.com/akber360/QA_Cinema/assets/139133081/6a5e5bd1-0507-4b3a-807e-65a56bde0b2d)
-Another example of users adding data is when the user is making a moive booking the book-movie method gets called and user choices are craeted on to booking and booking_detailsdatabase
-![image](https://github.com/akber360/QA_Cinema/assets/139133081/9fafe03b-4f98-4148-847a-68efe12e5a9a)
-
-- 
 - **Read**: How is data retrieved and presented?
-- From the screening database to show all the screening ID and things such as current cappcity of seats left was all being read by the Screening database using
-- a method called screening_by_movies. this would return the movie id
-- ![image](https://github.com/akber360/QA_Cinema/assets/139133081/6a877c51-a4f1-41c5-91b9-c3f6dfb7e6bd)
-- Here is another example of database being read where Movie class is being called by various fuunctions where search function is being implemented also.
-- ![image](https://github.com/akber360/QA_Cinema/assets/139133081/1af4b6fe-f925-41a9-bb0e-606b7a1839e6)
+- **Update**: How can data be modified?
+- **Delete**: How can data be removed? Any safeguards?
 
 ---
 
@@ -209,9 +200,6 @@ Another example of users adding data is when the user is making a moive booking 
 - **Description**: A brief explanation of the component diagram and its significance.
 - **Link/Embed**: Link to or embed the component diagram.
 
-<img width="1440" alt="Screenshot 2023-09-15 at 15 31 05" src="https://github.com/pamswi/QA_Cinema/assets/125991084/5878cb1c-db0f-4216-8ac9-6fb872668d12">
-
-
 ---
 
 ## 10. Pipeline Diagram
@@ -219,9 +207,6 @@ Another example of users adding data is when the user is making a moive booking 
 - **Diagrams**: Webhooks, environments
 - **Description**: Describe the pipeline, its stages, and its role in the CI/CD process.
 - **Link/Embed**: Link to or embed the pipeline diagram.
-
-![Screenshot 2023-09-15 at 15 30 49](https://github.com/pamswi/QA_Cinema/assets/125991084/d9604c48-9ab2-444b-9ec2-0d29cbd11262)
-
 
 ---
 
@@ -290,21 +275,21 @@ Impact: Low Likelihood, High Impact
 Risk Level: Moderate
 
 
-| Risk                              | Likelihood     | Impact                   | Risk Level |
-|-----------------------------------|----------------|--------------------------|------------|
-| Technical Complexity              | High           | Moderate                 | Moderate   |
-| Scope Creep                       | Moderate       | Moderate                 | Moderate   |
-| Integration Challenges            | Moderate       | Moderate                 | Moderate   |
-| Resource Constraints              | Low            | Low                      | Low        |
-| Learning Curve                    | Moderate       | Moderate                 | Moderate   |
-| External Payment Handling         | Low            | High                     | Moderate   |
-| Lack of well defined process      | Moderate       | High                     | Moderate   |
-| VM for Apps Stops Functioning     | Moderate       | High                     | Moderate   |
-| Pushing Sensitive Info to GitHub  | Moderate       | High                     | Moderate   |
-| VScode Ceases to Connect to VM    | Low            | High                     | Moderate   |
-| Jenkins VM Ceases to Function     | Low            | High                     | Moderate   |
-| VM for DB Stops Functioning       | Moderate       | High                     | Moderate   |
-| Database Hack                     | Low            | High                     | Moderate   |
+| Risk                         | Likelihood     | Impact                   | Risk Level |
+|------------------------------|----------------|--------------------------|------------|
+| Technical Complexity         | High           | Moderate                 | Moderate   |
+| Scope Creep                  | Moderate       | Moderate                 | Moderate   |
+| Integration Challenges       | Moderate       | Moderate                 | Moderate   |
+| Resource Constraints         | Low            | Low                      | Low        |
+| Learning Curve               | Moderate       | Moderate                 | Moderate   |
+| External Payment Handling    | Low            | High                     | Moderate   |
+| Absence                      | Moderate       | High                     | Moderate   |
+| VM for Apps Stops Functioning | Moderate       | High                     | Moderate   |
+| Pushing Sensitive Info to GitHub | Moderate    | High                     | Moderate   |
+| VScode Ceases to Connect to VM | Low          | High                     | Moderate   |
+| Jenkins VM Ceases to Function | Low           | High                     | Moderate   |
+| VM for DB Stops Functioning   | Moderate       | High                    | Moderate   |
+| Database Hack                | Low            | High                     | Moderate   |
 
 
 Risk Mitigation:
@@ -322,23 +307,21 @@ Regular integration and bug fixes to mitigate integration challenges.
 - **Screenshots**: Consider embedding or linking to before-and-after screenshots to showcase changes.
 - **Overview**: Explain the need and benefits of the refactoring, including aspects like efficiency improvements or readability enhancements.
 - **Key Changes**: Detail major changes made, with before-and-after code snippets where useful.
-- ![Screenshot 2023-09-08 105743](https://github.com/akber360/QA_Cinema/assets/139133081/c00dfc9a-c634-4e09-857b-cde66f209f88)
--  This line of code was refactored to make it easier to read. Here you can see how the code is very long and trails off.
--  ![image](https://github.com/akber360/QA_Cinema/assets/139133081/e275a766-7ab6-441f-8d66-85aca7bf8130)
--  The same line of code was put in collumns to make it easier to understand what was being passed.
+
+## 14. Deployment
+
+<img width="1440" alt="Screenshot 2023-09-12 at 19 18 49" src="https://github.com/pamswi/QA_Cinema/assets/125991084/ca476045-9268-4463-9c2f-652e97f8505e">
+
+<img width="1440" alt="Screenshot 2023-09-13 at 12 05 09" src="https://github.com/pamswi/QA_Cinema/assets/125991084/187b30f9-b082-4133-9f37-e396aebca25b">
+
 
 ---
-## 14. Installation Deployment and testing
+## 14. Conclusion
 
 The QA Cinemas training project is an opportunity to enhance technical skills and gain practical experience. By proactively addressing potential risks, focusing on collaboration and learning and ensuring a clear understanding of Devops principles, the team can maximize the benefits of this training project.
 
 ---
-## 15. Conclusion
-
-The QA Cinemas training project is an opportunity to enhance technical skills and gain practical experience. By proactively addressing potential risks, focusing on collaboration and learning and ensuring a clear understanding of Devops principles, the team can maximize the benefits of this training project.
-
----
-## 16. Acknowledgements
+## 15. Acknowledgements
 
 Thank any individuals, organizations, or resources that were instrumental in the project:
 
@@ -348,7 +331,7 @@ Thank any individuals, organizations, or resources that were instrumental in the
 
 ---
 
-## 17. References
+## 16. References
 
 List all sources, tools, or libraries you referred to during the project:
 
