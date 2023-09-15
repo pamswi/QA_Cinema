@@ -11,7 +11,7 @@ import datetime
 from datetime import datetime
 from forms import PostForm, PayForm, BookingForm
 from datetime import date, timedelta
-from additionalResources.filters import swearwords
+# from additionalResources.filters import swearwords
 import re
 
 app.config['SECRET_KEY'] = 'YOUR_SECRET_KEY'    
