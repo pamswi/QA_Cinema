@@ -276,17 +276,13 @@ From the screening database to show all the screening ID and things such as curr
 
 ## 9. Component Diagram
 
-- **VMS Containers**: Jenkins
-- **Description**: A brief explanation of the component diagram and its significance.
-- **Link/Embed**: Link to or embed the component diagram.
+<img width="1440" alt="Screenshot 2023-09-15 at 15 31 05" src="https://github.com/pamswi/QA_Cinema/assets/125991084/3901fade-8029-43a8-aa5d-56e814681c73">
 
 ---
 
 ## 10. Pipeline Diagram
 
-- **Diagrams**: Webhooks, environments
-- **Description**: Describe the pipeline, its stages, and its role in the CI/CD process.
-- **Link/Embed**: Link to or embed the pipeline diagram.
+![Screenshot 2023-09-15 at 15 30 49](https://github.com/pamswi/QA_Cinema/assets/125991084/38fbac44-f7bb-406e-b855-73b2a8f5629c)
 
 ---
 
