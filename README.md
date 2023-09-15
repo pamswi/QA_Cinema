@@ -312,7 +312,7 @@ Regular integration and bug fixes to mitigate integration challenges.
 
 
 ---
-## 14. Installation, Deployment and testing
+## 14. Installation Deployment and testing
 
 The QA Cinemas training project is an opportunity to enhance technical skills and gain practical experience. By proactively addressing potential risks, focusing on collaboration and learning and ensuring a clear understanding of Devops principles, the team can maximize the benefits of this training project.
 
