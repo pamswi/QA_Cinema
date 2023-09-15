@@ -160,21 +160,21 @@ Impact: Low Likelihood, High Impact
 Risk Level: Moderate
 
 
-| Risk                         | Likelihood     | Impact                   | Risk Level |
-|------------------------------|----------------|--------------------------|------------|
-| Technical Complexity         | High           | Moderate                 | Moderate   |
-| Scope Creep                  | Moderate       | Moderate                 | Moderate   |
-| Integration Challenges       | Moderate       | Moderate                 | Moderate   |
-| Resource Constraints         | Low            | Low                      | Low        |
-| Learning Curve               | Moderate       | Moderate                 | Moderate   |
-| External Payment Handling    | Low            | High                     | Moderate   |
-| Absence                      | Moderate       | High                     | Moderate   |
-| VM for Apps Stops Functioning | Moderate       | High                     | Moderate   |
-| Pushing Sensitive Info to GitHub | Moderate    | High                     | Moderate   |
-| VScode Ceases to Connect to VM | Low          | High                     | Moderate   |
-| Jenkins VM Ceases to Function | Low           | High                     | Moderate   |
-| VM for DB Stops Functioning   | Moderate       | High                    | Moderate   |
-| Database Hack                | Low            | High                     | Moderate   |
+| Risk                              | Likelihood     | Impact                   | Risk Level |
+|-----------------------------------|----------------|--------------------------|------------|
+| Technical Complexity              | High           | Moderate                 | Moderate   |
+| Scope Creep                       | Moderate       | Moderate                 | Moderate   |
+| Integration Challenges            | Moderate       | Moderate                 | Moderate   |
+| Resource Constraints              | Low            | Low                      | Low        |
+| Learning Curve                    | Moderate       | Moderate                 | Moderate   |
+| External Payment Handling         | Low            | High                     | Moderate   |
+| Lack of well defined process      | Moderate       | High                     | Moderate   |
+| VM for Apps Stops Functioning     | Moderate       | High                     | Moderate   |
+| Pushing Sensitive Info to GitHub  | Moderate       | High                     | Moderate   |
+| VScode Ceases to Connect to VM    | Low            | High                     | Moderate   |
+| Jenkins VM Ceases to Function     | Low            | High                     | Moderate   |
+| VM for DB Stops Functioning       | Moderate       | High                     | Moderate   |
+| Database Hack                     | Low            | High                     | Moderate   |
 
 
 Risk Mitigation:
