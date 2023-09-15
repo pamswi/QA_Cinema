@@ -122,8 +122,6 @@ Discuss the major design decisions you made for this project:
 
 Title: Forking Central Repository and Pull/Merge Requests
 
-Date: [Insert Date]
-
 Background: In the QA Cinemas project, we need to establish a workflow for collaborative development and version control. To ensure a systematic and controlled approach to code changes, we have decided to fork the central repository on GitHub and utilize the pull/merge request system, with Pam as the central repository request validator.
 
 Alternatives:
@@ -172,7 +170,7 @@ The decision to create a separate booking page for movie screenings aligns with 
 structure. This design decision contributes to a more efficient and user-friendly QA Cinema website, ensuring a smoother booking process for our users while simplifying data management and 
 routing on the backend.
 
-# Design Choices 3: Appearance  & Colors 
+### Design Choices 3: Appearance & Colors 
 
 Aesthetics and Branding: Color plays a crucial role in creating the visual identity and brand recognition of a website. Consistent color schemes and palettes help reinforce brand. 
 
@@ -180,8 +178,8 @@ Colors also have psychological and emotional associations. Different colors can 
 
 The color of text and background must contrast sufficiently to ensure readability. Poor color choices can make content difficult to read, especially for people with visual impairments. Web designers must consider accessibility guidelines to ensure that all users can access and understand the content.
 
-
 Color can be used to guide users through a website. Buttons, links, and call-to-action elements were highlighted with specific colors to make them stand out and encourage user interaction. This aids in navigation and improves the overall user experience.
+
 ---
 
 ## 6. Wireframe
@@ -229,6 +227,7 @@ Ultimatly a version 2 of Database tables were discussed and would than be implem
 This is the final Working ERD diagram to our Cinema Database which contains the relationships.
 ![Final_ERD](https://github.com/akber360/QA_Cinema/assets/139133081/6de93f93-0d75-45c7-99e8-224a4d2c8190)
 
+- **Key Entities and Relationships**
 
 In this database, several tables work in concert to create a comprehensive cinema management system.  
 
@@ -255,9 +254,6 @@ The primary relationships include:
 - `User` and `Discussion`: The User table relates to the `Discussion` table, allowing users to participate in discussions. Each user can create multiple discussion posts or comments, creating a one-to-many relationship from `User` to `Discussion`.
 
 
-
-- **[Link/Embed of ERD Diagram]**
-- **Key Entities and Relationships**: Discuss the main tables/entities and their connections. (PAM)
 
 ---
 ## 8. CRUD Features
