@@ -352,7 +352,10 @@ Thank any individuals, organizations, or resources that were instrumental in the
 
 List all sources, tools, or libraries you referred to during the project:
 
-1. [Name of Source](URL) - Brief description of the source.
+1. [Stackoverflow](https://stackoverflow.com/) - forum for coding related questions used it for python library and flask related questions
+2. Earls Github - Has lots of exmaples on flask routes and forms etc
+3. [Geek for Geeks]([https://stackoverflow.com/](https://www.geeksforgeeks.org/)) - found how to resolve github issues
+4. [W3 Schools](https://www.w3schools.com/) - For various exmaples in Python and HTML 
 
 
 [Footer or any additional notes or links you want to add]
