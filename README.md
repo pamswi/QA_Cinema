@@ -75,7 +75,8 @@ It should then be accessible on port 5000 of localhost
         ├── Dockerfile 
         └── requirements.txt 
 
-- **Main Components**: Explain the primary components/modules of your application and their roles.
+- **Main Components**: Explain the primary components/modules of your application and their roles.  
+
 **Key modules**:
  - `app.py`: This is the main entry point of the application. It sets up the web server, handles routing, and manages user requests.
   - `models.py`: Defines data models and the database schema for storing information related to cinema, movies, users, and bookings.
