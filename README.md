@@ -209,6 +209,9 @@ Another example of users adding data is when the user is making a moive booking 
 - **Description**: A brief explanation of the component diagram and its significance.
 - **Link/Embed**: Link to or embed the component diagram.
 
+<img width="1440" alt="Screenshot 2023-09-15 at 15 31 05" src="https://github.com/pamswi/QA_Cinema/assets/125991084/5878cb1c-db0f-4216-8ac9-6fb872668d12">
+
+
 ---
 
 ## 10. Pipeline Diagram
@@ -216,6 +219,9 @@ Another example of users adding data is when the user is making a moive booking 
 - **Diagrams**: Webhooks, environments
 - **Description**: Describe the pipeline, its stages, and its role in the CI/CD process.
 - **Link/Embed**: Link to or embed the pipeline diagram.
+
+![Screenshot 2023-09-15 at 15 30 49](https://github.com/pamswi/QA_Cinema/assets/125991084/d9604c48-9ab2-444b-9ec2-0d29cbd11262)
+
 
 ---
 
