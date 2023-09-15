@@ -4,6 +4,7 @@ The project goal is to create a cinema website that allows users to buy tickets 
 
 ## Table of Contents
 1. [Introduction](#1-introduction)
+2. [Installation Steps](#2-installation-steps)
 2. [Project Structure](#2-project-structure)
 3. [Tech Stack](#3-tech-stack)
 4. [Requirements Gathering](#4-requirements-gathering)
@@ -30,7 +31,7 @@ Introduce the project's purpose, goals, and high-level overview.
 The project goal is to create a cinema website that allows users to buy tickets for movies they wish to see.
 
 ---
-## Installation steps
+## 2. Installation steps
 1. Clone the repo
 	`git clone https://github.com/pamswi/QA_Cinema`
 2. Create a virtual Environment
