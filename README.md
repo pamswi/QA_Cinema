@@ -172,14 +172,38 @@ The decision to create a separate booking page for movie screenings aligns with 
 structure. This design decision contributes to a more efficient and user-friendly QA Cinema website, ensuring a smoother booking process for our users while simplifying data management and 
 routing on the backend.
 
+# Design Choices 3: Appearance  & Colors 
+
+Aesthetics and Branding: Color plays a crucial role in creating the visual identity and brand recognition of a website. Consistent color schemes and palettes help reinforce brand. 
+
+Colors also have psychological and emotional associations. Different colors can evoke specific emotions or moods. We chose orangered because is can be very energetic and attention grabbing and very often used in advertising. 
+
+The color of text and background must contrast sufficiently to ensure readability. Poor color choices can make content difficult to read, especially for people with visual impairments. Web designers must consider accessibility guidelines to ensure that all users can access and understand the content.
+
+
+Color can be used to guide users through a website. Buttons, links, and call-to-action elements were highlighted with specific colors to make them stand out and encourage user interaction. This aids in navigation and improves the overall user experience.
 ---
 
 ## 6. Wireframe
 
 Present and describe any wireframes, mockups, or design blueprints for your project:
 
-- **[Link to Wireframe]**
-- **Design Notes**: Any specific components or flow mechanisms to highlight?
+Link to prototype of user interface(UI):
+
+[Mock Up                                               Home    About Us    What.docx](https://github.com/kesgermany/QA_Cinema/files/12610429/Mock.Up.Home.About.Us.What.docx)
+
+Header
+- Logo
+- Navigation Menu
+
+Hero Section 
+- New Releases Gallery
+
+Features and Services
+- Cards, Gallery
+
+Footer
+- Footer links 
 
 ---
 
