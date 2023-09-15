@@ -73,7 +73,7 @@ class TestBase(TestCase):
         db.drop_all()
 
 
-class TestStaticPages(TestBase):
+class TestBasicPages(TestBase):
     def test_home_get(self):
         response = self.client.get(url_for("home"))
         self.assertEqual(response.status_code, 200)
@@ -127,6 +127,7 @@ class TestStaticPages(TestBase):
         self.assertIn(b"Test_Movie(classic)", response.data)
         self.assertNotIn(b"Test_Movie(new release)", response.data)
 
+class TestSearch(TestBase):
     def test_search_results_post(self):
         response = self.client.post(
             url_for("search_results"),
