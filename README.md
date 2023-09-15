@@ -475,6 +475,12 @@ Signup page code refactored to reflect password validation:
 ![35](https://github.com/pamswi/QA_Cinema/assets/117832758/218ab25e-1f50-4371-93e1-ac5ee6ffa562)
 ![36](https://github.com/pamswi/QA_Cinema/assets/117832758/89ac825c-b170-4c9e-9885-0ab3d1e69ac9)
 
+### example 3
+This line of code was refactored to make it easier to read. Here you can see how the code is very long and trails off.
+
+![Screenshot 2023-09-08 105743](https://github.com/akber360/QA_Cinema/assets/139133081/c00dfc9a-c634-4e09-857b-cde66f209f88)
+![image](https://github.com/akber360/QA_Cinema/assets/139133081/e275a766-7ab6-441f-8d66-85aca7bf8130)
+The same line of code was put in collumns to make it easier to understand what was being passed.
 
 ## 14. Deployment
 
