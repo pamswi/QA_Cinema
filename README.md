@@ -95,10 +95,10 @@ It should then be accessible on port 5000 of localhost
 
 Detail all the technologies you used in this project:
 
-- **Languages**: (Python, JavaScript, HTML, CSS)
+- **Languages**: (Python 3.11.4, JavaScript, HTML 5, CSS)
 - **Frameworks**: (Flask)
-- **Databases**: (SQlite, MySQL)
-- **Deployment**: ( Docker)
+- **Databases**: (SQlite, MySQL Ver 8.0.33)
+- **Deployment**: (Docker)
 - **Other Tools**: (Github, Jenkins)
 
 ---
@@ -240,9 +240,16 @@ The primary relationships include:
 Detail the CRUD (Create, Read, Update, Delete) features of your project:
 
 - **Create**: How do users add new data?
+using classmethods like shown here when this function would be called user data such as name email and password would be added to the database ![image](https://github.com/akber360/QA_Cinema/assets/139133081/6a5e5bd1-0507-4b3a-807e-65a56bde0b2d)
+Another example of users adding data is when the user is making a moive booking the book-movie method gets called and user choices are craeted on to booking and booking_detailsdatabase
+![image](https://github.com/akber360/QA_Cinema/assets/139133081/9fafe03b-4f98-4148-847a-68efe12e5a9a)
+
 - **Read**: How is data retrieved and presented?
-- **Update**: How can data be modified?
-- **Delete**: How can data be removed? Any safeguards?
+From the screening database to show all the screening ID and things such as current cappcity of seats left was all being read by the Screening database using a method called screening_by_movies. this would return the movie id
+![image](https://github.com/akber360/QA_Cinema/assets/139133081/6a877c51-a4f1-41c5-91b9-c3f6dfb7e6bd)
+ Here is another example of database being read where Movie class is being called by various fuunctions where search function is being implemented also.
+![image](https://github.com/akber360/QA_Cinema/assets/139133081/1af4b6fe-f925-41a9-bb0e-606b7a1839e6)
+
 
 ---
 
