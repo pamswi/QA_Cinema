@@ -15,17 +15,18 @@ from filter.swearwords import swearwords
 import re
 
 app.config['SECRET_KEY'] = 'YOUR_SECRET_KEY'    
-app.secret_key = 'key'
+app.secret_key = 'verysecretappkey'
 
 '''
 the following app.py file defines all known routes
 '''
 @app.route("/")
 def home():
+    user_is_authenticated = "user_id" in session
     all_films = Movie.query.all()
    # username = session["username"]
    # print(username)
-    return render_template ("homepage.html", films=all_films)
+    return render_template ("homepage.html", films=all_films, user_is_authenticated=user_is_authenticated)
 
 @app.route("/about")
 def about():
@@ -101,15 +102,16 @@ def classics():
     return render_template('classics.html', films=classics)
 
 
-@app.route("/serchresults")
+@app.route("/searchresults", methods=["POST"])
 def search_results():
     # currently hardcoded, however once search bar is designed it will accept dynamic input
-    user_input="the"
-    results = Movie.search(user_input)
-    for result in results:
-        print(result.title)
+    if request.method == "POST":
+        searchquery = request.form['searchinput']
+        results = Movie.search(searchquery)
+        # for result in results:
+        #     print(result.title)
 
-    return render_template("classics.html", films=results)
+    return render_template("new_releases.html", films=results)
 
 @app.route('/payment', methods=['GET', 'POST'])
 def payment():
@@ -143,12 +145,8 @@ def payment():
 
         total_tickets_booked = sum(quantity for _, quantity in tickets)
         screening.current_capacity -= total_tickets_booked
-        db.session.commit()
-    
-
-    
-
-
+        db.session.commit() 
+        flash("Payment has been made successfully! Your booking is now complete")
     return render_template(
             'payment.html', 
             form=form, 
@@ -191,7 +189,7 @@ def signup():
                 new_user = User.add_user(username, email, password_hash)
                 flash("sign up successful")
 
-                return redirect("/login")
+                return redirect(url_for('login'))
             else:
                 flash("password does not meet security requirements")
 
@@ -218,10 +216,10 @@ def login():
                 session["user_id"] = user.id
                 # print(session["username"])
                 # print(session["user_id"])
-                print("successfully logged in")
+                flash("successfully logged in")
             else:
-                print("incorrect username and/or password")
-                return redirect ("/login")
+                flash("incorrect username and/or password")
+                return redirect(url_for('login'))
         return redirect ("/")
     
     return render_template ("login.html")
@@ -283,10 +281,6 @@ def forum():
     return render_template("forum.html", all_posts=all_posts, postform=postform, all_comments=all_comments)
 
 
-
-
-
-
 @app.route('/booking', methods=['GET', 'POST'])
 def book_movie():
     form = BookingForm()  
@@ -304,15 +298,16 @@ def book_movie():
     #/ALEX>
 
     if form.validate_on_submit():
-        ticket_prices = {'Adult': 10.0,'Kids': 7.5,'Concession': 15.0}        
+        ticket_prices = {'Adult': 15.0,'Child': 7.5,'Concession': 10.0}        
         total_price = 0
         tickets = [
             ("Adult", form.Adult.data),
-            ("Kids", form.Child.data),
+            ("Child", form.Child.data),
             ("Concession", form.Concession.data)
         ]
         for ticket_type, quantity in tickets:
-            total_price += ticket_prices[ticket_type] * quantity
+                              
+         total_price += ticket_prices[ticket_type] * quantity
 
         booking = Booking.book_movie(
             user_id=session["user_id"],
@@ -330,6 +325,7 @@ def book_movie():
             )
         session['tickets'] = tickets
         session['total_price'] = total_price
+        flash("Booking complete!")
         return redirect(url_for('payment', screening_id=screening_id))
    
     return render_template(
