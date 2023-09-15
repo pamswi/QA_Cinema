@@ -10,17 +10,15 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-.logo, .footer-logo {
-    font-family: 'shrikhand', sans-serif;
-    color: orangered;
-}
+
 
 header {
     display: flex;
-    padding: 2% 1%;
     justify-content: space-between;
     align-items: center;
 }
+
+
 
 .nav-links ul li {
     list-style: none;
@@ -35,6 +33,7 @@ header {
     font-size: 15px;
 }
 
+
 .nav-links li a:hover {
     color: orangered;
     border: solid 2px orangered;
@@ -42,6 +41,11 @@ header {
     border-right: 0px;
     border-bottom: 0px;
     padding-top: 30px;
+}
+
+
+.logo img {
+    width: 200px;
 }
 
 .tag-line h2 {
@@ -102,10 +106,6 @@ footer a:hover {
     padding-left: 40px;
 }
 
-.footer-logo {
-    padding-bottom: 20px;
-}
-
 .footer-row1, .footer-row2, .footer-row4, .footer-row5, .footer-row7, .footer-row8  {
     padding-bottom: 15px;
 }
@@ -132,6 +132,24 @@ button.btn, .cardContainer a.btn {
 
 button.btn:hover, .cardContainer a.btn:hover {
     background-color: lightcoral;
+}
+
+.screen-page-header {
+    color: white;
+    padding-left: 35%;
+    margin-bottom: -1rem;
+    padding-bottom: 5rem;
+}
+
+.standard-screen {
+    padding-left: 35%;
+    color: white;
+}
+
+.deluxe-screen {
+    padding-left: 35%;
+    padding-top: 3rem;
+    color: white;
 }
 
 /* FILM PAGES*/
@@ -216,6 +234,11 @@ button.btn:hover, .cardContainer a.btn:hover {
 
 footer {
     margin-top: -1rem;
+}
+
+.pam, .kes, .akber, .alex, .tom {
+    padding-bottom: 3rem;
+    padding-top: 4rem;
 }
 
 /*LOGIN PAGE STYLES*/
@@ -322,22 +345,68 @@ form input {
 .forum-heading {
     color: white;
     padding-left: 40%;
+    padding-bottom: 1rem;
     margin-bottom: -2rem;
 }
 
-table tr td h2 {
+.post {
     color: white;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 1rem;
+    margin-bottom: -2rem;
+}
+
+.comment {
+    color: white;
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-bottom: 1rem;
+    margin-bottom: -1rem;
+}
+
+.username {
+    padding-right: 2rem;
+}
+
+.add_comment {
+    margin-top: -5%;
+    margin-left: -15%;
+}
+
+.comment_box input {
+    width: 400px;
+    padding-top: -10%;
+    margin-top: -20%;
+}
+
+.comment_box input::placeholder {
+    color: white;
+    padding-left: 1rem;
+}
+
+.post-topic {
     padding-top: 3rem;
 }
 
-td {
-    color: white;
+form.newpost-form {
+    padding-left: 10%;
+    padding-bottom: 4rem;
+}
+
+form.newpost-form h2 {
     padding-top: 2rem;
 }
 
-.comment input {
-    width: 400px;
-} 
+form.newpost-form input#content, form.newpost-form input#topic, #movie_id  {
+    width: 280px;
+}
+
+#movie_id {
+    color: white;
+    background: orangered;
+}
+
 
 /* PAYMENT PAGE */
 
@@ -362,6 +431,25 @@ td {
 
 .payment-page-img img {
     margin-left: 29%;
+}
+
+.booking-info {
+    padding-left: 35%;
+    color: white;
+    margin-bottom: -1rem;
+}
+
+.payment-amount {
+    color: white;
+    padding-left: 30%;
+    padding-top: 3rem;
+    margin-bottom: -0.5rem;
+}
+
+.flash-messages p {
+    color: white;
+    margin-bottom: -1rem;
+    padding-bottom: 1rem;
 }
 
 
@@ -391,6 +479,14 @@ td {
     font-size: 18px;
 }
 
+/* Payment page styling akber */
+.movie_pay_detail {
+    padding-left: -20%;
+    color: white;
+
+
+
+}
 
 /* Define the hover effect */
 .movie-item:hover {
@@ -582,6 +678,48 @@ td {
 }
 
 
+/* SEARCH BAR*/
+
+.box {
+    height: 30px;
+    display: flex;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 30px;
+    align-items: center;
+}
+
+button.searchpage-button {
+    margin-bottom: -2rem;
+}
+
+.box:hover input {
+    width: 200px;
+}
+
+.box input {
+    width: 0;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    transition: 0.8s;
+    background: transparent;
+}
+
+.box a .fas {
+    color: orangered;
+}
+
+.flash {
+    margin-bottom: -1rem;
+}
+
+button.screening-button {
+    color: white;
+}
+
+
+
 
 
 
@@ -593,7 +731,7 @@ td {
 /* MEDIA QUERIES - TABLET*/
 
 @media only screen and (max-width: 992px) {
-    .logo, .footer-logo {
+    .logo {
         width: 15rem;
         
     }
@@ -604,6 +742,9 @@ td {
 
     .nav-links {
         margin-left: 0rem;
+        margin-bottom: -1rem;
+        padding-bottom: 3rem;
+        font-size: 16px;
     }
 
     .tag-line h2 {
@@ -627,23 +768,34 @@ td {
         margin-left: -5rem;
         
     }
+
+    .aboutus-details, .meet-our-team  {
+        padding-left: 6%;
+    }
 }
 
 
 /* MEDIA QUERIES - MOBILE*/
 
 @media only screen and (max-width: 768px) {
-    header {
-        display: block;
+    .nav-links ul li a {
+        font-size: 14px;
     }
 
     .logo {
-        margin-left: 5%;
+        margin-left: 25%;
     }
 
     .nav-links li a:hover {
         padding-top: 10px;
     }
+
+    #homeCarousel {
+        margin-top: -1rem;
+        
+    }
+
+
 
     .tag-line h2 {
         font-size: 2rem;
@@ -651,6 +803,22 @@ td {
 
     .aboutUsHeading {
         margin-left: 25%;
+    }
+
+    .aboutus-details, .meet-our-team {
+        padding-left: 4%;
+    }
+
+    .aboutus-pageparagraph, .our-team-paragraph {
+        font-size: 13px;
+    }
+
+    .team-members {
+        padding-left: 0;
+    }
+
+    .pam-img, .kes-img, .akber-img, .tom-img, .alex-img {
+        display: none;
     }
 
     .cardContainer {
@@ -667,7 +835,12 @@ td {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding-left: 10%;
+    }
+
+    div.movie-item a img {
+        width: 100%;
+        object-fit: contain;
+        
     }
 
     .socials {
@@ -684,6 +857,47 @@ td {
     .footer-info {
         margin-left: -20rem;
         margin-top: 10rem;
+    }
+
+    .forum-heading {
+        font-size: 22px;
+        padding-left: 25%;
+    }
+
+    form {
+        padding-left: 2%;
+    }
+
+    
+
+    .comment input {
+        width: 300px;
+    }
+
+    input#submit {
+        margin-left: 4%;
+    }
+
+    form.newpost-form {
+        padding: 3rem 2rem;
+    }
+
+    .login-form input, .login-pwd input {
+        width: 20rem;
+    }
+
+    div.login-form, div.login-pwd, div.login-btn {
+        margin-left: 5%;
+        padding-top: 1rem;
+    }
+
+    .email-details input, .username-details input, .user-pwd input, .confirm-pwd input {
+        margin-left: 5%;
+        width: 20rem;
+    }
+
+    .email-details label, .username-details label, .user-pwd label, .confirm-pwd label, .signup-btn {
+        margin-left: 5%;
     }
 }
 

@@ -51,9 +51,9 @@ class PayForm(FlaskForm):
 
 
 class BookingForm(FlaskForm):  
-    Adult = IntegerField('Number of Adult Tickets', default=0)
-    Child = IntegerField('Number of Child Tickets', default=0)
-    Concession = IntegerField('Number of Concession Tickets', default=0)
+    Adult = IntegerField('Number of Adult Tickets £15.00', default=0)
+    Child = IntegerField('Number of Child Tickets £7.50', default=0)
+    Concession = IntegerField('Number of Concession Ticket £10.00 *  ', default=0)
     
     submit = SubmitField('Book')
 
